@@ -5,12 +5,17 @@ datasetpath <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/"
 load(file=paste(datasetpath, "/6239_CAEEL/6239_CAEEL_STRING_NET_v10.5.rda", sep = ""))
 load(file=paste(datasetpath, "/6239_CAEEL/6239_CAEEL_GO_BP_ANN_STRING_v10.5_20DEC17.rda", sep=""))
 y_test <- ann[,1]
+W <- lapply(W, FUN = function(x) x/1000)
+W <- W[seq(1,1000),]
+W <- outer()
+print(nrow(W))
+y_test <- y_test[seq(1,1000)]
 string_class_matrix<-cbind(W,y_test)
-ntimes <- 10
-number.folds = 10
+ntimes <- 2
+number.folds = 2
 algorithm="svmLinear";
 # grid of the parameters to be  tuned:
-Grid <-  expand.grid(C=c(0.01,0.05, 0.1, 1, 10));
+Grid <-  expand.grid(C=c(0.01));
 AUROC <- AUPRC <- conf <- test_set_list <- model <- vector("list", ntimes);
 set.seed(1)  # questo assicura che vengano create sempre le stesse partizioni
 trainIndex <- createFolds(factor(string_class_matrix[,nrow(string_class_matrix)]), k = number.folds, list = TRUE)
