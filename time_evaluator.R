@@ -38,7 +38,7 @@ for(i in seq(1, number.folds)){
   # computing predicted labels at cutoff=0.5
   pred <- factor(ifelse(model.prob$positive >= .5, "positive", "negative"), levels=c("positive","negative"));
   # construction of the data frame for evaluating the predictions
-  test_set_list[[i]] <- data.frame(obs = obs, pred=pred, Altered_splicing=model.prob$Altered_splicing, Unaltered_splicing=model.prob$Unaltered_splicing); 
+  test_set_list[[i]] <- data.frame(obs = obs, pred=pred, positive=model.prob$positive, negative=model.prob$negative); 
   test_set <- test_set_list[[i]];
   # computing AUROC
   #AUROC[[i]] <- twoClassSummary(test_set, lev = levels(test_set$obs));  
