@@ -1,5 +1,4 @@
 library(caret)
-
 crossValidation <- function(number.folds, trainIndex, W, y_test, algorithm, Grid, string_class_matrix, test_set_list, model ){
   for(i in seq(1, number.folds)){
     tc <- trainControl(method = "cv", number = number.folds, classProbs = TRUE, summaryFunction = AUPRCSummary)
@@ -12,7 +11,7 @@ crossValidation <- function(number.folds, trainIndex, W, y_test, algorithm, Grid
                                  method = algorithm, 
                                  trControl = tc, 
                                  verbose = FALSE, 
-                                 tuneGrid = Grid,
+                                 #tuneGrid = Grid,
                                  metric = "AUPRC")
     },  error = function(err) {
       print(err)
@@ -36,22 +35,34 @@ crossValidation <- function(number.folds, trainIndex, W, y_test, algorithm, Grid
 } 
 
 source("/home/kai/Documents/Unimi/Tesi-Bioinformatica/MachineLearning_ExecutionTimeEvaluation_R/metrics.R");
+args = commandArgs(trailingOnly=TRUE)
+print(args)
 datasetpath <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/"
 load(file=paste(datasetpath, "/6239_CAEEL/6239_CAEEL_STRING_NET_v10.5.rda", sep = ""))
 load(file=paste(datasetpath, "/6239_CAEEL/6239_CAEEL_GO_BP_ANN_STRING_v10.5_20DEC17.rda", sep=""))
 y_test <- ann[,1]
 W <- W[seq(1,1000),]
 y_test <- y_test[seq(1,1000)]
-W <- apply(W, FUN= function(x) x/1000)
+W <- apply(W, FUN= function(x) x/1000, MARGIN = c(1,2))
 string_class_matrix<-cbind(W,y_test)
 ntimes <- 2
 number.folds = 2
-algorithm="svmLinear";
-# grid of the parameters to be  tuned:
-Grid <-  expand.grid(C=c(0.01));
+
+
+if(length(args)==0)
+{
+  algorithm="svmRadial"
+}else
+{
+  algorithm=args[1]
+}
+
+#Grid <-  expand.grid(C = c(.25, .5, 1), sigma = .05);
+
+
 AUROC <- AUPRC <- conf <- test_set_list <- model <- vector("list", ntimes);
 set.seed(1)  # questo assicura che vengano create sempre le stesse partizioni
 trainIndex <- createFolds(factor(string_class_matrix[,nrow(string_class_matrix)]), k = number.folds, list = TRUE)
-crossValidation(number.folds, trainIndex, W, y_test, algorithm, Grid, string_class_matrix, test_set_list, model)
-
-
+exTime<-system.time(crossValidation(number.folds, trainIndex, W, y_test, algorithm, Grid, string_class_matrix, test_set_list, model))
+write(algorithm, file=paste(datasetpath, algorithm, "_time.csv", sep = ""))
+write(exTime[3], file=paste(datasetpath, algorithm, "_time.csv", sep = ""), append = TRUE)
