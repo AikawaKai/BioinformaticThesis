@@ -52,7 +52,10 @@ W <- apply(W, FUN= function(x) x/1000, MARGIN = c(1,2))
 string_class_matrix<-cbind(W,y_test)
 ntimes <- 2
 number.folds = 2
-algorithms <- c("svmLinear", "svmRadial") #, "mlp", "mlpML", "AdaBoost.M1", "rf'")
+algorithms <- c("svmLinear", "svmRadial", "mlp", "mlpML", 
+                "AdaBoost.M1", "rf", "C5.0", "xgbLinear",
+                "lda", "LogitBoost", "gaussprPoly", "glmnet",
+                "randomGLM", "treebag", "knn")
 
 #Grid <-  expand.grid(C = c(.25, .5, 1), sigma = .05);
 no_cores <- detectCores() -1
