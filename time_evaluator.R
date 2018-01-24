@@ -1,15 +1,12 @@
 library(caret)
 source("/home/kai/Documents/Unimi/Tesi-Bioinformatica/MachineLearning_ExecutionTimeEvaluation_R/metrics.R");
 datasetpath <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/"
-
 load(file=paste(datasetpath, "/6239_CAEEL/6239_CAEEL_STRING_NET_v10.5.rda", sep = ""))
 load(file=paste(datasetpath, "/6239_CAEEL/6239_CAEEL_GO_BP_ANN_STRING_v10.5_20DEC17.rda", sep=""))
 y_test <- ann[,1]
-W <- lapply(W, FUN = function(x) x/1000)
 W <- W[seq(1,1000),]
-W <- outer()
-print(nrow(W))
 y_test <- y_test[seq(1,1000)]
+W <- apply(W, FUN= function(x) x/1000)
 string_class_matrix<-cbind(W,y_test)
 ntimes <- 2
 number.folds = 2
