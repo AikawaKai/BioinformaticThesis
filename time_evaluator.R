@@ -5,7 +5,7 @@ library(parallel)
 crossValidation <- function(number.folds, ntimes, trainIndex, W, y_test, algorithm){
   AUROC <- AUPRC <- conf <- test_set_list <- model <- vector("list", ntimes);
   #Grid <-  expand.grid(C=c(0.01,0.05, 0.1, 1, 10));
-  for(i in seq(1, number.folds)){
+  exTime <- system.time(for(i in seq(1, number.folds)){
     tc <- trainControl(method = "cv", number = number.folds, classProbs = TRUE, summaryFunction = AUPRCSummary)
     set.seed(2);
     curr_y <- y_test[trainIndex[[i]]]
@@ -24,7 +24,7 @@ crossValidation <- function(number.folds, ntimes, trainIndex, W, y_test, algorit
     
     
     # Probabilistic prediction on the test set
-    #model.prob <- predict(model[[i]], newdata = as.data.frame(W[-trainIndex[[i]],]), type = "prob")
+    model.prob <- predict(model[[i]], newdata = as.data.frame(W[-trainIndex[[i]],]), type = "prob")
 
     # true labels
     #obs <- y_test[-trainIndex[[i]]]
@@ -39,9 +39,9 @@ crossValidation <- function(number.folds, ntimes, trainIndex, W, y_test, algorit
     #AUPRC[[i]] <- prSummary(test_set, lev = levels(test_set$obs));     
     #conf[[i]] <- best.threshold.confusion(test_set, thresholds = seq(0.01, 0.99, by=0.01));
     cat("End of iteration ", i, "\n");
-  }
-  #write(algorithm, file=paste(datasetpath, algorithm, "_time.csv", sep = ""))
-  #write(exTime[3], file=paste(datasetpath, algorithm, "_time.csv", sep = ""), append = TRUE)
+  })
+  write(algorithm, file=paste(datasetpath, algorithm, "_time.csv", sep = ""))
+  write(exTime[3], file=paste(datasetpath, algorithm, "_time.csv", sep = ""), append = TRUE)
 } 
 
 source("/home/kai/Documents/Unimi/Tesi-Bioinformatica/MachineLearning_ExecutionTimeEvaluation_R/metrics.R");
