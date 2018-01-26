@@ -1,27 +1,30 @@
 library(caret)
 library(parallel)
-crossValidation <- function(number.folds, ntimes, trainIndex, W, y_test, algorithm, string_class_matrix){
-  library(caret)
+crossValidation <- function(number.folds, ntimes, trainIndex, W, y_test, algorithm){
   AUROC <- AUPRC <- conf <- test_set_list <- model <- vector("list", ntimes);
-  exTime<-system.time(
+  #Grid <-  expand.grid(C=c(0.01,0.05, 0.1, 1, 10));
   for(i in seq(1, number.folds)){
     tc <- trainControl(method = "cv", number = number.folds, classProbs = TRUE, summaryFunction = AUPRCSummary)
     set.seed(2);
     curr_y <- as.factor(y_test[trainIndex[[i]]])
     curr_x <- as.data.frame(W[trainIndex[[i]],])
+    print(nrow(curr_x))
+    print(ncol(curr_x))
+    print(length(curr_y))
     levels(curr_y)<-c("negative", "positive")
-    tryCatch({
-      model[[i]] <- caret::train(x=curr_x, y=curr_y,
+    if(length(unique(curr_y))<=1){
+      print("empty")
+      next
+    }
+    model[[i]] <- caret::train(x=curr_x, y=curr_y,
                                  method = algorithm, 
                                  trControl = tc, 
-                                 verbose = FALSE, 
                                  #tuneGrid = Grid,
                                  metric = "AUPRC")
-    },  error = function(err) {
-      print(err)
-    })
+    
     # Probabilistic prediction on the test set
     model.prob <- predict(model[[i]], newdata = as.data.frame(W[-trainIndex[[i]],]), type = "prob")
+
     # true labels
     obs <- y_test[-trainIndex[[i]]]
     # computing predicted labels at cutoff=0.5
@@ -35,7 +38,7 @@ crossValidation <- function(number.folds, ntimes, trainIndex, W, y_test, algorit
     #AUPRC[[i]] <- prSummary(test_set, lev = levels(test_set$obs));     
     #conf[[i]] <- best.threshold.confusion(test_set, thresholds = seq(0.01, 0.99, by=0.01));
     cat("End of iteration ", i, "\n");
-  })
+  }
   write(algorithm, file=paste(datasetpath, algorithm, "_time.csv", sep = ""))
   write(exTime[3], file=paste(datasetpath, algorithm, "_time.csv", sep = ""), append = TRUE)
 } 
@@ -49,13 +52,12 @@ y_test <- ann[,1]
 W <- W[seq(1,1000),]
 y_test <- y_test[seq(1,1000)]
 W <- apply(W, FUN= function(x) x/1000, MARGIN = c(1,2))
-string_class_matrix<-cbind(W,y_test)
-ntimes <- 2
-number.folds = 2
-algorithms <- c("svmLinear", "svmRadial", "mlp", "mlpML", 
-                "AdaBoost.M1", "rf", "C5.0", "xgbLinear",
-                "lda", "LogitBoost", "gaussprPoly", "glmnet",
-                "randomGLM", "treebag", "knn")
+ntimes <- 10
+number.folds <- 10
+algorithms <- c("svmLinear")#, "svmRadial") #, "mlp", "mlpML", 
+                #"AdaBoost.M1", "rf", "C5.0", "xgbLinear",
+                #"lda", "LogitBoost", "gaussprPoly", "glmnet",
+                #"randomGLM", "treebag", "knn")
 
 #Grid <-  expand.grid(C = c(.25, .5, 1), sigma = .05);
 no_cores <- detectCores() -1
@@ -63,12 +65,14 @@ cl <- makeCluster(no_cores, errfile="./errParSeq.txt", outfile="./out.txt")
 
 #vector("list", ntimes);
 set.seed(1)  # questo assicura che vengano create sempre le stesse partizioni
-trainIndex <- createFolds(factor(string_class_matrix[,nrow(string_class_matrix)]), 
+trainIndex <- caret::createFolds(factor(y_test), 
                           k = number.folds, list = TRUE)
+
 clusterExport(cl, list("crossValidation", "number.folds", "ntimes",
                        "trainControl", "AUPRCSummary", "y_test",
                        "trainIndex", "W", "predict","compute.AUPRC",
                        "evalmod", "datasetpath"))
-out<-parLapply(cl, algorithms, function(x) c(crossValidation(number.folds, ntimes, trainIndex, W, 
-                                                             y_test, x,
-                                                             string_class_matrix)))
+#out<-parLapply(cl, algorithms, function(x) c(crossValidation(number.folds, ntimes, trainIndex, W, 
+                                                             #y_test, x,
+                                                             #string_class_matrix)))
+crossValidation(10, 10, trainIndex, W, y_test, "knn")
