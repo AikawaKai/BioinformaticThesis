@@ -1,47 +1,69 @@
 library(caret)
 library(dplyr)
 library(parallel)
-#library(parallel)
+library(HEMDAG)
+library(MLmetrics)
+
 crossValidation <- function(number.folds, ntimes, trainIndex, W, y_test, algorithm){
   AUROC <- AUPRC <- conf <- test_set_list <- model <- vector("list", ntimes);
-  #Grid <-  expand.grid(C=c(0.01,0.05, 0.1, 1, 10));
-  exTime <- system.time(for(i in seq(1, number.folds)){
-    tc <- trainControl(method = "cv", number = number.folds, classProbs = TRUE, summaryFunction = AUPRCSummary)
-    set.seed(2);
-    curr_y <- y_test[trainIndex[[i]]]
-    curr_y <- as.factor(curr_y)
-    levels(curr_y)<-c("negative", "positive")
-    curr_x <- W[trainIndex[[i]],]
-    if(length(unique(curr_y))<=1){
-      print("empty")
-      next
-    }
-    model[[i]] <- caret::train(curr_x, curr_y,
-                               method = algorithm, 
-                               trControl = tc, 
-                               #tuneGrid = Grid,
-                               metric = "AUPRC")
-    
-    
-    # Probabilistic prediction on the test set
-    model.prob <- predict(model[[i]], newdata = as.data.frame(W[-trainIndex[[i]],]), type = "prob")
 
-    # true labels
-    #obs <- y_test[-trainIndex[[i]]]
-    # computing predicted labels at cutoff=0.5
-    #pred <- factor(ifelse(model.prob$positive >= .5, "positive", "negative"), levels=c("positive","negative"));
-    # construction of the data frame for evaluating the predictions
-    #test_set_list[[i]] <- data.frame(obs = obs, pred=pred, positive=model.prob$positive, negative=model.prob$negative); 
-    #test_set <- test_set_list[[i]];
-    # computing AUROC
-    #AUROC[[i]] <- twoClassSummary(test_set, lev = levels(test_set$obs));  
-    # computing AUPRC
-    #AUPRC[[i]] <- prSummary(test_set, lev = levels(test_set$obs));     
-    #conf[[i]] <- best.threshold.confusion(test_set, thresholds = seq(0.01, 0.99, by=0.01));
-    cat("End of iteration ", i, "\n");
-  })
-  write(algorithm, file=paste(datasetpath, algorithm, "_time.csv", sep = ""))
-  write(exTime[3], file=paste(datasetpath, algorithm, "_time.csv", sep = ""), append = TRUE)
+  exTime <- system.time(
+    for(i in seq(1, number.folds)){
+      tc <- trainControl(method = "none", classProbs = TRUE)
+      set.seed(2);
+      curr_y <- y_test[-which(rownames(W) %in% trainIndex[[i]])]
+      curr_y <- as.factor(curr_y)
+      levels(curr_y)<-c("negative", "positive")
+      curr_x <- W[-which(rownames(W) %in% trainIndex[[i]]), ]
+      print("curr num label training set:")
+      print(length(curr_y))
+      print("Curr training set size: ")
+      print(nrow(curr_x))
+      if(length(unique(curr_y))<=1){
+        print("empty")
+        next
+      }
+      model[[i]] <- caret::train(curr_x, curr_y,
+                                 method = algorithm, 
+                                 trControl = tc, 
+                                 #tuneGrid = Grid,
+                                 metric = "AUPRC")
+      
+      
+      # Probabilistic prediction on the test set
+      curr_test_set <- as.matrix(W[which(rownames(W) %in% trainIndex[[i]]),])
+      print("curr test set size:")
+      print(nrow(curr_test_set))
+      
+      model.prob <- predict(model[[i]], newdata = curr_test_set, type = "prob")
+      print("here")
+      # true labels
+      obs <- factor(y_test[which(rownames(W) %in% trainIndex[[i]])])
+      # computing predicted labels at cutoff=0.5
+      
+      pred <- factor(ifelse(model.prob$positive >= .5, "positive", "negative"), levels=c("positive","negative"));
+      # construction of the data frame for evaluating the predictions
+      test_set_list[[i]] <- data.frame(obs = obs, pred=pred, positive=as.numeric(model.prob$positive), negative=as.numeric(model.prob$negative)); 
+      test_set <- test_set_list[[i]];
+      # computing AUROC
+      print("here1")
+      tryCatch({AUROC[[i]] <- twoClassSummary(test_set, lev = levels(test_set$obs))}, 
+          error = function(err) {
+            # error handler picks up where error was generated
+            print(paste("MY_ERROR:  ",err))
+          })
+      
+      # computing AUPRC
+      print("here2")
+      tryCatch({AUPRC[[i]] <- prSummary(test_set, lev = levels(test_set$obs))}, 
+          error = function(err) {
+            # error handler picks up where error was generated
+            print(paste("MY_ERROR:  ",err))
+          })  
+      cat("End of iteration ", i, "\n");
+    })
+    write(algorithm, file=paste(datasetpath, algorithm, "_time.csv", sep = ""))
+    write(exTime[3], file=paste(datasetpath, algorithm, "_time.csv", sep = ""), append = TRUE)
 } 
 
 source("/home/kai/Documents/Unimi/Tesi-Bioinformatica/MachineLearning_ExecutionTimeEvaluation_R/metrics.R");
@@ -60,18 +82,25 @@ algorithms <- c("svmLinear", "svmRadial") #, "mlp", "mlpML",
                 #"lda", "LogitBoost", "gaussprPoly", "glmnet",
                 #"randomGLM", "treebag", "knn")
 
-#Grid <-  expand.grid(C = c(.25, .5, 1), sigma = .05);
+
 no_cores <- detectCores() -1
 cl <- makeCluster(no_cores, errfile="./errParSeq.txt", outfile="./out.txt")
 
-#vector("list", ntimes);
-set.seed(1)  # questo assicura che vengano create sempre le stesse partizioni
-trainIndex <- caret::createFolds(factor(y_test), k = number.folds, list = TRUE)
+
+indices <- rownames(W)
+positives <- which(y_test == 1)
+print(positives)
+
+folds <- do.stratified.cv.data.single.class(indices, positives, kk=number.folds, seed=1);
+trainIndex <- mapply(c, folds$fold.positives, folds$fold.negatives, SIMPLIFY=FALSE);
+names(trainIndex) <- paste0("Fold", gsub(" ", "0", format(1:number.folds)));
+#trainIndex <- caret::createFolds(factor(y_test), k = number.folds, list = TRUE)
 
 clusterExport(cl, list("crossValidation", "number.folds", "ntimes",
                        "trainControl", "AUPRCSummary", "y_test",
                        "trainIndex", "W", "predict","compute.AUPRC",
-                       "evalmod", "datasetpath"))
-out<-parLapply(cl, algorithms, function(x) c(crossValidation(number.folds, ntimes, trainIndex, W, 
-                                                             y_test, x)))
-#crossValidation(number.folds, number.folds, trainIndex, W, y_test, "svmLinear")
+                       "evalmod", "datasetpath", "twoClassSummary",
+                       "prSummary"))
+#out<-parLapply(cl, algorithms, function(x) c(crossValidation(number.folds, ntimes, trainIndex, as.data.frame(W), 
+#                                                             y_test, x)))
+crossValidation(number.folds, ntimes, trainIndex, W, y_test, "svmLinear")
