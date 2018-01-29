@@ -4,9 +4,8 @@ library(parallel)
 library(HEMDAG)
 library(MLmetrics)
 
-crossValidation <- function(number.folds,  W, y_classes, algorithm){
-  AUROC <- AUPRC <- conf <- test_set_list <- model <- vector("list", number.folds);
-  
+crossValidation <- function(number.folds,  W, y_classes, y_names, algorithm){
+
   #csv file
   time_file <- paste(datasetpath, algorithm, "_time.csv", sep = "")
   eval_file <- paste(datasetpath, algorithm, "_AUC_ROC_PRC.csv", sep = "")
@@ -17,6 +16,7 @@ crossValidation <- function(number.folds,  W, y_classes, algorithm){
   # time evaluation
   for(j in seq(1, length(y_classes)))
   {
+    AUROC <- AUPRC <- test_set_list <- model <- vector("list", number.folds);
     y_test <- y_classes[[j]]
     # split with proportions
     indices <- rownames(W)
@@ -88,14 +88,19 @@ crossValidation <- function(number.folds,  W, y_classes, algorithm){
         cat("End of iteration ", i, "\n");
         print(AUROC[[i]][[1]])
         print(AUPRC[[i]][[1]])
-        
+        gc()
       })
     
-    write(c(algorithm, exTime[3], colnames(y_test)[[1]], length(which(y_test==1))), file=time_file, 
+    write(c(algorithm, exTime[3], y_names[[j]], length(which(y_test==1))), file=time_file, 
           sep=",", append = "TRUE", ncolumns = 4)
     for(i in seq(1,number.folds)){
       write(c(i, AUROC[[i]][[1]], AUPRC[[i]][[1]]), file=eval_file, sep = ",", append = TRUE, ncolumns = 3)
     }
+    rm(AUPRC)
+    rm(AUROC)
+    rm(model)
+    rm(test_set_list)
+    gc()
   }
 } 
 
@@ -105,22 +110,26 @@ datasetpath <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/"
 load(file=paste(datasetpath, "/6239_CAEEL/6239_CAEEL_STRING_NET_v10.5.rda", sep = ""))
 load(file=paste(datasetpath, "/6239_CAEEL/6239_CAEEL_GO_BP_ANN_STRING_v10.5_20DEC17.rda", sep=""))
 
+set.seed(1)
 ann_select <-ann[,colSums(ann)>9]
 ann_sample <- sample(colnames(ann_select), 20)
 classes <- ann_select[,ann_sample]
-y_classes <- list(20)
-for(i in seq(1,20)){
+
+y_classes <- list(length(classes))
+for(i in seq(1,length(y_classes))){
   y_classes[[i]] <- classes[,i]
 }
 
 # only when testing
 sub_sample <- classes[,seq(1,2)]
+ann_sample <- ann_sample[,seq(1,2)]
 new_sub_sample <- list(2)
 for(i in seq(1,2)){
   new_sub_sample[[i]] <- sub_sample[seq(1,1000),i]
 }
 y_classes <- new_sub_sample
 W <- W[seq(1,1000),]
+rm(sub_sample)
 
 W <- apply(W, FUN= function(x) x/1000, MARGIN = c(1,2))
 
@@ -140,8 +149,16 @@ clusterExport(cl, list("crossValidation", "number.folds",
                        "trainControl", "AUPRCSummary", "y_classes",
                        "W", "predict","compute.AUPRC",
                        "evalmod", "datasetpath", "twoClassSummary",
-                       "prSummary", "do.stratified.cv.data.single.class"))
+                       "prSummary", "do.stratified.cv.data.single.class",
+                       "ann_sample"))
+
+
+rm(ann)
+rm(ann_select)
+rm(classes)
+gc()
 
 out<-parLapply(cl, algorithms, function(x) c(crossValidation(number.folds, as.data.frame(W), 
-                                                             y_classes, x)))
+                                                             y_classes, ann_sample, x)))
+stopCluster(cl)
 #crossValidation(number.folds, ntimes, trainIndex, W, y_test, "svmLinear")
