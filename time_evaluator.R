@@ -4,11 +4,39 @@ library(parallel)
 library(HEMDAG)
 library(MLmetrics)
 
-crossValidation <- function(number.folds,  W, y_classes, y_names, algorithm){
+showMemoryUse <- function(sort="size", decreasing=FALSE, limit) {
+  
+  objectList <- ls(parent.frame())
+  
+  oneKB <- 1024
+  oneMB <- 1048576
+  oneGB <- 1073741824
+  
+  memoryUse <- sapply(objectList, function(x) as.numeric(object.size(get(x, parent.frame()))))
+  
+  memListing <- sapply(memoryUse, function(size) {
+    if (size >= oneGB) return(paste(round(size/oneGB,2), "GB"))
+    else if (size >= oneMB) return(paste(round(size/oneMB,2), "MB"))
+    else if (size >= oneKB) return(paste(round(size/oneKB,2), "kB"))
+    else return(paste(size, "bytes"))
+  })
+  
+  memListing <- data.frame(objectName=names(memListing),memorySize=memListing,row.names=NULL)
+  
+  if (sort=="alphabetical") memListing <- memListing[order(memListing$objectName,decreasing=decreasing),] 
+  else memListing <- memListing[order(memoryUse,decreasing=decreasing),] #will run if sort not specified or "size"
+  
+  if(!missing(limit)) memListing <- memListing[1:limit,]
+  
+  print(memListing, row.names=FALSE)
+  return(invisible(memListing))
+}
 
+crossValidation <- function(number.folds,  W, y_classes, y_names, algorithm){
+  path_ <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/"
   #csv file
-  time_file <- paste(datasetpath, algorithm, "_time.csv", sep = "")
-  eval_file <- paste(datasetpath, algorithm, "_AUC_ROC_PRC.csv", sep = "")
+  time_file <- paste(path_, algorithm, "_time.csv", sep = "")
+  eval_file <- paste(path_, algorithm, "_AUC_ROC_PRC.csv", sep = "")
   
   #first row
   write(c("algo", "time", "class", "num_pos"), file=time_file, sep=",", ncolumns = 4)
@@ -16,7 +44,7 @@ crossValidation <- function(number.folds,  W, y_classes, y_names, algorithm){
   # time evaluation
   for(j in seq(1, length(y_classes)))
   {
-    AUROC <- AUPRC <- test_set_list <- model <- vector("list", number.folds);
+    AUROC <- AUPRC <- vector("list", number.folds);
     y_test <- y_classes[[j]]
     # split with proportions
     indices <- rownames(W)
@@ -49,11 +77,11 @@ crossValidation <- function(number.folds,  W, y_classes, y_names, algorithm){
           next
         }
         # learning model
-        model[[i]] <- caret::train(curr_x, curr_y,
-                                   method = algorithm, 
-                                   trControl = tc, 
-                                   #tuneGrid = Grid,
-                                   metric = "AUPRC")
+        model <- caret::train(curr_x, curr_y,
+                              method = algorithm, 
+                              trControl = tc, 
+                              #tuneGrid = Grid,
+                              metric = "AUPRC")
         
         
         # current test_set
@@ -62,7 +90,7 @@ crossValidation <- function(number.folds,  W, y_classes, y_names, algorithm){
         print(nrow(curr_test_set))
         
         # prediction on test set with trained model
-        model.prob <- predict(model[[i]], newdata = curr_test_set, type = "prob")
+        model.prob <- predict(model, newdata = curr_test_set, type = "prob")
         
         # true labels
         obs <- factor(ifelse(y_test[which(rownames(W) %in% trainIndex[[i]])]>=.5, "positive", "negative"), levels=c("positive", "negative"))
@@ -71,8 +99,7 @@ crossValidation <- function(number.folds,  W, y_classes, y_names, algorithm){
         pred <- factor(ifelse(model.prob$positive >= .5, "positive", "negative"), levels=c("positive","negative"));
         
         # construction of the data frame for evaluating the predictions
-        test_set_list[[i]] <- data.frame(obs = obs, pred=pred, positive=as.numeric(model.prob$positive), negative=as.numeric(model.prob$negative)); 
-        test_set <- test_set_list[[i]];
+        test_set <- data.frame(obs = obs, pred=pred, positive=as.numeric(model.prob$positive), negative=as.numeric(model.prob$negative)); 
         
         # computing AUROC
         tryCatch({AUROC[[i]] <- twoClassSummary(test_set, lev = levels(test_set$obs))}, 
@@ -88,6 +115,8 @@ crossValidation <- function(number.folds,  W, y_classes, y_names, algorithm){
         cat("End of iteration ", i, "\n");
         print(AUROC[[i]][[1]])
         print(AUPRC[[i]][[1]])
+        rm(model)
+        rm(test_set)
         gc()
       })
     
@@ -98,8 +127,6 @@ crossValidation <- function(number.folds,  W, y_classes, y_names, algorithm){
     }
     rm(AUPRC)
     rm(AUROC)
-    rm(model)
-    rm(test_set_list)
     gc()
   }
 } 
@@ -112,15 +139,15 @@ load(file=paste(datasetpath, "/6239_CAEEL/6239_CAEEL_GO_BP_ANN_STRING_v10.5_20DE
 
 set.seed(1)
 ann_select <-ann[,colSums(ann)>9]
-ann_sample <- sample(colnames(ann_select), 20)
+ann_sample <- sample(colnames(ann_select), 10)
 classes <- ann_select[,ann_sample]
 
-y_classes <- list(length(classes))
-for(i in seq(1,length(y_classes))){
+y_classes <- list(10)
+for(i in seq(1, 10)){
   y_classes[[i]] <- classes[,i]
 }
 
-# only when testing
+#only when testing
 sub_sample <- classes[,seq(1,2)]
 ann_sample <- ann_sample[seq(1,2)]
 new_sub_sample <- list(2)
@@ -134,10 +161,10 @@ rm(sub_sample)
 W <- apply(W, FUN= function(x) x/1000, MARGIN = c(1,2))
 
 # algorithms
-algorithms <- c("svmLinear", "svmRadial") #, "mlp", "mlpML", 
-                #"AdaBoost.M1", "rf", "C5.0", "xgbLinear",
-                #"lda", "LogitBoost", "gaussprPoly", "glmnet",
-                #"randomGLM", "treebag", "knn")
+algorithms <- c("svmLinear", "svmRadial", "mlp")#, "mlpML", 
+#"AdaBoost.M1", "rf", "C5.0", "xgbLinear",
+#"lda", "LogitBoost", "gaussprPoly", "glmnet",
+#"randomGLM", "treebag", "knn")
 
 # cross validation and parallelization params
 number.folds <- 10
@@ -162,3 +189,4 @@ out<-parLapply(cl, algorithms, function(x) c(crossValidation(number.folds, as.da
                                                              y_classes, ann_sample, x)))
 stopCluster(cl)
 #crossValidation(number.folds, ntimes, trainIndex, W, y_test, "svmLinear")
+showMemoryUse()
