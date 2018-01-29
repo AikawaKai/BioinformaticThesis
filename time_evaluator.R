@@ -142,15 +142,15 @@ algorithms <- c("svmLinear", "svmRadial") #, "mlp", "mlpML",
 # cross validation and parallelization params
 number.folds <- 10
 no_cores <- detectCores() -1
-cl <- makeCluster(no_cores, errfile="./errParSeq.txt", outfile="./out.txt")
+cl <- makeCluster(no_cores, errfile="./errParSeq.txt", outfile="./out.txt", type = "FORK")
 
 # import functions for parallelization
-clusterExport(cl, list("crossValidation", "number.folds",
-                       "trainControl", "AUPRCSummary", "y_classes",
-                       "W", "predict","compute.AUPRC",
-                       "evalmod", "datasetpath", "twoClassSummary",
-                       "prSummary", "do.stratified.cv.data.single.class",
-                       "ann_sample"))
+#clusterExport(cl, list("crossValidation", "number.folds",
+#                       "trainControl", "AUPRCSummary", "y_classes",
+#                       "W", "predict","compute.AUPRC",
+#                       "evalmod", "datasetpath", "twoClassSummary",
+#                       "prSummary", "do.stratified.cv.data.single.class",
+#                       "ann_sample"))
 
 
 rm(ann)
