@@ -122,7 +122,7 @@ for(i in seq(1,length(y_classes))){
 
 # only when testing
 sub_sample <- classes[,seq(1,2)]
-ann_sample <- ann_sample[,seq(1,2)]
+ann_sample <- ann_sample[seq(1,2)]
 new_sub_sample <- list(2)
 for(i in seq(1,2)){
   new_sub_sample[[i]] <- sub_sample[seq(1,1000),i]
