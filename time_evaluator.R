@@ -32,6 +32,21 @@ showMemoryUse <- function(sort="size", decreasing=FALSE, limit) {
   return(invisible(memListing))
 }
 
+convertToLabelFactor <- function(obs){
+  obs <- as.factor(obs)
+  if(levels(obs)[[1]] == "0")
+  {
+    levels(obs)[[2]] <- "positive"
+    levels(obs)[[1]] <- "negative"
+  }else{
+    levels(obs)[[2]] <- "positive"
+    levels(obs)[[1]] <- "negative"
+  }
+  obs <- relevel(obs, "positive")
+  print(obs)
+  return(obs)
+}
+
 crossValidation <- function(number.folds,  W, y_classes, y_names, algorithm){
   path_ <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/"
   #csv file
@@ -60,9 +75,7 @@ crossValidation <- function(number.folds,  W, y_classes, y_names, algorithm){
         tc <- trainControl(method = "none", classProbs = TRUE)
         
         # current labels for current training set
-        curr_y <- y_test[-which(rownames(W) %in% trainIndex[[i]])]
-        curr_y <- as.factor(curr_y)
-        levels(curr_y)<-c("negative", "positive")
+        curr_y <- convertToLabelFactor(y_test[-which(rownames(W) %in% trainIndex[[i]])])
         
         # current training set 
         curr_x <- W[-which(rownames(W) %in% trainIndex[[i]]), ]
@@ -85,22 +98,22 @@ crossValidation <- function(number.folds,  W, y_classes, y_names, algorithm){
         
         
         # current test_set
-        curr_test_set <- as.matrix(W[which(rownames(W) %in% trainIndex[[i]]),])
+        curr_test_set <- W[which(rownames(W) %in% trainIndex[[i]]),]
         print("curr test set size:")
         print(nrow(curr_test_set))
         
         # prediction on test set with trained model
         model.prob <- predict(model, newdata = curr_test_set, type = "prob")
-        
         # true labels
-        obs <- factor(ifelse(y_test[which(rownames(W) %in% trainIndex[[i]])]>=.5, "positive", "negative"), levels=c("positive", "negative"))
-        
+        obs <- convertToLabelFactor(y_test[which(rownames(W) %in% trainIndex[[i]])])
+
         # predicted labels (cutoff 0.5)
-        pred <- factor(ifelse(model.prob$positive >= .5, "positive", "negative"), levels=c("positive","negative"));
+        pred <- factor(ifelse(model.prob$positive >= .5, "positive", "negative"), levels = levels(obs));
+        print(pred)
         
         # construction of the data frame for evaluating the predictions
         test_set <- data.frame(obs = obs, pred=pred, positive=as.numeric(model.prob$positive), negative=as.numeric(model.prob$negative)); 
-        
+        print(test_set)
         # computing AUROC
         tryCatch({AUROC[[i]] <- twoClassSummary(test_set, lev = levels(test_set$obs))}, 
                  error = function(err) {
@@ -113,8 +126,8 @@ crossValidation <- function(number.folds,  W, y_classes, y_names, algorithm){
                    print(paste("MY_ERROR:  ",err))
                  })  
         cat("End of iteration ", i, "\n");
-        print(AUROC[[i]][[1]])
-        print(AUPRC[[i]][[1]])
+        print(AUROC[[i]])
+        print(AUPRC[[i]])
         rm(model)
         rm(test_set)
         gc()
@@ -185,7 +198,7 @@ rm(ann_select)
 rm(classes)
 gc()
 
-out<-parLapply(cl, algorithms, function(x) c(crossValidation(number.folds, as.data.frame(W), 
+out<-parLapply(cl, algorithms, function(x) c(crossValidation(number.folds, W, 
                                                              y_classes, ann_sample, x)))
 stopCluster(cl)
 #crossValidation(number.folds, ntimes, trainIndex, W, y_test, "svmLinear")
