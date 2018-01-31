@@ -32,6 +32,19 @@ showMemoryUse <- function(sort="size", decreasing=FALSE, limit) {
   return(invisible(memListing))
 }
 
+factorToNumeric <- function(x){
+  print(levels(x))
+  if(levels(x)[[1]]=="positive"){
+    levels(x)[[1]] = "1"
+    levels(x)[[2]] = "0"
+  }else{
+    levels(x)[[2]] = "1"
+    levels(x)[[1]] = "0"
+  }
+  x <- as.numeric(levels(x))[x]
+  return(x)
+}
+
 convertToLabelFactor <- function(obs){
   obs <- as.factor(obs)
   if(levels(obs)[[1]] == "0")
@@ -43,7 +56,7 @@ convertToLabelFactor <- function(obs){
     levels(obs)[[1]] <- "negative"
   }
   obs <- relevel(obs, "positive")
-  print(obs)
+  #print(obs)
   return(obs)
 }
 
@@ -64,7 +77,7 @@ crossValidation <- function(number.folds,  W, y_classes, y_names, algorithm){
     # split with proportions
     indices <- rownames(W)
     positives <- which(y_test == 1)
-    print(positives)
+    #print(positives)
     
     folds <- do.stratified.cv.data.single.class(indices, positives, kk=number.folds, seed=1);
     trainIndex <- mapply(c, folds$fold.positives, folds$fold.negatives, SIMPLIFY=FALSE);
@@ -109,25 +122,37 @@ crossValidation <- function(number.folds,  W, y_classes, y_names, algorithm){
 
         # predicted labels (cutoff 0.5)
         pred <- factor(ifelse(model.prob$positive >= .5, "positive", "negative"), levels = levels(obs));
-        print(pred)
+        #print(pred)
         
         # construction of the data frame for evaluating the predictions
         test_set <- data.frame(obs = obs, pred=pred, positive=as.numeric(model.prob$positive), negative=as.numeric(model.prob$negative)); 
-        print(test_set)
+        #print(test_set)
         # computing AUROC
-        tryCatch({AUROC[[i]] <- twoClassSummary(test_set, lev = levels(test_set$obs))}, 
+        print(typeof(model.prob$positive))
+        print(model.prob$positive)
+        print(typeof(factorToNumeric(obs)))
+        print(factorToNumeric(obs))
+        tryCatch({
+        print(AUC(model.prob$positive, factorToNumeric(obs)))
+        print(twoClassSummary(test_set, lev = levels(test_set$obs))[[1]])
+        AUROC[[i]] <- twoClassSummary(test_set, lev = levels(test_set$obs))}, 
                  error = function(err) {
                    print(paste("MY_ERROR:  ",err))
+                   AUROC[[i]] <-twoClassSummary(test_set, lev = levels(test_set$obs))
                  })
         
         # computing AUPRC
-        tryCatch({AUPRC[[i]] <- prSummary(test_set, lev = levels(test_set$obs))}, 
+        tryCatch({
+        print(PRAUC(model.prob$positive, factorToNumeric(obs)))
+        print(prSummary(test_set, lev = levels(test_set$obs))[[1]])
+        AUPRC[[i]] <- prSummary(test_set, lev = levels(test_set$obs))}, 
                  error = function(err) {
                    print(paste("MY_ERROR:  ",err))
+                   AUPRC[[i]] <- prSummary(test_set, lev = levels(test_set$obs))
                  })  
         cat("End of iteration ", i, "\n");
-        print(AUROC[[i]])
-        print(AUPRC[[i]])
+        #print(AUROC[[i]])
+        #print(AUPRC[[i]])
         rm(model)
         rm(test_set)
         gc()
@@ -174,7 +199,7 @@ rm(sub_sample)
 W <- apply(W, FUN= function(x) x/1000, MARGIN = c(1,2))
 
 # algorithms
-algorithms <- c("svmLinear", "svmRadial", "mlp")#, "mlpML", 
+algorithms <- c("svmLinear")#, "mlpML", 
 #"AdaBoost.M1", "rf", "C5.0", "xgbLinear",
 #"lda", "LogitBoost", "gaussprPoly", "glmnet",
 #"randomGLM", "treebag", "knn")
