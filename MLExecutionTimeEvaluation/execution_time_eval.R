@@ -97,16 +97,12 @@ crossValidation1Fold <- function(number.folds,  W, y_classes, y_names, algorithm
         
     # break to next cicle if there are not positives in the current training set
     # learning model
-    tryCatch({
+    print(curr_y)
     model <- caret::train(curr_x, curr_y,
                           method = algorithm, 
                           trControl = tc, 
                           #tuneGrid = Grid,
                           metric = "AUPRC")
-    }, error = function(err){
-      print(err)
-    })
-        
     # current test_set
     print("here?")
     curr_test_set <- W[which(rownames(W) %in% trainIndex[[1]]),]
@@ -126,10 +122,6 @@ crossValidation1Fold <- function(number.folds,  W, y_classes, y_names, algorithm
     test_set <- data.frame(obs = obs, pred=pred, positive=as.numeric(model.prob$positive), negative=as.numeric(model.prob$negative)); 
     #print(test_set)
     # computing AUROC
-    print(typeof(model.prob$positive))
-    print(model.prob$positive)
-    print(typeof(factorToNumeric(obs)))
-    print(factorToNumeric(obs))
     tryCatch({
       print(AUC(model.prob$positive, factorToNumeric(obs)))
       print(twoClassSummary(test_set, lev = levels(test_set$obs))[[1]])
@@ -168,7 +160,6 @@ crossValidation1Fold <- function(number.folds,  W, y_classes, y_names, algorithm
   }
 } 
 
-
 path_ <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/" #where to write csv
 datasetpath <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/" #where to extract data
 #STRING SIMILARITY MATRIX
@@ -179,7 +170,7 @@ W <- W[seq(1,1200),]
 
 W <- apply(W, FUN= function(x) x/1000, MARGIN = c(1,2))
 ontologies <- c("/6239_CAEEL/6239_CAEEL_GO_BP_ANN_STRING_v10.5_20DEC17.rda",
-                "/6239_CAEEL/6239_CAEEL_GO_MF_ANN_STRING_v10.5_20DEC17.rda",
+                #"/6239_CAEEL/6239_CAEEL_GO_MF_ANN_STRING_v10.5_20DEC17.rda",
                 "/6239_CAEEL/6239_CAEEL_GO_CC_ANN_STRING_v10.5_20DEC17.rda")
 
 ont_name <- c("BP", "MF", "CC")
@@ -221,7 +212,7 @@ for(i in seq(1,3)){
   # cross validation and parallelization params
   number.folds <- 10
   no_cores <- detectCores() -1
-  cl <- makeCluster(no_cores, errfile="./errParSeq.txt", outfile="./out.txt", type = "FORK")
+  cl <- makeCluster(no_cores, errfile="./errParSeq.txt", outfile=paste(path_, "out.txt", sep=""), type = "FORK")
   
   # import functions for parallelization
   #clusterExport(cl, list("crossValidation", "number.folds",
