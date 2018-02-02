@@ -94,8 +94,7 @@ crossValidation1Fold <- function(number.folds,  W, y_classes, y_names, algorithm
     print(length(curr_y))
     print("Curr training set size: ")
     print(nrow(curr_x))
-        
-    # break to next cicle if there are not positives in the current training set
+    curr_x <- apply(curr_x, FUN= function(x) x/1000, MARGIN = c(1,2))
     # learning model
     print(curr_y)
     model <- caret::train(curr_x, curr_y,
@@ -104,11 +103,10 @@ crossValidation1Fold <- function(number.folds,  W, y_classes, y_names, algorithm
                           #tuneGrid = Grid,
                           metric = "AUPRC")
     # current test_set
-    print("here?")
     curr_test_set <- W[which(rownames(W) %in% trainIndex[[1]]),]
     print("curr test set size:")
     print(nrow(curr_test_set))
-        
+    curr_test_set <- apply(curr_test_set, FUN= function(x) x/1000, MARGIN = c(1,2))    
     # prediction on test set with trained model
     model.prob <- predict(model, newdata = curr_test_set, type = "prob")
     # true labels
@@ -147,8 +145,8 @@ crossValidation1Fold <- function(number.folds,  W, y_classes, y_names, algorithm
     rm(test_set)
     gc()
     end.time <- Sys.time()
-    time.taken <- end.time - start.time
-    write(c(algorithm, time.taken*10, y_names[[j]], length(which(y_test==1))), file=time_file, 
+    time.taken <- (end.time - start.time)*10
+    write(c(algorithm, time.taken, y_names[[j]], length(which(y_test==1))), file=time_file, 
           sep=",", append = "TRUE", ncolumns = 4)
     for(i in seq(1,1)){
       write(c(i, AUROC[[1]][[1]], AUPRC[[1]][[1]]), file=eval_file, sep = ",", append = TRUE, ncolumns = 3)
@@ -160,81 +158,86 @@ crossValidation1Fold <- function(number.folds,  W, y_classes, y_names, algorithm
   }
 } 
 
+timeEstimate<-function(ont_name, ontologies, datasetpath, algorithm){
+  for(i in seq(1,3)){
+    curr_ont_name <- ont_name[[i]]
+    print("#################")
+    print("ONTOLOGY")
+    load(file=paste(datasetpath, ontologies[[i]], sep=""))
+    print(ontologies[[i]])
+    set.seed(1)
+    ann_select <-ann[,colSums(ann)>9]
+    ann_sample <- sample(colnames(ann_select), 10)
+    print(ann_sample)
+    classes <- ann_select[,ann_sample]
+    
+    y_classes <- list(10)
+    for(i in seq(1, 10)){
+      y_classes[[i]] <- classes[,i]
+    }
+    
+    #only when testing
+    sub_sample <- classes[,seq(1,2)]
+    ann_sample <- ann_sample[seq(1,2)]
+    new_sub_sample <- list(2)
+    for(i in seq(1,2)){
+      new_sub_sample[[i]] <- sub_sample[seq(1,2000),i]
+    }
+    y_classes <- new_sub_sample
+    
+    rm(sub_sample)
+    
+    
+    # algorithms
+    #, "mlpML", 
+    #"AdaBoost.M1", "rf", "C5.0", "xgbLinear",
+    #"lda", "LogitBoost", "gaussprPoly", "glmnet",
+    #"randomGLM", "treebag", "knn")
+    
+    # cross validation and parallelization params
+    number.folds <- 10
+    
+    
+    # import functions for parallelization
+    #clusterExport(cl, list("crossValidation", "number.folds",
+    #                       "trainControl", "AUPRCSummary", "y_classes",
+    #                       "W", "predict","compute.AUPRC",
+    #                       "evalmod", "datasetpath", "twoClassSummary",
+    #                       "prSummary", "do.stratified.cv.data.single.class",
+    #                       "ann_sample"))
+    
+    
+    rm(ann)
+    rm(ann_select)
+    rm(classes)
+    gc()
+    
+    crossValidation1Fold(number.folds, W, y_classes, ann_sample, algorithm, path_, curr_ont_name)
+    
+    #crossValidation(number.folds, ntimes, trainIndex, W, y_test, "svmLinear")
+    rm(y_classes)
+    rm(ann_sample)
+    gc()
+    #showMemoryUse()
+  }
+}
+
 path_ <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/" #where to write csv
 datasetpath <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/" #where to extract data
 #STRING SIMILARITY MATRIX
 load(file=paste(datasetpath, "/6239_CAEEL/6239_CAEEL_STRING_NET_v10.5.rda", sep = ""))
 
 # only when testing
-W <- W[seq(1,1200),]
+W <- W[seq(1,2000),]
 
-W <- apply(W, FUN= function(x) x/1000, MARGIN = c(1,2))
 ontologies <- c("/6239_CAEEL/6239_CAEEL_GO_BP_ANN_STRING_v10.5_20DEC17.rda",
-                #"/6239_CAEEL/6239_CAEEL_GO_MF_ANN_STRING_v10.5_20DEC17.rda",
+                "/6239_CAEEL/6239_CAEEL_GO_MF_ANN_STRING_v10.5_20DEC17.rda",
                 "/6239_CAEEL/6239_CAEEL_GO_CC_ANN_STRING_v10.5_20DEC17.rda")
 
 ont_name <- c("BP", "MF", "CC")
-for(i in seq(1,3)){
-  curr_ont_name <- ont_name[[i]]
-  print("#################")
-  print("ONTOLOGY")
-  load(file=paste(datasetpath, ontologies[[i]], sep=""))
-  print(ontologies[[i]])
-  set.seed(2)
-  ann_select <-ann[,colSums(ann)>9]
-  ann_sample <- sample(colnames(ann_select), 10)
-  print(ann_sample)
-  classes <- ann_select[,ann_sample]
-  
-  y_classes <- list(10)
-  for(i in seq(1, 10)){
-    y_classes[[i]] <- classes[,i]
-  }
-  
-  #only when testing
-  sub_sample <- classes[,seq(1,2)]
-  ann_sample <- ann_sample[seq(1,2)]
-  new_sub_sample <- list(2)
-  for(i in seq(1,2)){
-    new_sub_sample[[i]] <- sub_sample[seq(1,1200),i]
-  }
-  y_classes <- new_sub_sample
-  
-  rm(sub_sample)
-  
-  
-  # algorithms
-  algorithms <- c("svmLinear")#, "mlpML", 
-  #"AdaBoost.M1", "rf", "C5.0", "xgbLinear",
-  #"lda", "LogitBoost", "gaussprPoly", "glmnet",
-  #"randomGLM", "treebag", "knn")
-  
-  # cross validation and parallelization params
-  number.folds <- 10
-  no_cores <- detectCores() -1
-  cl <- makeCluster(no_cores, errfile="./errParSeq.txt", outfile=paste(path_, "out.txt", sep=""), type = "FORK")
-  
-  # import functions for parallelization
-  #clusterExport(cl, list("crossValidation", "number.folds",
-  #                       "trainControl", "AUPRCSummary", "y_classes",
-  #                       "W", "predict","compute.AUPRC",
-  #                       "evalmod", "datasetpath", "twoClassSummary",
-  #                       "prSummary", "do.stratified.cv.data.single.class",
-  #                       "ann_sample"))
-  
-  
-  rm(ann)
-  rm(ann_select)
-  rm(classes)
-  gc()
-  
-  out<-parLapply(cl, algorithms, function(x) c(crossValidation1Fold(number.folds, W, 
-                                                               y_classes, ann_sample, 
-                                                               x, path_, curr_ont_name)))
-  stopCluster(cl)
-  #crossValidation(number.folds, ntimes, trainIndex, W, y_test, "svmLinear")
-  rm(y_classes)
-  rm(ann_sample)
-  gc()
-  #showMemoryUse()
-}
+no_cores <- detectCores() -1
+cl <- makeCluster(no_cores, errfile="./errParSeq.txt", outfile=paste(path_, "out.txt", sep=""), type = "FORK")
+algorithms <- c("svmLinear", "svmRadial")
+
+parLapply(cl, algorithms, function(x) c(timeEstimate(ont_name, ontologies, datasetpath, x)))
+stopCluster(cl)
