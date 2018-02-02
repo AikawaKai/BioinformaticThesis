@@ -1,0 +1,5 @@
+svmRadial data.frame(.C = c(.25))
+svmLinear data.frame(.C = c(.25))
+xgbLinear expand.grid(nrounds = 10, eta = c(0.01), max_depth = c(2), gamma = 1)
+mlp data.frame(size=5)
+LogitBoost data.frame(nIter=50)
