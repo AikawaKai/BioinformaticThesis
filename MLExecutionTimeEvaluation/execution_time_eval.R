@@ -1,8 +1,10 @@
 library(caret)
+library(plyr)
 library(dplyr)
 library(parallel)
 library(HEMDAG)
 library(MLmetrics)
+
 
 showMemoryUse <- function(sort="size", decreasing=FALSE, limit) {
   
@@ -60,12 +62,26 @@ convertToLabelFactor <- function(obs){
   return(obs)
 }
 
-crossValidation1Fold <- function(number.folds,  W, y_classes, y_names, algorithm, path_, curr_ont_name){
+getGridParam<-function(param, algo){
+  param <- data.frame(param)
+  models <- modelLookup()
+  parameters_name <- models[models["model"]==algo,"parameter"]
+  df <- data.frame()
+  for(i in seq(1, length(parameters_name))){
+    #print(parameters_name[[i]])
+    df[paste(".", parameters_name[[i]], sep = "")] = param[1,parameters_name[[i]]]
+  }
+  return(df)
+}
+
+crossValidation1Fold <- function(number.folds,  W, y_classes, y_names, algorithm, param, path_, curr_ont_name){
   #print(y_names)
   #csv file
+  print("ALGO")
   print(algorithm)
-  tgrid <- as.data.frame(algorithm[2])
-  algorithm <- algorithm[[1]]
+  print("PARAM")
+  print(param)
+  param <- expand.grid(param)
   time_file <- paste(path_, algorithm,"_", curr_ont_name, "_time.csv", sep = "")
   eval_file <- paste(path_, algorithm,"_", curr_ont_name, "_AUC_ROC_PRC.csv", sep = "")
   
@@ -101,7 +117,7 @@ crossValidation1Fold <- function(number.folds,  W, y_classes, y_names, algorithm
     model <- caret::train(curr_x, curr_y,
                           method = algorithm, 
                           trControl = tc, 
-                          tuneGrid = tgrid,
+                          tuneGrid = data.frame(param),
                           metric = "AUPRC")
     # current test_set
     curr_test_set <- W[which(rownames(W) %in% trainIndex[[1]]),]
@@ -159,7 +175,7 @@ crossValidation1Fold <- function(number.folds,  W, y_classes, y_names, algorithm
   }
 } 
 
-timeEstimate<-function(ont_name, ontologies, datasetpath, algorithm){
+timeEstimate<-function(ont_name, ontologies, datasetpath, algorithm, param){
   for(i in seq(1,3)){
     curr_ont_name <- ont_name[[i]]
     print("#################")
@@ -213,7 +229,7 @@ timeEstimate<-function(ont_name, ontologies, datasetpath, algorithm){
     rm(classes)
     gc()
     
-    crossValidation1Fold(number.folds, W, y_classes, ann_sample, algorithm, path_, curr_ont_name)
+    crossValidation1Fold(number.folds, W, y_classes, ann_sample, algorithm, param, path_, curr_ont_name)
     
     #crossValidation(number.folds, ntimes, trainIndex, W, y_test, "svmLinear")
     rm(y_classes)
@@ -236,14 +252,24 @@ ontologies <- c("/6239_CAEEL/6239_CAEEL_GO_BP_ANN_STRING_v10.5_20DEC17.rda",
                 "/6239_CAEEL/6239_CAEEL_GO_CC_ANN_STRING_v10.5_20DEC17.rda")
 
 ont_name <- c("BP", "MF", "CC")
+algorithms <- c("svmLinear", "xgbLinear") 
+#"svmRadial",, "mlp", "logitBoost")
+
+params <- rbind.fill(data.frame(C = c(.25)),
+                     #data.frame(.C = c(.25)),
+                     data.frame(nrounds = 10, eta = c(0.01), max_depth = c(2), gamma = 1))
+#data.frame(size=5),
+#data.frame(nIter=50))
 no_cores <- detectCores() -1
 cl <- makeCluster(no_cores, errfile="./errParSeq.txt", outfile=paste(path_, "out.txt", sep=""), type = "FORK")
-algorithms <- rbind(c("svmLinear", data.frame(.C = c(.25))),
-                c("svmRadial", data.frame(.C = c(.25))))
-                #c("xgbLinear", expand.grid(nrounds = 10, eta = c(0.01), max_depth = c(2), gamma = 1)),
-                #c("mlp", data.frame(size=5)),
-                #c("LogitBoost", data.frame(nIter=50)))
 
-parLapply(cl, seq(1,length(algorithms)), function(x) c(timeEstimate(ont_name, ontologies, datasetpath, algorithms[x,])))
+
+parLapply(cl, seq(1,length(algorithms)), function(x) c(timeEstimate(ont_name, ontologies, datasetpath, algorithms[[x]], params[x,])))
 stopCluster(cl)
-print(typeof(algorithms[1,][2]))
+algorithms
+params
+param <- data.frame(C = c(.25))
+param[1,"C"]
+algo <- "svmLinear"
+res <- getGridParam(param, algo)
+res
