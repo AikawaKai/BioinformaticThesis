@@ -64,7 +64,7 @@ crossValidation1Fold <- function(number.folds,  W, y_classes, y_names, algorithm
   #print(y_names)
   #csv file
   print(algorithm)
-  tgrid <- algorithm[2]
+  tgrid <- as.data.frame(algorithm[2])
   algorithm <- algorithm[[1]]
   time_file <- paste(path_, algorithm,"_", curr_ont_name, "_time.csv", sep = "")
   eval_file <- paste(path_, algorithm,"_", curr_ont_name, "_AUC_ROC_PRC.csv", sep = "")
@@ -98,7 +98,6 @@ crossValidation1Fold <- function(number.folds,  W, y_classes, y_names, algorithm
     print(nrow(curr_x))
     curr_x <- apply(curr_x, FUN= function(x) x/1000, MARGIN = c(1,2))
     # learning model
-    print(curr_y)
     model <- caret::train(curr_x, curr_y,
                           method = algorithm, 
                           trControl = tc, 
@@ -239,11 +238,12 @@ ontologies <- c("/6239_CAEEL/6239_CAEEL_GO_BP_ANN_STRING_v10.5_20DEC17.rda",
 ont_name <- c("BP", "MF", "CC")
 no_cores <- detectCores() -1
 cl <- makeCluster(no_cores, errfile="./errParSeq.txt", outfile=paste(path_, "out.txt", sep=""), type = "FORK")
-algorithms <- c(c("svmLinear", data.frame(.C = c(.25))),
+algorithms <- rbind(c("svmLinear", data.frame(.C = c(.25))),
                 c("svmRadial", data.frame(.C = c(.25))))
                 #c("xgbLinear", expand.grid(nrounds = 10, eta = c(0.01), max_depth = c(2), gamma = 1)),
                 #c("mlp", data.frame(size=5)),
                 #c("LogitBoost", data.frame(nIter=50)))
 
-parLapply(cl, algorithms, function(x) c(timeEstimate(ont_name, ontologies, datasetpath, x)))
+parLapply(cl, seq(1,length(algorithms)), function(x) c(timeEstimate(ont_name, ontologies, datasetpath, algorithms[x,])))
 stopCluster(cl)
+print(typeof(algorithms[1,][2]))
