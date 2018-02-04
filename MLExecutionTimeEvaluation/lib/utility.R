@@ -216,7 +216,7 @@ crossValidation1Fold <- function(number.folds,  W, y_classes, y_names, algorithm
     rm(test_set)
     gc()
     end.time <- Sys.time()
-    time.taken <- (end.time - start.time)
+    time.taken <- difftime(end.time, start.time, units=c("secs"))
     print(time.taken)
     time.taken <- time.taken * 10
     print(time.taken)
