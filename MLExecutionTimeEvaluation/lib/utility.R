@@ -35,13 +35,13 @@ showMemoryUse <- function(sort="size", decreasing=FALSE, limit) {
 
 # returns a data.frame grid for the specified algo and parameters
 getGridParam<-function(param, algo){
-  param <- data.frame(param)
   models <- modelLookup()
   parameters_name <- models[models["model"]==algo,"parameter"]
   df <- data.frame()
   for(i in seq(1, length(parameters_name))){
-    #print(parameters_name[[i]])
-    df[paste(".", parameters_name[[i]], sep = "")] = param[1,parameters_name[[i]]]
+    col <- toString(parameters_name[i])
+    param_string <- paste(".", parameters_name[[i]], sep = "")
+    df[1,param_string] = param[1,col]
   }
   return(df)
 }
@@ -79,6 +79,7 @@ factorToNumeric <- function(x){
 # crossvalidation for a specific algorithm on all the GO ontologies and time eval 
 timeEstimate<-function(ont_name, ontologies, datasetpath, algorithm, param, seed,
                        test, number.folds){
+  param <- getGridParam(param, algorithm)
   for(i in seq(1,3)){
     curr_ont_name <- ont_name[[i]]
     load(file=paste(datasetpath, ontologies[[i]], sep=""))
@@ -134,6 +135,7 @@ crossValidation1Fold <- function(number.folds,  W, y_classes, y_names, algorithm
   print("PARAM")
   print(param)
   param <- expand.grid(param)
+  print(param)
   time_file <- paste(path_, algorithm,"_", curr_ont_name, "_time.csv", sep = "")
   eval_file <- paste(path_, algorithm,"_", curr_ont_name, "_AUC_ROC_PRC.csv", sep = "")
   
@@ -169,7 +171,7 @@ crossValidation1Fold <- function(number.folds,  W, y_classes, y_names, algorithm
     model <- caret::train(curr_x, curr_y,
                           method = algorithm, 
                           trControl = tc, 
-                          tuneGrid = data.frame(param),
+                          tuneGrid = param,
                           metric = "AUPRC")
     # current test_set
     curr_test_set <- W[which(rownames(W) %in% trainIndex[[1]]),]
@@ -214,7 +216,10 @@ crossValidation1Fold <- function(number.folds,  W, y_classes, y_names, algorithm
     rm(test_set)
     gc()
     end.time <- Sys.time()
-    time.taken <- (end.time - start.time)*10
+    time.taken <- (end.time - start.time)
+    print(time.taken)
+    time.taken <- time.taken * 10
+    print(time.taken)
     write(c(algorithm, time.taken, y_names[[j]], length(which(y_test==1))), file=time_file, 
           sep=",", append = "TRUE", ncolumns = 4)
     for(i in seq(1,1)){
