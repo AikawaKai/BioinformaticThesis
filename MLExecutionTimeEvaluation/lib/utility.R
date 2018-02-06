@@ -36,13 +36,10 @@ showMemoryUse <- function(sort="size", decreasing=FALSE, limit) {
 # returns a data.frame grid for the specified algo and parameters
 getGridParam<-function(param, algo){
   models <- modelLookup()
-  print("here")
   parameters_name <- models[models["model"]==algo,"parameter"]
-  print("here1")
   df <- data.frame()
   for(i in seq(1, length(parameters_name))){
     col <- toString(parameters_name[i])
-    print(col)
     param_string <- paste(".", parameters_name[[i]], sep = "")
     df[1,param_string] = param[1,col]
   }
