@@ -1,37 +1,26 @@
-import os, csv
+import os, csv, sys
 from numpy import mean, std
 import pandas as pd
 import matplotlib as mpl
 mpl.use('agg')
 import matplotlib.pyplot as plt
 
-colors = ["red", "blue", "green", "grey", "grey", "grey", "grey", "grey",
+colors = ["red", "blue", "green", "yellow", "grey", "grey", "grey", "grey",
           "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey",
           "grey"]
 
-def saveBoxPlot(list_data, list_names):
-    fig = plt.figure(1, figsize=(20, 8))
-    print(list_names)
-    plt.xlabel("Algorithms", fontsize=15)
-    plt.ylabel("Time", fontsize=15)
-    boxes = plt.boxplot(list_data, patch_artist=True)
-    i=0
-    for box in boxes["boxes"]:
-        box.set_facecolor(colors[i])
-        i+=1
-    plt.xticks([i for i in range(1, len(list_names)+1)], list_names)
-    plt.tick_params(labelsize=13)
-    # Save the figure
-    fig.savefig('box_plot_times.png', bbox_inches='tight')
+algos = ["svmLinear", "svmRadial", "LogitBoost", "C5.0", "mlp", "xgbLinear", "AdaBoost_M1"]
+classes = ["BP", "CC", "MF"]
 
-
-if __name__ == '__main__':
-    path = "./Time_results/"
-    csv_ = os.listdir(path)
-    dataframes = [pd.read_csv(path+csv) for csv in csv_]
+def plotBoxPlot(class_, files):
+    dataframes = [pd.read_csv(csv) for csv in files]
     times_ = dict()
+    print([df["algo"] for df in  dataframes])
     for dataframe in dataframes:
-        algo = dataframe["algo"][0]
+        try:
+            algo = dataframe["algo"][0]
+        except:
+            print("UOPS", dataframe["algo"])
         times_[algo] = [dataframe["time"].values]
     for key, value in times_.items():
         print(key)
@@ -53,10 +42,46 @@ if __name__ == '__main__':
         for i in range(len_):
             box_plot_values.append([0])
             names.append("to_do")
-    saveBoxPlot(box_plot_values, names)
+    saveBoxPlot(class_, box_plot_values, names)
     first_row = ["algo", "max_time", "min_time", "mean_time", "std_time"]
-    with open("./times_.csv", "w") as f_:
+    with open("./{}times_.csv".format(class_), "w") as f_:
         wr = csv.writer(f_, delimiter= ",")
         wr.writerow(first_row)
         for key, value in times_.items():
             wr.writerow([key, value[1], value[2], value[3], value[4]])
+
+def saveBoxPlot(class_name, list_data, list_names):
+    fig = plt.figure(1, figsize=(20, 8))
+    print(list_names)
+    plt.xlabel("Algorithms", fontsize=15)
+    plt.ylabel("Time", fontsize=15)
+    boxes = plt.boxplot(list_data, patch_artist=True)
+    i=0
+    for box in boxes["boxes"]:
+        box.set_facecolor(colors[i])
+        i+=1
+    plt.xticks([i for i in range(1, len(list_names)+1)], list_names)
+    plt.tick_params(labelsize=13)
+    # Save the figure
+    fig.savefig('{}_box_plot_times.png'.format(class_name), bbox_inches='tight')
+    fig.clf()
+
+def composeName(algo, class_):
+    return algo+"_"+class_+"_"+"time.csv"
+
+def splitCsvInClasses(csv_list, path):
+    all_csv_times = {cl:[] for cl in classes}
+    for class_ in classes:
+        for algo in algos:
+            name = composeName(algo, class_)
+            if name in csv_list:
+                all_csv_times[class_].append(path+name)
+    return all_csv_times
+
+if __name__ == '__main__':
+    path = "./Time_results/"
+    csv_ = os.listdir(path)
+    all_csv_times = splitCsvInClasses(csv_, path)
+
+    for class_, files in all_csv_times.items():
+        plotBoxPlot(class_, files)
