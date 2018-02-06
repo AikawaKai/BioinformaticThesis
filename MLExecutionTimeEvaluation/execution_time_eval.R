@@ -7,13 +7,14 @@ ontologies <- c("/6239_CAEEL/6239_CAEEL_GO_BP_ANN_STRING_v10.5_20DEC17.rda",
                 "/6239_CAEEL/6239_CAEEL_GO_CC_ANN_STRING_v10.5_20DEC17.rda")
 
 ont_name <- c("BP", "MF", "CC")
-algorithms <- c("AdaBoost.M1", "svmRadial","rf", "knn")
+algorithms <- c("AdaBoost.M1", "svmRadial","rf", "knn", "LogitBoost")
 
 params <- rbind.fill(data.frame(mfinal = c(3), maxdepth = c(1),
                      coeflearn = c("Breiman")),
                      data.frame(C = c(.25)),
                      data.frame(mtry = c(5)),
-                     data.frame(k = c(3)))
+                     data.frame(k = c(3)),
+                     data.frame(nIter=c(50)))
                      
                      #data.frame(nrounds = c(10), eta = c(0.3), lambda = c(0.1), alpha = c(0.1)))
 #data.frame(size=5),
@@ -26,7 +27,7 @@ datasetpath <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/" #where to extrac
 #STRING SIMILARITY MATRIX
 load(file=paste(datasetpath, "/6239_CAEEL/6239_CAEEL_STRING_NET_v10.5.rda", sep = ""))
 
-test =TRUE
+test =FALSE
 
 # only when testing
 if(test){
@@ -47,5 +48,5 @@ stopCluster(cl)
 #param <- data.frame(nrounds = c(10), eta = c(0.3), lambda = c(0.1), alpha = c(0.1))
 #algo <- "xgbLinear"
 #res <- getGridParam(param, algo)
-#models <- modelLookup()
-#models[models["model"]=="AdaBoost.M1", "parameter"]
+models <- modelLookup()
+models[models["model"]=="LogitBoost", "parameter"]

@@ -1,5 +1,11 @@
-svmRadial data.frame(.C = c(.25))
-svmLinear data.frame(.C = c(.25))
-xgbLinear expand.grid(nrounds = 10, eta = c(0.01), max_depth = c(2), gamma = 1)
+svmRadial data.frame(C = c(.25))
+svmLinear data.frame(C = c(.25))
+xgbLinear data.frame(nrounds = c(10), eta = c(0.01), max_depth = c(2), gamma = c(1))
 mlp data.frame(size=5)
 LogitBoost data.frame(nIter=50)
+knn data.frame(k = c(3)),
+rf data.frame(mtry = c(5))
+AdaBoost.M1 data.frame(mfinal = c(3), maxdepth = c(1),
+                     coeflearn = c("Breiman"))
+C5.0 data.frame(trials = c(10), model = c("tree"), winnow=c(FALSE))
+
