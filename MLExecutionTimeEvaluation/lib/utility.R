@@ -137,11 +137,11 @@ crossValidation1Fold <- function(number.folds,  W, y_classes, y_names, algorithm
   param <- expand.grid(param)
   print(param)
   time_file <- paste(path_, algorithm,"_", curr_ont_name, "_time.csv", sep = "")
-  eval_file <- paste(path_, algorithm,"_", curr_ont_name, "_AUC_ROC_PRC.csv", sep = "")
+  #eval_file <- paste(path_, algorithm,"_", curr_ont_name, "_AUC_ROC_PRC.csv", sep = "")
   
   #first row
   write(c("algo", "time", "class", "num_pos"), file=time_file, sep=",", ncolumns = 4)
-  write(c("iter", "AUROC", "AUPRC"), file=eval_file, sep = ",", ncolumns = 3)
+  #write(c("iter", "AUROC", "AUPRC"), file=eval_file, sep = ",", ncolumns = 3)
   # time evaluation
   for(j in seq(1, length(y_classes)))
   {
@@ -222,9 +222,9 @@ crossValidation1Fold <- function(number.folds,  W, y_classes, y_names, algorithm
     print(time.taken)
     write(c(algorithm, time.taken, y_names[[j]], length(which(y_test==1))), file=time_file, 
           sep=",", append = "TRUE", ncolumns = 4)
-    for(i in seq(1,1)){
-      write(c(i, AUROC[[1]][[1]], AUPRC[[1]][[1]]), file=eval_file, sep = ",", append = TRUE, ncolumns = 3)
-    }
+    #for(i in seq(1,1)){
+    #  write(c(i, AUROC[[1]][[1]], AUPRC[[1]][[1]]), file=eval_file, sep = ",", append = TRUE, ncolumns = 3)
+    #}
     rm(AUPRC)
     rm(AUROC)
     rm(trainIndex)
