@@ -7,12 +7,15 @@ ontologies <- c("/6239_CAEEL/6239_CAEEL_GO_BP_ANN_STRING_v10.5_20DEC17.rda",
                 "/6239_CAEEL/6239_CAEEL_GO_CC_ANN_STRING_v10.5_20DEC17.rda")
 
 ont_name <- c("BP", "MF", "CC")
-algorithms <- c("svmLinear", "xgbLinear") 
-#"svmRadial",, "mlp", "logitBoost")
+algorithms <- c("AdaBoost.M1", "svmRadial","rf", "knn")
 
-params <- rbind.fill(data.frame(C = c(.25)),
-                     #data.frame(.C = c(.25)),
-                     data.frame(nrounds = c(10), eta = c(0.3), lambda = c(0.1), alpha = c(0.1)))
+params <- rbind.fill(data.frame(mfinal = c(3), maxdepth = c(1),
+                     coeflearn = c("Breiman")),
+                     data.frame(C = c(.25)),
+                     data.frame(mtry = c(5)),
+                     data.frame(k = c(3)))
+                     
+                     #data.frame(nrounds = c(10), eta = c(0.3), lambda = c(0.1), alpha = c(0.1)))
 #data.frame(size=5),
 #data.frame(nIter=50))
 
@@ -41,7 +44,8 @@ parLapply(cl, seq(1,length(algorithms)), function(x) c(timeEstimate(ont_name, on
 stopCluster(cl)
 
 
-param <- data.frame(nrounds = c(10), eta = c(0.3), lambda = c(0.1), alpha = c(0.1))
-algo <- "xgbLinear"
-res <- getGridParam(param, algo)
-res
+#param <- data.frame(nrounds = c(10), eta = c(0.3), lambda = c(0.1), alpha = c(0.1))
+#algo <- "xgbLinear"
+#res <- getGridParam(param, algo)
+#models <- modelLookup()
+#models[models["model"]=="AdaBoost.M1", "parameter"]
