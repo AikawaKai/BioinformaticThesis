@@ -1,4 +1,4 @@
-svmRadial data.frame(C = c(.25))
+svmRadial data.frame(C = c(.25), sigma = c(.05))
 svmLinear data.frame(C = c(.25))
 xgbLinear data.frame(nrounds = c(10), eta = c(0.01), max_depth = c(2), gamma = c(1))
 mlp data.frame(size=5)
