@@ -45,4 +45,4 @@ stopCluster(cl)
 #algo <- "xgbLinear"
 #res <- getGridParam(param, algo)
 models <- modelLookup()
-models[models["model"]=="randomGLM", "parameter"]
+models[models["model"]=="xgbLinear", "parameter"]
