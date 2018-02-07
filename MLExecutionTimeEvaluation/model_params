@@ -8,4 +8,5 @@ rf data.frame(mtry = c(5))
 AdaBoost.M1 data.frame(mfinal = c(3), maxdepth = c(1),
                      coeflearn = c("Breiman"))
 C5.0 data.frame(trials = c(10), model = c("tree"), winnow=c(FALSE))
-
+lda data.frame(parameter = "none")
+randomGLM
