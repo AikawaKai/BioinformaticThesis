@@ -5,11 +5,11 @@ import matplotlib as mpl
 mpl.use('agg')
 import matplotlib.pyplot as plt
 
-colors = ["red", "blue", "green", "yellow", "grey", "grey", "grey", "grey",
+colors = ["red", "blue", "green", "yellow", "xkcd:sky blue", "brown", "pink", "grey",
           "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey",
           "grey"]
 
-algos = ["svmLinear", "svmRadial", "LogitBoost", "C5.0", "mlp", "xgbLinear", "AdaBoost_M1"]
+algos = ["svmLinear", "svmRadial", "LogitBoost", "C5.0", "mlp", "xgbLinear", "AdaBoost_M1", "knn"]
 classes = ["BP", "CC", "MF"]
 
 def plotBoxPlot(class_, files):
