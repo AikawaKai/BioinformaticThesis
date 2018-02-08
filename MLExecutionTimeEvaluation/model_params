@@ -10,5 +10,5 @@ AdaBoost.M1 data.frame(mfinal = c(3), maxdepth = c(1),
 C5.0 data.frame(trials = c(10), model = c("tree"), winnow=c(FALSE))
 lda data.frame(parameter = c("none"))
 randomGLM data.frame(maxInteractionOrder = c(1))
-gaussprPoly data.frame(degree = c(1), scale = c(1))
+gaussprPoly data.frame(degree = c(1), scale = c(0.1))
 glmnet data.frame(alpha = c(0.1), lambda = c(0.1))

@@ -38,6 +38,9 @@ getGridParam<-function(param, algo){
   models <- modelLookup()
   parameters_name <- models[models["model"]==algo,"parameter"]
   df <- data.frame()
+  if(length(param)==0){
+    return(df)
+  }
   for(i in seq(1, length(parameters_name))){
     col <- toString(parameters_name[i])
     param_string <- paste(".", parameters_name[[i]], sep = "")

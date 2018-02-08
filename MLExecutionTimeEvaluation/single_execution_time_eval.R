@@ -27,7 +27,7 @@ if(test){
 }
 
 timeEstimate(ont_name, ontologies, datasetpath, 
-             "svmRadial", data.frame(C = c(.25), sigma = c(.05)), 1, test, 10)
+             "treebag", data.frame(), 1, test, 10)
 
 models <- modelLookup()
-models[models["model"]=="svmLinear", "parameter"]
+models[models["model"]=="treebag", "parameter"]
