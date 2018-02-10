@@ -171,11 +171,19 @@ crossValidation1Fold <- function(number.folds,  W, y_classes, y_names, algorithm
     print(nrow(curr_x))
     curr_x <- apply(curr_x, FUN= function(x) x/1000, MARGIN = c(1,2))
     # learning model
-    model <- caret::train(curr_x, curr_y,
-                          method = algorithm, 
-                          trControl = tc, 
-                          tuneGrid = param,
-                          metric = "AUPRC")
+    if(length(param)==0)
+    {
+      model <- caret::train(curr_x, curr_y,
+                            method = algorithm, 
+                            trControl = tc,
+                            metric = "AUPRC")
+    }else{
+      model <- caret::train(curr_x, curr_y,
+                            method = algorithm, 
+                            trControl = tc, 
+                            tuneGrid = param,
+                            metric = "AUPRC")
+    }
     # current test_set
     curr_test_set <- W[which(rownames(W) %in% trainIndex[[1]]),]
     print("curr test set size:")
