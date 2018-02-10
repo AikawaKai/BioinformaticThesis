@@ -1,0 +1,3 @@
+1) ho letto negli appunti del prof che lui consiglia di normalizzare le feature\predictor dividendone il valor per 1000, tu invece utilizzi il max del predictor. Come ci comportiamo?
+
+2)Per calcolare effettivamente i valori delle funzioni tipo isotonic regression, mi sembra di capire che necessitiamo di tutti gli score per ogni classe dell'ontologia. Adesso stiamo facendo solamente un'esplorazione a livello di performance AUPRC, AUROC, corretto? O stiamo già iniziando a calcolare gli score da utilizzare nelle funzioni di aggiornamento? Lo chiedo perché stiamo già salvando gli score in .rda, mi sembra. In tal senso, se stiamo campionando e stimando, utilizziamo la medesima campionatura fatta per la stima dei tempi?

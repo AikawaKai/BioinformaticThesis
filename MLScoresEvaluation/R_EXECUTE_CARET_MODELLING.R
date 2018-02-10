@@ -19,12 +19,14 @@ summaryFunction <- AUPRCSummary;
 metric <- "AUC"; 
 pkg <- "precrec";
 scores.dir <- perf.dir <- "./"; ## set the desidered output dir
+test <- TRUE
 
 ## MODELLING by CARET
 caret.training(
 	net.dir=net.dir, net.file=net.file, ann.dir=ann.dir, ann.file=ann.file, PreProc=PreProc, 
 	n=n, norm=norm, kk=kk, seed=seed, algorithm=algorithm, summaryFunction=summaryFunction,
-	defGrid=defGrid, cutoff=cutoff, metric=metric, pkg=pkg, scores.dir=scores.dir, perf.dir=perf.dir
-)
+	defGrid=defGrid, cutoff=cutoff, metric=metric, pkg=pkg, scores.dir=scores.dir, perf.dir=perf.dir,
+  test = test
+	)
 
 

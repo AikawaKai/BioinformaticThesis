@@ -61,7 +61,7 @@
 
 caret.training <- function(net.dir=net.dir, net.file=net.file, ann.dir=ann.dir, ann.file=ann.file, 
 	PreProc=TRUE, n=9, norm=TRUE, kk=10, seed=23, algorithm="mlp", defGrid=data.frame(size=5), cutoff=0.5,
-	summaryFunction=AUPRCSummary, metric="AUC", pkg="precrec", scores.dir=scores.dir, perf.dir=perf.dir){
+	summaryFunction=AUPRCSummary, metric="AUC", pkg="precrec", scores.dir=scores.dir, perf.dir=perf.dir, test=test){
 
 	## load p2p STRING interaction network 
 	net.path <- paste0(net.dir, net.file, ".rda");
@@ -77,7 +77,9 @@ caret.training <- function(net.dir=net.dir, net.file=net.file, ann.dir=ann.dir, 
 
 	## normalize the string matrix dividing each score for the maximum score
 	if(norm){W <- W/max(W);}else{W<-W}
-
+  
+	if(test){ann <- ann[,c(1,2,3)]}else{ann<-ann}
+	if(test){W <- W[1:2000, ]}else{W<-W}
 	class.num <- ncol(ann);
 	for(i in 1:class.num){
 		## current GO class execution time
@@ -86,6 +88,7 @@ caret.training <- function(net.dir=net.dir, net.file=net.file, ann.dir=ann.dir, 
 		## create stratified folds for k-fold cross-validation in caret::createFolds format-like
 		## we use HEMDAG::do.stratified.cv.data.single.class
 		y <- ann[,i]; ## annotation vector of the current GO class
+		if(test){y<-y[1:2000]}else{y<-y};
 		indices <- 1:length(y);
 		positives <- which(y==1);
 		folds <- do.stratified.cv.data.single.class(indices, positives, kk=kk, seed=seed);
@@ -118,9 +121,9 @@ caret.training <- function(net.dir=net.dir, net.file=net.file, ann.dir=ann.dir, 
 				tuneGrid=defGrid,
 				tuneLength=1,
 				metric=metric,
-				verbose=FALSE,
-				preProcess=NULL,
-				scaled=FALSE
+				#verbose=FALSE,
+				#preProcess=NULL,
+				#scaled=FALSE
 			);
 
 			## Probabilistic prediction on the test set
