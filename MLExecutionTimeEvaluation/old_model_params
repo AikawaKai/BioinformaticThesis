@@ -5,10 +5,11 @@ mlp data.frame(size=5)
 LogitBoost data.frame(nIter=50)
 knn data.frame(k = c(3)),
 rf data.frame(mtry = c(5))
-AdaBoost.M1 data.frame(mfinal = c(3), maxdepth = c(1),
+AdaBoost.M1 data.frame(mfinal = c(100), maxdepth = c(1),
                      coeflearn = c("Breiman"))
-C5.0 data.frame(trials = c(10), model = c("tree"), winnow=c(FALSE))
+C5.0 data.frame(trials = c(1), model = c("tree"), winnow=c(FALSE))
 lda data.frame(parameter = c("none"))
 randomGLM data.frame(maxInteractionOrder = c(1))
 gaussprPoly data.frame(degree = c(1), scale = c(0.1))
 glmnet data.frame(alpha = c(0.1), lambda = c(0.1))
+
