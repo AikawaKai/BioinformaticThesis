@@ -35,7 +35,7 @@ def plotBoxPlot(class_, files):
         times_[key]+=[max_val, min_val, mean_val, std_val]
     names = [key for key, values in times_.items()]
     print(names)
-    box_plot_values = [val[0] for key, val in times_.items()]
+    box_plot_values = [val[0]/3600 for key, val in times_.items()]
     print(box_plot_values)
     if len(box_plot_values)<15:
         len_ = 15 - len(box_plot_values)
@@ -48,7 +48,8 @@ def plotBoxPlot(class_, files):
         wr = csv.writer(f_, delimiter= ",")
         wr.writerow(first_row)
         for key, value in times_.items():
-            wr.writerow([key, value[1], value[2], value[3], value[4]])
+            wr.writerow([key, round(value[1]/3600,2), round(value[2]/3600, 2),
+                         round(value[3]/3600, 2), round(value[4]/3600, 2)])
 
 def saveBoxPlot(class_name, list_data, list_names):
     fig = plt.figure(1, figsize=(20, 8))
