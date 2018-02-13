@@ -9,7 +9,7 @@ colors = ["red", "blue", "green", "yellow", "xkcd:sky blue", "brown", "pink", "g
           "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey",
           "grey"]
 
-algos = ["svmLinear", "svmRadial", "LogitBoost", "C5.0", "mlp", "xgbLinear", "AdaBoost_M1", "knn", "glmnet"]
+algos = ["svmLinear", "svmRadial", "LogitBoost", "C5.0", "mlp", "xgbLinear", "AdaBoost_M1", "knn", "glmnet", "rf"]
 classes = ["BP", "CC", "MF"]
 
 def plotBoxPlot(class_, files):
