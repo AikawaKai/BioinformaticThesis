@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
     file_name = sys.argv[1]
+    type_ = file_name.split(".csv")[0]
     dataframe = pd.read_csv(file_name)
     ind = dataframe.index
     classes_ = []
@@ -19,5 +20,8 @@ if __name__ == '__main__':
         vals.append(count)
     print(min(vals))
     print(max(vals))
-    n, bins, patches = plt.hist(vals, 20, edgecolor='black', facecolor='blue', alpha=0.7)
-    plt.show()
+    n, bins, patches = plt.hist(vals, 20, edgecolor='black', facecolor='green', alpha=0.7)
+    plt.title(type_+" histogram\n p.value < 0.01")
+    plt.xlabel("Num. selected seatures")
+    plt.ylabel("Num. classes")
+    plt.savefig(type_+".png")
