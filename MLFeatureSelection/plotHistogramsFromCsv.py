@@ -22,6 +22,6 @@ if __name__ == '__main__':
     print(max(vals))
     n, bins, patches = plt.hist(vals, 20, edgecolor='black', facecolor='green', alpha=0.7)
     plt.title(type_+" histogram\n p.value < 0.01")
-    plt.xlabel("Num. selected seatures")
+    plt.xlabel("Num. selected features")
     plt.ylabel("Num. classes")
     plt.savefig(type_+".png")
