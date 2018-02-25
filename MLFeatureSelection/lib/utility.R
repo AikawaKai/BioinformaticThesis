@@ -21,13 +21,13 @@ getCurrentAlgoGrid <- function(algo){
     return(data.frame(nrounds = 15 , lambda = 1, alpha = 0, eta = 0.3))
   }
   if(algo == "rf"){
-    return(data.frame(mtry = 126))
+    return(data.frame(mtry = 32))
   }
   if(algo == "C5.0"){
     return(data.frame(trials = 1, model = "tree" , winnow =FALSE ))
   }
   if(algo == "LogitBoost"){
-    return(data.frame(nIter = 15752))
+    return(data.frame(nIter = 1000))
   }
   if(algo == "glmnet"){
     return(data.frame(alpha = 1, lambda = 100))
