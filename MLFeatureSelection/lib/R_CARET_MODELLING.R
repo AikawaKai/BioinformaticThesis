@@ -220,6 +220,6 @@ caret.training <- function(net=W, ann=ann,
 	#fn <- strsplit(ann.file,"_");
 	#out.name <- paste0(fn[[1]][1:4], ".", collapse="");
 	save(S, file=paste0(scores.dir, algorithm, ".", kk, "fcv.rda"), compress=TRUE);
-	save(AUC.flat, PRC.flat, file=paste0(perf.dir,  algorithm, ".", kk, "fcv.rda"), compress=TRUE);
+	save(AUC.flat, PRC.flat, file=paste0(perf.dir,  algorithm, ".perf.", kk, "fcv.rda"), compress=TRUE);
 }
 
