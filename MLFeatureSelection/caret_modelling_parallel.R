@@ -17,7 +17,8 @@ if(server.bool){
   scores.dir <- perf.dir <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/" ;
 }
 
-source(paste(lib.dir, "caret.metrics.R", sep =""));  ## to use customize performance metrics ("precrec" pkg)
+source(paste(lib.dir, "caret.metrics.R", sep =""));## to use customize performance metrics ("precrec" pkg)
+source(paste(lib.dir, "utility.R", sep =""));
 source(paste(lib.dir, "R_CARET_MODELLING.R", sep = "")); ## to call the high-level fun caret.training
 args <- commandArgs(trailingOnly = TRUE)
 algorithm <- args[1]
