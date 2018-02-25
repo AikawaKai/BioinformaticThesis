@@ -18,7 +18,7 @@ getCurrentAlgoGrid <- function(algo){
     return(data.frame(C = 1, sigma = 1))
   }
   if(algo == "xgbLinear"){
-    return(data.frame(nrounds = 15 , lambda = , alpha = 0, eta = 0.3))
+    return(data.frame(nrounds = 15 , lambda = 1, alpha = 0, eta = 0.3))
   }
   if(algo == "rf"){
     return(data.frame(mtry = 126))
