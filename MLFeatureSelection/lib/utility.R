@@ -36,7 +36,7 @@ getCurrentAlgoGrid <- function(algo){
     return(data.frame(maxInteractionOrder = 1))
   }
   if(algo == "treebag"){
-    return(data.frame())
+    return(data.frame(parameter = "none"))
   }
   if(algo == "AdaBoost.M1"){
     return(data.frame(mfinal = 100 , maxdepth = 30 , coeflearn = "Breiman"))
