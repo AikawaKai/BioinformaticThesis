@@ -107,7 +107,7 @@ caret.training <- function(net=W, ann=ann,
 		for(k in 1:kk){
 			cat("MODEL: ", algorithm, "START", "\n"); 
 			start.model <- proc.time();
-			if(algorithm!="knn"){
+			if(algorithm!="knn" && algorithm!="glmnet"){
 			  model[[k]] <- train(
 			    x=as.data.frame(W[-testIndex[[k]],]), 
 			    y=y[-testIndex[[k]]],
