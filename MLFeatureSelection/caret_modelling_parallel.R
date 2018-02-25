@@ -4,12 +4,11 @@ library(HEMDAG); 	## to create stratified fold (do.stratified.cv.data.single.cla
 ## SERVER\LOCAL DATA PATH SETTING
 server.bool <- FALSE
 
-
 #LIBS AND PATHS
 if(server.bool){
   lib.dir <- "/home/modore/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/lib/"
   annotation.dir <- "/data/GO_EXP/"
-  net.dir <- "/home/modore/"
+  net.dir <- "/home/modore/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/"
   scores.dir <- perf.dir <- "/home/modore/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/";
 }else{
   lib.dir <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/lib/"
