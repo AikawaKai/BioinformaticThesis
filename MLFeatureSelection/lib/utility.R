@@ -49,8 +49,10 @@ ptestCalculation <- function(col_vals, col_classes){
   p_value <- t.test(vals ~ classes, data=curr_data)[["p.value"]]
   return(c(p_value))
 }
-sourceCpp(file=paste("/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/", "fastIter.cpp", sep=""))
-
+tryCatch({sourceCpp(file=paste("/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/", "fastIter.cpp", sep=""))},
+         error = function(err){
+           sourceCpp(file=paste("/home/modore/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/", "fastIter.cpp", sep=""))
+         })
 iterTtestCalculation <-function(W, ann){
   for(i in 1:ncol(ann)){
     for(j in 1:ncol(W)){
