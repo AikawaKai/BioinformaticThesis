@@ -1,17 +1,27 @@
 library(caret); 	## to model
 library(HEMDAG); 	## to create stratified fold (do.stratified.cv.data.single.class)
 
-#LIBS
-server.lib.dir <- "/home/modore/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/lib/"
-lib.dir <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/lib/"
+## SERVER\LOCAL DATA PATH SETTING
+server.bool <- FALSE
+
+
+#LIBS AND PATHS
+if(server.bool){
+  lib.dir <- "/home/modore/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/lib/"
+  annotation.dir <- "/data/GO_EXP/"
+  net.dir <- "/home/modore/"
+  scores.dir <- perf.dir <- "/home/modore/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/";
+}else{
+  lib.dir <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/lib/"
+  annotation.dir <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/";
+  net.dir <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/data/"; 
+  scores.dir <- perf.dir <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/" ;
+}
+
 source(paste(lib.dir, "caret.metrics.R", sep =""));  ## to use customize performance metrics ("precrec" pkg)
 source(paste(lib.dir, "R_CARET_MODELLING.R", sep = "")); ## to call the high-level fun caret.training
 
-## SERVER\LOCAL DATA PATH SETTING
-server.annotation.dir <- "/data/GO_EXP/"
-server.net.dir <- "/home/modore/"
-annotation.dir <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/";
-net.dir <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/data/"; ## set your data dir..
+algorithm <- args[1]
 
 ## GENERAL PARAMETERS SETTING
 net.file <- "pca.rda";
@@ -20,13 +30,11 @@ PreProc <- TRUE;
 norm <- TRUE;
 n <- 9;
 kk <- 10;
-algorithm <- "mlp";
-defGrid	<- data.frame(size=5);
+defGrid	<- getCurrentAlgoGrid(algorithm);
 cutoff <- 0.5;
 summaryFunction <- AUPRCSummary;
 metric <- "AUC"; 
 pkg <- "precrec";
-scores.dir <- perf.dir <- "./"; ## set the desidered output dir
 seed <- 1;
 
 # LOADING DATA
@@ -45,8 +53,7 @@ print(ann_sample)
 classes <- ann_select[,ann_sample]
 
 
-
-## MODELLING by CARET
+## MODELING by CARET
 caret.training(
 	net=W, ann=classes, PreProc=PreProc, 
 	n=n, norm=norm, kk=kk, seed=seed, algorithm=algorithm, summaryFunction=summaryFunction,

@@ -203,9 +203,9 @@ caret.training <- function(net=W, ann=ann,
 	PRC.flat <- list(average=PRC.av, per.class=PRC.class);
 	
 	## save the results
-	fn <- strsplit(ann.file,"_");
-	out.name <- paste0(fn[[1]][1:4], ".", collapse="");
-	save(S, file=paste0(scores.dir, "Scores.", out.name, algorithm, ".", kk, "fcv.rda"), compress=TRUE);
-	save(AUC.flat, PRC.flat, file=paste0(perf.dir, "PerfMeas.", out.name, algorithm, ".", kk, "fcv.rda"), compress=TRUE);
+	#fn <- strsplit(ann.file,"_");
+	#out.name <- paste0(fn[[1]][1:4], ".", collapse="");
+	save(S, file=paste0(scores.dir, algorithm, ".", kk, "fcv.rda"), compress=TRUE);
+	save(AUC.flat, PRC.flat, file=paste0(perf.dir,  algorithm, ".", kk, "fcv.rda"), compress=TRUE);
 }
 
