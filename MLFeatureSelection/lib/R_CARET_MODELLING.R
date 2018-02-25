@@ -107,18 +107,32 @@ caret.training <- function(net=W, ann=ann,
 		for(k in 1:kk){
 			cat("MODEL: ", algorithm, "START", "\n"); 
 			start.model <- proc.time();
-			model[[k]] <- train(
-				x=as.data.frame(W[-testIndex[[k]],]), 
-				y=y[-testIndex[[k]]],
-				method=algorithm,
-				trControl=fitControl,
-				tuneGrid=defGrid,
-				tuneLength=1,
-				metric=metric,
-				verbose=FALSE,
-				preProcess=NULL,
-				scaled=FALSE
-			);
+			if(algorithm!="knn"){
+			  model[[k]] <- train(
+			    x=as.data.frame(W[-testIndex[[k]],]), 
+			    y=y[-testIndex[[k]]],
+			    method=algorithm,
+			    trControl=fitControl,
+			    tuneGrid=defGrid,
+			    tuneLength=1,
+			    metric=metric,
+			    verbose=FALSE,
+			    preProcess=NULL,
+			    scaled=FALSE
+			  );
+			}else{
+			  model[[k]] <- train(
+			    x=as.data.frame(W[-testIndex[[k]],]), 
+			    y=y[-testIndex[[k]]],
+			    method=algorithm,
+			    trControl=fitControl,
+			    tuneGrid=defGrid,
+			    tuneLength=1,
+			    metric=metric,
+			    preProcess=NULL
+			  );
+			}
+			
 
 			## Probabilistic prediction on the test set
 			model.prob <- predict(model[[k]], newdata=as.data.frame(W[testIndex[[k]],]), type="prob");
