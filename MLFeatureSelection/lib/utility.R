@@ -41,7 +41,6 @@ getCurrentAlgoGrid <- function(algo){
   if(algo == "AdaBoost.M1"){
     return(data.frame(mfinal = 100 , maxdepth = 30 , coeflearn = "Breiman"))
   }
-  
 }
 
 ptestCalculation <- function(col_vals, col_classes){

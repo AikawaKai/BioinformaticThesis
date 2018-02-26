@@ -1,6 +1,6 @@
 library(factoextra)
 
-load(file="/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/pca.rda")
+load(file="/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/data/pca.rda")
 PoV <- pca$sdev^2/sum(pca$sdev^2)
 
 fviz_eig(pca, ncp = 50)
