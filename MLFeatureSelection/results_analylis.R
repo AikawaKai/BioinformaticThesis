@@ -1,8 +1,8 @@
 
-path_results <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/results_variance_70/"
+path_results <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/results_variance_90/"
 ends <- "10fcv.rda"
 perf <- "perf"
-algorithms <- c("mlp", "xgbLinear", "svmLinear", "svmRadial", "glmnet", "C5.0",
+algorithms <- c("mlp", "xgbLinear", "svmLinear", "svmRadial", "glmnet", "C5.0", "lda",
                 "rf", "AdaBoost.M1", "LogitBoost", "gaussprPoly", "treebag", "knn")
 dataFrameAUC <- data.frame()
 dataFramePRC <- data.frame()
