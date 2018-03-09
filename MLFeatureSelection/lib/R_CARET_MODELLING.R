@@ -59,7 +59,7 @@
 
 caret.training <- function(net=W, ann=ann, 
 	PreProc=TRUE, n=9, norm=TRUE, kk=10, seed=23, algorithm="mlp", defGrid=data.frame(size=5), cutoff=0.5,
-	summaryFunction=AUPRCSummary, metric="AUC", pkg="precrec", scores.dir=scores.dir, perf.dir=perf.dir){
+	summaryFunction=AUPRCSummary, metric="AUC", pkg="precrec", scores.dir=scores.dir, perf.dir=perf.dir, variance=variance){
 
 	## load p2p STRING interaction network 
 	# net.path <- paste0(net.dir, net.file, ".rda");
@@ -219,7 +219,7 @@ caret.training <- function(net=W, ann=ann,
 	## save the results
 	#fn <- strsplit(ann.file,"_");
 	#out.name <- paste0(fn[[1]][1:4], ".", collapse="");
-	save(S, file=paste0(scores.dir, algorithm, ".", kk, "fcv.rda"), compress=TRUE);
-	save(AUC.flat, PRC.flat, file=paste0(perf.dir,  algorithm, ".perf.", kk, "fcv.rda"), compress=TRUE);
+	save(S, file=paste0(scores.dir, variance, "_", algorithm, ".", kk, "fcv.rda"), compress=TRUE);
+	save(AUC.flat, PRC.flat, file=paste0(perf.dir, variance, "_", algorithm, ".perf.", kk, "fcv.rda"), compress=TRUE);
 }
 

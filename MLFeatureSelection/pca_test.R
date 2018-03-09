@@ -18,7 +18,7 @@ print(count)
 
 curr_var <- 0
 count <- 0
-count_th <- 1000
+count_th <- 15
 for(i in seq(1:length(PoV))){
   curr_var <- curr_var + PoV[[i]]
   count <- count + 1

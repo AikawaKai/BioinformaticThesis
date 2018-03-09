@@ -43,7 +43,11 @@ load(file=paste(net.dir, net.file, sep=""));
 W <- pca$x
 
 #SELECT BY VARIANCE
-W <- W[,1:1000]
+W_90 <- W[,1:1000]
+W_70 <- W[,1:100]
+W_50 <- W[,1:15]
+W_variance <- c(W_50, W_70)#, W_50)
+variance_names <- c("variance_50", "variance_70")#, "variance_90")
 
 # selected classes for replicability
 set.seed(seed)
@@ -54,10 +58,20 @@ classes <- ann_select[,ann_sample]
 
 
 ## MODELING by CARET
-caret.training(
-	net=W, ann=classes, PreProc=PreProc, 
-	n=n, norm=norm, kk=kk, seed=seed, algorithm=algorithm, summaryFunction=summaryFunction,
-	defGrid=defGrid, cutoff=cutoff, metric=metric, pkg=pkg, scores.dir=scores.dir, perf.dir=perf.dir
-)
+res <- data.frame()
+for(i in seq(1:2)){
+  curr_W <- W_variance[[i]]
+  curr_variance <- variance_names[[i]]
+  vals <- system.time(caret.training(
+    net=curr_W, ann=classes, PreProc=PreProc, 
+    n=n, norm=norm, kk=kk, seed=seed, algorithm=algorithm, summaryFunction=summaryFunction,
+    defGrid=defGrid, cutoff=cutoff, metric=metric, pkg=pkg, scores.dir=scores.dir, perf.dir=perf.dir, variance=curr_variance)
+  )
+  curr_row = c(algorithm, curr_variance, vals[[0]])
+  rbind.data.frame(res, curr_row)
+}
+
+write.csv(res, file=paste(algorithm, ".csv"), sep=",")
+
 
 
