@@ -67,7 +67,7 @@ for(i in seq(1:2)){
     n=n, norm=norm, kk=kk, seed=seed, algorithm=algorithm, summaryFunction=summaryFunction,
     defGrid=defGrid, cutoff=cutoff, metric=metric, pkg=pkg, scores.dir=scores.dir, perf.dir=perf.dir, variance=curr_variance)
   )
-  curr_row = c(algorithm, curr_variance, vals[[0]])
+  curr_row = c(algorithm, curr_variance, vals[[1]])
   rbind.data.frame(res, curr_row)
 }
 
