@@ -37,11 +37,12 @@ def plotBoxPlot(class_, files):
     print(names)
     box_plot_values = [val[0]/3600 for key, val in times_.items()]
     print(box_plot_values)
+    '''
     if len(box_plot_values)<15:
         len_ = 15 - len(box_plot_values)
         for i in range(len_):
             box_plot_values.append([0])
-            names.append("to_do")
+            names.append("to_do")'''
     saveBoxPlot(class_, box_plot_values, names)
     first_row = ["algo", "max_time", "min_time", "mean_time", "std_time"]
     with open("./{}times_.csv".format(class_), "w") as f_:
