@@ -223,3 +223,111 @@ caret.training <- function(net=W, ann=ann,
 	save(AUC.flat, PRC.flat, file=paste0(perf.dir, variance, "_", algorithm, ".perf.", kk, "fcv.rda"), compress=TRUE);
 }
 
+
+caret.training_time <- function(net=W, ann=ann, 
+                           PreProc=TRUE, n=9, norm=TRUE, kk=10, seed=23, algorithm="mlp", defGrid=data.frame(size=5), cutoff=0.5,
+                           summaryFunction=AUPRCSummary, metric="AUC", pkg="precrec", scores.dir=scores.dir, perf.dir=perf.dir, variance=variance){
+  
+
+  if(norm){W <- W/max(W);}else{W<-W}
+  
+  class.num <- ncol(ann);
+  for(i in 1:class.num){
+    ## current GO class execution time
+    if(i>1){start.go <- 0;}
+    start.go <- proc.time();
+    ## create stratified folds for k-fold cross-validation in caret::createFolds format-like
+    ## we use HEMDAG::do.stratified.cv.data.single.class
+    y <- ann[,i]; ## annotation vector of the current GO class
+    indices <- 1:length(y);
+    positives <- which(y==1);
+    folds <- do.stratified.cv.data.single.class(indices, positives, kk=kk, seed=seed);
+    testIndex <- mapply(c, folds$fold.positives, folds$fold.negatives, SIMPLIFY=FALSE); ## note: index of examples used for test set..
+    names(testIndex) <- paste0("Fold", gsub(" ", "0", format(1:kk)));
+    
+    ## lists storing AUROC, AUPRC, the predicted scores on the test set and the model setting
+    AUROC <- AUPRC <- test_set_list <- model <- vector(mode="list", length=kk);
+    
+    ## START MODELLING by CARET ## 
+    ## caret requires that y is a factor and not a vector of integer number (0/1)
+    ## TRICK: transform y in a factor and named the outcome as "annotated" (1) and "not_annotated" (0)
+    charpos <- "annotated";
+    charneg <- "not_annotated";
+    y[which(y==1)] <- charpos;
+    y[which(y==0)] <- charneg;
+    y <- as.factor(y);
+    
+    ## setting caret parameter. At the moment NO PARAMETER TUNING
+    fitControl <- trainControl(method="none", classProbs=TRUE, returnData=TRUE, 
+                               sampling=NULL, seeds=seed, summaryFunction=summaryFunction);
+    for(k in 1:kk){
+      cat("MODEL: ", algorithm, "START", "\n"); 
+      start.model <- proc.time();
+      if(algorithm!="knn" && algorithm!="glmnet" && algorithm != "randomGLM"){
+        model[[k]] <- train(
+          x=as.data.frame(W[-testIndex[[k]],]), 
+          y=y[-testIndex[[k]]],
+          method=algorithm,
+          trControl=fitControl,
+          tuneGrid=defGrid,
+          tuneLength=1,
+          metric=metric,
+          verbose=FALSE,
+          preProcess=NULL,
+          scaled=FALSE
+        );
+      }else{
+        model[[k]] <- train(
+          x=as.data.frame(W[-testIndex[[k]],]), 
+          y=y[-testIndex[[k]]],
+          method=algorithm,
+          trControl=fitControl,
+          tuneGrid=defGrid,
+          tuneLength=1,
+          metric=metric,
+          preProcess=NULL
+        );
+      }
+      
+      
+      ## Probabilistic prediction on the test set
+      model.prob <- predict(model[[k]], newdata=as.data.frame(W[testIndex[[k]],]), type="prob");
+      
+      ## true labels
+      obs <- y[testIndex[[k]]];
+      
+      ## computing predicted labels at a given cutoff
+      pred <- factor(ifelse(model.prob[[charpos]] >= cutoff, charpos, charneg), levels=levels(y));
+      
+      ## construction of the data frame for evaluating the predictions
+      test_set_list[[k]] <- data.frame(obs, pred, model.prob[[charpos]], model.prob[[charneg]]); 
+      names(test_set_list[[k]]) <- c("obs","pred",charpos, charneg);
+      test_set <- test_set_list[[k]];
+      
+      ## computing AUROC
+      if(pkg=="precrec"){
+        AUPRC[[k]] <- AUPRCSummary(test_set, lev=levels(test_set$obs), model=algorithm); ## custom 
+        AUROC[[k]] <- AUROCSummary(test_set, lev=levels(test_set$obs), model=algorithm); ## custom
+        cat("AUPRC and AUROC measures DONE", "\n");
+      }else{
+        AUPRC[[k]] <- prSummary(test_set, lev=levels(test_set$obs), model=algorithm);	## caret
+        AUROC[[k]] <- twoClassSummary(test_set, lev=levels(test_set$obs), model=algorithm); ## caret
+        cat("AUPRC and AUROC measures DONE", "\n");
+      }
+      ## fold execution time and status
+      end.model <- proc.time()-start.model;
+      cat("FOLD: ", k, "DONE", "****", "ELAPSED TIME: ", end.model["elapsed"], "\n");
+      break
+    }
+    
+    ## create an empty vector to store the scores of the current class. 
+    ## the others will be added by column
+    curr.class.name <- colnames(ann)[i]; ## GO class current name
+    
+    ## merge caret::twoClassSummary results 
+    stop.go <- proc.time() - start.go;
+    cat("GO class ", i, "(",colnames(ann)[i],")", "****", "DONE", "ELAPSED TIME: ", stop.go["elapsed"], "\n");
+  }
+}
+
+
