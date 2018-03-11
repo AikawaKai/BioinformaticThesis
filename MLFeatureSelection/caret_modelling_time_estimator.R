@@ -68,7 +68,8 @@ for(i in seq(1:3)){
   vals <- system.time(caret.training_time(
     net=curr_W, ann=classes, PreProc=PreProc, 
     n=n, norm=norm, kk=kk, seed=seed, algorithm=algorithm, summaryFunction=summaryFunction,
-    defGrid=defGrid, cutoff=cutoff, metric=metric, pkg=pkg, scores.dir=scores.dir, perf.dir=perf.dir, variance=curr_variance, csv_name=csv_name)
+    defGrid=defGrid, cutoff=cutoff, metric=metric, pkg=pkg, scores.dir=scores.dir, 
+    perf.dir=perf.dir, variance=curr_variance, csv_name=curr_csv_name)
   )
   curr_row = c(algorithm, curr_variance, vals[[1]])
   rbind.data.frame(res, curr_row)
