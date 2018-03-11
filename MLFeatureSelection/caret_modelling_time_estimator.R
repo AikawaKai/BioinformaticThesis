@@ -3,6 +3,7 @@ library(HEMDAG); 	## to create stratified fold (do.stratified.cv.data.single.cla
 
 ## SERVER\LOCAL DATA PATH SETTING
 server.bool <- FALSE
+curr_onto <- "MF"
 
 #LIBS AND PATHS
 if(server.bool){
@@ -25,7 +26,7 @@ algorithm <- args[1]
 
 ## GENERAL PARAMETERS SETTING
 net.file <- "pca.rda";
-ann.file <- "/6239_CAEEL/6239_CAEEL_GO_MF_ANN_STRING_v10.5_20DEC17.rda";
+ann.file <- paste0("/6239_CAEEL/6239_CAEEL_GO_", curr_onto, "_ANN_STRING_v10.5_20DEC17.rda");
 PreProc <- TRUE;
 norm <- TRUE;
 n <- 9;
@@ -46,8 +47,8 @@ W <- pca$x
 W_90 <- W[,1:1000]
 W_70 <- W[,1:100]
 W_50 <- W[,1:15]
-W_variance <- c(W_50, W_70)#, W_50)
-variance_names <- c("variance_50", "variance_70")#, "variance_90")
+W_variance <- c(W_50, W_70, W_90)
+variance_names <- c("variance_50", "variance_70", "variance_90")
 
 # selected classes for replicability
 set.seed(seed)
@@ -59,13 +60,15 @@ classes <- ann_select[,ann_sample]
 
 ## MODELING by CARET
 res <- data.frame()
-for(i in seq(1:2)){
+for(i in seq(1:3)){
   curr_W <- W_variance[[i]]
   curr_variance <- variance_names[[i]]
+  curr_csv_name <- paste0(curr_onto, "_", curr_variance, "_", algorithm, ".csv")
+  write(x = c("class, time"), file=curr_csv_name);
   vals <- system.time(caret.training_time(
     net=curr_W, ann=classes, PreProc=PreProc, 
     n=n, norm=norm, kk=kk, seed=seed, algorithm=algorithm, summaryFunction=summaryFunction,
-    defGrid=defGrid, cutoff=cutoff, metric=metric, pkg=pkg, scores.dir=scores.dir, perf.dir=perf.dir, variance=curr_variance)
+    defGrid=defGrid, cutoff=cutoff, metric=metric, pkg=pkg, scores.dir=scores.dir, perf.dir=perf.dir, variance=curr_variance, csv_name=csv_name)
   )
   curr_row = c(algorithm, curr_variance, vals[[1]])
   rbind.data.frame(res, curr_row)

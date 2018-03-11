@@ -224,9 +224,13 @@ caret.training <- function(net=W, ann=ann,
 }
 
 
-caret.training_time <- function(net=W, ann=ann, 
-                           PreProc=TRUE, n=9, norm=TRUE, kk=10, seed=23, algorithm="mlp", defGrid=data.frame(size=5), cutoff=0.5,
-                           summaryFunction=AUPRCSummary, metric="AUC", pkg="precrec", scores.dir=scores.dir, perf.dir=perf.dir, variance=variance){
+caret.training_time <- function(net=W, ann=ann, PreProc=TRUE, n=9, norm=TRUE, 
+                                kk=10, seed=23, algorithm="mlp", 
+                                defGrid=data.frame(size=5), cutoff=0.5,
+                                summaryFunction=AUPRCSummary, metric="AUC", 
+                                pkg="precrec", scores.dir=scores.dir, 
+                                perf.dir=perf.dir, variance=variance, 
+                                csv_name=csv_name){
   
 
   if(norm){W <- W/max(W);}else{W<-W}
@@ -326,6 +330,7 @@ caret.training_time <- function(net=W, ann=ann,
     
     ## merge caret::twoClassSummary results 
     stop.go <- proc.time() - start.go;
+    write(x=c(curr.class.name, stop.go), file = csv_name, append = TRUE, ncolumns = 2, sep = ",")
     cat("GO class ", i, "(",colnames(ann)[i],")", "****", "DONE", "ELAPSED TIME: ", stop.go["elapsed"], "\n");
   }
 }
