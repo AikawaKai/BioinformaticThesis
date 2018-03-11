@@ -330,7 +330,7 @@ caret.training_time <- function(net=W, ann=ann, PreProc=TRUE, n=9, norm=TRUE,
     
     ## merge caret::twoClassSummary results 
     stop.go <- proc.time() - start.go;
-    write(x=c(curr.class.name, stop.go["elapsed"]), file = csv_name, append = TRUE, ncolumns = 2, sep = ",")
+    write(x=c(curr.class.name, stop.go["elapsed"]*10), file = csv_name, append = TRUE, ncolumns = 2, sep = ",")
     write(x=c("\n"), file=csv_name, append=TRUE)
     cat("GO class ", i, "(",colnames(ann)[i],")", "****", "DONE", "ELAPSED TIME: ", stop.go["elapsed"], "\n");
   }
