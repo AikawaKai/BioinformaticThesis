@@ -64,18 +64,12 @@ for(i in seq(1:3)){
   curr_W <- W_variance[[i]]
   curr_variance <- variance_names[[i]]
   curr_csv_name <- paste0(curr_onto, "_", curr_variance, "_", algorithm, ".csv")
-  write(x = c("class, time"), file=curr_csv_name);
   vals <- system.time(caret.training_time(
     net=curr_W, ann=classes, PreProc=PreProc, 
     n=n, norm=norm, kk=kk, seed=seed, algorithm=algorithm, summaryFunction=summaryFunction,
     defGrid=defGrid, cutoff=cutoff, metric=metric, pkg=pkg, scores.dir=scores.dir, 
     perf.dir=perf.dir, variance=curr_variance, csv_name=curr_csv_name)
   )
-  curr_row = c(algorithm, curr_variance, vals[[1]])
-  rbind.data.frame(res, curr_row)
 }
-
-write.csv(res, file=paste(algorithm, ".csv"), sep=",")
-
 
 

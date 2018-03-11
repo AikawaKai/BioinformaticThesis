@@ -57,10 +57,12 @@
 ##  		2. "AUPRC" and "AUROC" (average and per class) results computed either with "precrec" or "caret" pkg according 
 ## 			to the character value defined in "pkg"
 
-caret.training <- function(net=W, ann=ann, 
-	PreProc=TRUE, n=9, norm=TRUE, kk=10, seed=23, algorithm="mlp", defGrid=data.frame(size=5), cutoff=0.5,
-	summaryFunction=AUPRCSummary, metric="AUC", pkg="precrec", scores.dir=scores.dir, perf.dir=perf.dir, variance=variance){
-
+caret.training <- function(net=W, ann=ann, PreProc=TRUE, n=9, norm=TRUE, kk=10, 
+                           seed=23, algorithm="mlp", defGrid=data.frame(size=5), 
+                           cutoff=0.5, summaryFunction=AUPRCSummary, metric="AUC", 
+                           pkg="precrec", scores.dir=scores.dir, perf.dir=perf.dir, 
+                           variance=variance, csv_name=csv_name){
+  write(x = c("class, time"), file=csv_name);
 	## load p2p STRING interaction network 
 	# net.path <- paste0(net.dir, net.file, ".rda");
 	# W <- get(load(net.path));
@@ -207,6 +209,7 @@ caret.training <- function(net=W, ann=ann,
 		names(PRC.class)[i] <- curr.class.name;
 
 		stop.go <- proc.time() - start.go;
+		write(x=c(curr.class.name, stop.go["elapsed"]), file = csv_name, append = TRUE, ncolumns = 2, sep = ",")
 		cat("GO class ", i, "(",colnames(ann)[i],")", "****", "DONE", "ELAPSED TIME: ", stop.go["elapsed"], "\n");
 	}
 	## store AUROC results average and per class (NOTE: per class are in turn averaged by k-fold)
@@ -232,7 +235,7 @@ caret.training_time <- function(net=W, ann=ann, PreProc=TRUE, n=9, norm=TRUE,
                                 perf.dir=perf.dir, variance=variance, 
                                 csv_name=csv_name){
   
-
+  write(x = c("class, time"), file=csv_name);
   if(norm){W <- W/max(W);}else{W<-W}
   
   class.num <- ncol(ann);
