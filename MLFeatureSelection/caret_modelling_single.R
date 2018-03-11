@@ -3,7 +3,6 @@ library(HEMDAG); 	## to create stratified fold (do.stratified.cv.data.single.cla
 
 ## SERVER\LOCAL DATA PATH SETTING
 server.bool <- FALSE
-curr_onto <- "MF"
 
 #LIBS AND PATHS
 if(server.bool){
@@ -23,6 +22,7 @@ source(paste(lib.dir, "utility.R", sep =""));
 source(paste(lib.dir, "R_CARET_MODELLING.R", sep = "")); ## to call the high-level fun caret.training
 args <- commandArgs(trailingOnly = TRUE)
 algorithm <- args[1]
+curr_onto <- args[2]
 
 ## GENERAL PARAMETERS SETTING
 net.file <- "pca.rda";
