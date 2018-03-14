@@ -26,7 +26,7 @@ curr_onto <- args[2]
 
 ## GENERAL PARAMETERS SETTING
 net.file <- "pca.rda";
-ann.file <- "/6239_CAEEL/6239_CAEEL_GO_MF_ANN_STRING_v10.5_20DEC17.rda";
+ann.file <- paste0("/6239_CAEEL/6239_CAEEL_GO_", curr_onto, "_ANN_STRING_v10.5_20DEC17.rda");
 PreProc <- TRUE;
 norm <- TRUE;
 n <- 9;
@@ -61,11 +61,11 @@ classes <- ann_select[,ann_sample]
 ## MODELING by CARET
 res <- data.frame()
 for(i in seq(1:3)){
-  curr_W <- W_variance[[i]]
+  W <- W_variance[[i]]
   curr_variance <- variance_names[[i]]
   curr_csv_name <- paste0(curr_onto, "_", curr_variance, "_", algorithm, ".csv")
   vals <- system.time(caret.training(
-    net=curr_W, ann=classes, PreProc=PreProc, 
+    W=W, ann=classes, PreProc=PreProc, 
     n=n, norm=norm, kk=kk, seed=seed, algorithm=algorithm, 
     summaryFunction=summaryFunction, defGrid=defGrid, cutoff=cutoff, 
     metric=metric, pkg=pkg, scores.dir=scores.dir, perf.dir=perf.dir, 

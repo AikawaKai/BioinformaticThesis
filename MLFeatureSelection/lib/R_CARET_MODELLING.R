@@ -57,7 +57,7 @@
 ##  		2. "AUPRC" and "AUROC" (average and per class) results computed either with "precrec" or "caret" pkg according 
 ## 			to the character value defined in "pkg"
 
-caret.training <- function(net=W, ann=ann, PreProc=TRUE, n=9, norm=TRUE, kk=10, 
+caret.training <- function(W=W, ann=ann, PreProc=TRUE, n=9, norm=TRUE, kk=10, 
                            seed=23, algorithm="mlp", defGrid=data.frame(size=5), 
                            cutoff=0.5, summaryFunction=AUPRCSummary, metric="AUC", 
                            pkg="precrec", scores.dir=scores.dir, perf.dir=perf.dir, 
@@ -75,6 +75,7 @@ caret.training <- function(net=W, ann=ann, PreProc=TRUE, n=9, norm=TRUE, kk=10,
 	#if(PreProc){ann <- ann[,colSums(ann)>n];}else{ann <-- ann;}
 
 	## normalize the string matrix dividing each score for the maximum score
+  print(ncol(W))
 	if(norm){W <- W/max(W);}else{W<-W}
 
 	class.num <- ncol(ann);
