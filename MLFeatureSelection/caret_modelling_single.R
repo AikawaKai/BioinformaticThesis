@@ -47,8 +47,8 @@ W <- pca$x
 W_90 <- W[,1:1000]
 W_70 <- W[,1:100]
 W_50 <- W[,1:15]
-W_variance <- c(W_50, W_70, W_90)
-variance_names <- c("variance_50", "variance_70", "variance_90")
+W_variance <- list(W_50, W_70, W_90)
+variance_names <- list("variance_50", "variance_70", "variance_90")
 
 # selected classes for replicability
 set.seed(seed)
