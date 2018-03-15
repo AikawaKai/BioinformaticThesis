@@ -1,5 +1,5 @@
 
-path_results <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/results/results_variance_90/"
+path_results <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/scores_variance/BP_results/BP_variance_90/variance_90_"
 ends <- "10fcv.rda"
 perf <- "perf"
 algorithms <- c("mlp", "xgbLinear", "svmLinear", "svmRadial", "glmnet", "C5.0", "lda",
