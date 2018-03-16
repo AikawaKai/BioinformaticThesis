@@ -1,6 +1,8 @@
 library(caret); 	## to model
 library(HEMDAG); 	## to create stratified fold (do.stratified.cv.data.single.class)
 
+
+
 ## SERVER\LOCAL DATA PATH SETTING
 server.bool <- FALSE
 
@@ -59,10 +61,12 @@ classes <- ann_select[,ann_sample]
 
 
 ## MODELING by CARET
-res <- data.frame()
 for(i in seq(1:3)){
-  W <- W_variance[[i]]
   curr_variance <- variance_names[[i]]
+  if(algorithm == "LogitBoost" || algorithm == "rf"){
+    defGrid = defGridModifier(algorithm, curr_variance)
+  }
+  W <- W_variance[[i]]
   curr_csv_name <- paste0(curr_onto, "_", curr_variance, "_", algorithm, ".csv")
   vals <- system.time(caret.training(
     W=W, ann=classes, PreProc=PreProc, 
@@ -71,11 +75,6 @@ for(i in seq(1:3)){
     metric=metric, pkg=pkg, scores.dir=scores.dir, perf.dir=perf.dir, 
     variance=curr_variance, csv_name=curr_csv_name)
   )
-  curr_row = c(algorithm, curr_variance, vals[[1]])
-  rbind.data.frame(res, curr_row)
 }
-
-write.csv(res, file=paste(algorithm, ".csv"), sep=",")
-
 
 

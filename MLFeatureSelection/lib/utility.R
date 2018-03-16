@@ -43,6 +43,26 @@ getCurrentAlgoGrid <- function(algo){
   }
 }
 
+defGridModifier(algorithm, curr_variance){
+  if(algorithm=="LogitBoost"){
+    if (curr_variance == "variance_50"){
+      return(data.frame(nIter = 15))
+    }else if(curr_variance == "variance_70"){
+      return(data.frame(nIter = 100))
+    }else {
+      return(data.frame(nIter = 1000))
+    }
+  }else{
+    if (curr_variance == "variance_50"){
+      return(data.frame(mtry = 4))
+    }else if(curr_variance == "variance_70"){
+      return(data.frame(mtry = 10))
+    }else {
+      return(data.frame(mtry = 32))
+    }
+  }
+}
+
 ptestCalculation <- function(col_vals, col_classes){
   curr_data <- data.frame(vals = col_vals, classes = as.factor(col_classes))
   p_value <- t.test(vals ~ classes, data=curr_data)[["p.value"]]
