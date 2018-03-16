@@ -1,0 +1,4 @@
+- applicare il learning PCA (50%) MF CAEEL  (tutte le classi con 10 o + annotazioni)
+- sostituire alcuni algo (es. rf con ranger, stesso AdaBoost.M1 usato da Marco, concordo con Marco) 
+- feature selection univariate correlation methods (100) su BP, MF, CC CAEEL (tutte le classi con 10+ annotazioni)
+
