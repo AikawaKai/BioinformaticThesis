@@ -43,7 +43,7 @@ getCurrentAlgoGrid <- function(algo){
   }
 }
 
-defGridModifier(algorithm, curr_variance) <- function(algorithm, curr_variance){
+defGridModifier <- function(algorithm, curr_variance){
   if(algorithm=="LogitBoost"){
     if (curr_variance == "variance_50"){
       return(data.frame(nIter = 15))
