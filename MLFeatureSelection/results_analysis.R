@@ -29,6 +29,7 @@ for(i in seq(1:length(algorithms))){
       #print(perfPath)
     })
 }
+
 dataFrameAUC
 dataFramePRC
 write.csv(dataFrameAUC, file=paste0(path_results,"auc.csv"))
