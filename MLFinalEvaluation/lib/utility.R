@@ -54,3 +54,16 @@ getCurrentAlgoGrid <- function(algo, nfeature){
     return(data.frame(cost=1))
   }
 }
+
+getAnnotationFileName<-function(curr_onto){
+  if(curr_onto=="BP"){
+    return("6239_CAEEL_GO_BP_ANN_STRING_v10.5_20DEC17")
+  }
+  if(curr_onto=="MF"){
+    return("6239_CAEEL_GO_MF_ANN_STRING_v10.5_20DEC17")
+  }
+  if(curr_onto=="CC"){
+    return("6239_CAEEL_GO_CC_ANN_STRING_v10.5_20DEC17")
+  }
+  stop("TYPED WRONG ONTOLOGY: USE 'BP' 'MF' 'CC' ")
+}
