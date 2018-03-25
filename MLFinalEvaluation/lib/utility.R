@@ -40,7 +40,7 @@ getCurrentAlgoGrid <- function(algo, nfeature){
   }
   if(algorithm == "ranger"){
     return(data.frame(mtry=trunc(sqrt(nfeature)), splitrule="gini", min.node.size=1))
-  }		
+  }
   if(algorithm == "kknn"){
     return(data.frame(kmax=19, distance=2, kernel="optimal"))
   }
