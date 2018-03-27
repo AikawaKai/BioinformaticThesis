@@ -72,10 +72,13 @@
 ##			This file is stored in "scores.dir" directory.
 ##  		2. "AUPRC" and "AUROC" (average and per class) results computed either with "precrec" or "caret" pkg according 
 ## 			to the character value defined in "pkg"
-caret.modeling.fs.cor.based <- function(net.dir=net.dir, net.file=net.file, ann.dir=ann.dir, ann.file=ann.file, PreProc=TRUE, n=9, 
-	norm=TRUE, kk=10, seed=23, sparsify=FALSE, confidence=NULL, singleton=NULL, cfs=TRUE, nfeature=100, nfeaturePCA=seq(1,15,1), 
-	method="pearson", algorithm="mlp", defGrid=data.frame(size=5), cutoff=0.5, summaryFunction=AUPRCSummary, metric="AUC", 
-	pkg="precrec", scores.dir=scores.dir, perf.dir=perf.dir){
+caret.modeling.fs.cor.based <- function(net.dir=net.dir, net.file=net.file, ann.dir=ann.dir, 
+                                        ann.file=ann.file, PreProc=TRUE, n=9, norm=TRUE, kk=10, 
+                                        seed=23, sparsify=FALSE, confidence=NULL, singleton=NULL, 
+                                        cfs=TRUE, nfeature=100, nfeaturePCA=seq(1,15,1), method="pearson", 
+                                        algorithm="mlp", defGrid=data.frame(size=5), cutoff=0.5, 
+                                        summaryFunction=AUPRCSummary, metric="AUC", pkg="precrec", 
+                                        scores.dir=scores.dir, perf.dir=perf.dir, csv_name=csv_name, TEST = TRUE){
 	
 	## load P2P STRING interaction network 
 	net.path <- paste0(net.dir, net.file, ".rda");
@@ -112,6 +115,14 @@ caret.modeling.fs.cor.based <- function(net.dir=net.dir, net.file=net.file, ann.
 
 	## let's start modeling
 	class.num <- ncol(ann);
+	class_names_list <-list(class.num*10)
+	auroc_scores_list <- list(class.num*10)
+	auprc_scores_list <- list(class.num*10)
+	times_list <- list(class.num*10)
+	counter_index <- 0
+	if(TEST){
+	  class.num <- 5
+	}
 	for(i in 1:class.num){
 		## current GO class execution time
 		if(i==1){
@@ -156,6 +167,7 @@ caret.modeling.fs.cor.based <- function(net.dir=net.dir, net.file=net.file, ann.
 			sampling=NULL, seeds=seed, summaryFunction=summaryFunction);
 
 		for(k in 1:kk){
+		  counter_index <- counter_index + 1
 			## training set
 			if(cfs){
 				W.training <- W[-testIndex[[k]],];
@@ -221,6 +233,12 @@ caret.modeling.fs.cor.based <- function(net.dir=net.dir, net.file=net.file, ann.
 			}
 			## fold execution time and status
 			fold.end.model <- proc.time() - fold.start.model;
+			
+			# csv result save
+			class_names_list[[counter_index]] <- curr.class.name
+			auroc_scores_list[[counter_index]] <- AUROC[[k]]
+			auprc_scores_list[[counter_index]] <- AUPRC[[k]]
+			times_list[[counter_index]] <- fold.end.model["elapsed"]
 			if(k<kk){
 				cat("FOLD:", k, "DONE", " **** ELAPSED TIME: ", fold.end.model["elapsed"], "\n\n");
 			}else{
@@ -261,7 +279,7 @@ caret.modeling.fs.cor.based <- function(net.dir=net.dir, net.file=net.file, ann.
 		timing.m <-  round(timing/(60),4);
 		timing.h <- round(timing/(3600),4);
 		cat("***GO CLASS ", curr.class.name, paste0("(",i,")"), " ELAPSED TIME: ", timing, "sec", 
-			paste0("(",timing.m, " minutes ** ", timing.h, " hours)"), "\n");
+		paste0("(",timing.m, " minutes ** ", timing.h, " hours)"), "\n");
 	}
 	## store AUROC results average and per class (NOTE: per class are in turn averaged by k-fold)
 	AUC.av <- mean(AUC.class);
@@ -284,6 +302,8 @@ caret.modeling.fs.cor.based <- function(net.dir=net.dir, net.file=net.file, ann.
 		save(S, file=paste0(scores.dir, "Scores.", out.name, out.name, algorithm, ".", kk, "fcv.rda"), compress=TRUE);
 		save(AUC.flat, PRC.flat, file=paste0(perf.dir, "PerfMeas.", out.name, algorithm, ".", kk, "fcv.rda"), compress=TRUE);
 	}
+	csv_result <- data.frame(class_names = class_names_list, auroc = auroc_scores_list, auprc = auprc_scores_list, times = times_list)
+	write.csv2(x = csv_result, file=csv_name, row.names = FALSE, col.names = TRUE, sep = ",")
 }
 
 ## Function to select the top ranked features by a correlation method 

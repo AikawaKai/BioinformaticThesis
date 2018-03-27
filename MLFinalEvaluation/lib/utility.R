@@ -38,20 +38,23 @@ getCurrentAlgoGrid <- function(algo, nfeature){
   if(algo == "AdaBoost.M1"){
     return(data.frame(mfinal = 100 , maxdepth = 30 , coeflearn = "Breiman"))
   }
-  if(algorithm == "ranger"){
+  if(algo == "ranger"){
     return(data.frame(mtry=trunc(sqrt(nfeature)), splitrule="gini", min.node.size=1))
   }
-  if(algorithm == "kknn"){
+  if(algo == "kknn"){
     return(data.frame(kmax=19, distance=2, kernel="optimal"))
   }
-  if(algorithm == "naive_bayes"){
+  if(algo == "naive_bayes"){
     return(data.frame(laplace=0, usekernel=FALSE, adjust=1))
   }
-  if(algorithm == "adaboost"){
+  if(algo == "adaboost"){
     return(data.frame(nIter=trunc(sqrt(nfeature)), method="Adaboost.M1"))
   }
-  if(algorithm == "svmLinear2"){
+  if(algo == "svmLinear2"){
     return(data.frame(cost=1))
+  }
+  if(algo == "lda"){
+    return(data.frame(parameter="none"))
   }
 }
 
