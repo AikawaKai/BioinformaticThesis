@@ -10,13 +10,12 @@ if(SERVER){
   data.pca.path <- "/home/modore/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFinalEvaluation/data/"
   scores.dir <- paste0(path,"scores/")
   perf.dir <- paste0(path, "perf/")
-  
 }else{
   path <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFinalEvaluation/"
   data.fs.path <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/6239_CAEEL/"
   data.pca.path <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFinalEvaluation/data/"
-  scores.dir <- path
-  perf.dir <- path
+  scores.dir <- paste0(path,"scores/")
+  perf.dir <- paste0(path, "perf/")
 }
 
 source(paste0(path,"/lib/R_CARET_MODELING.R"))
@@ -30,6 +29,7 @@ type <- args[3]
 ann.dir <- data.fs.path
 ann.file <- getAnnotationFileName(curr_onto)
 curr_csv_name <- paste0(type, "_", curr_onto, "_", algorithm, ".csv")
+curr_csv_name <- paste0(path, curr_csv_name)
 
 if(type=="FS"){
   net.dir <- data.fs.path
