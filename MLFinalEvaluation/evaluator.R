@@ -8,13 +8,15 @@ if(SERVER){
   path <- "/home/modore/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFinalEvaluation/"
   data.fs.path <- "/data/GO_EXP/6239_CAEEL/"
   data.pca.path <- "/home/modore/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFinalEvaluation/data/"
-  scores.dir <- path
+  scores.dir <- paste0(path,"scores/")
+  perf.dir <- paste0(path, "perf/")
   
 }else{
   path <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFinalEvaluation/"
   data.fs.path <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/6239_CAEEL/"
   data.pca.path <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFinalEvaluation/data/"
   scores.dir <- path
+  perf.dir <- path
 }
 
 source(paste0(path,"/lib/R_CARET_MODELING.R"))
