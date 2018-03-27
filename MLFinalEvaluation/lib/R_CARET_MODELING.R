@@ -115,13 +115,13 @@ caret.modeling.fs.cor.based <- function(net.dir=net.dir, net.file=net.file, ann.
 
 	## let's start modeling
 	class.num <- ncol(ann);
-	class_names_list <-list(class.num*10)
-	auroc_scores_list <- list(class.num*10)
-	auprc_scores_list <- list(class.num*10)
-	times_list <- list(class.num*10)
+	class_names_list <-list(class.num*11)
+	auroc_scores_list <- list(class.num*11)
+	auprc_scores_list <- list(class.num*11)
+	times_list <- list(class.num*11)
 	counter_index <- 0
 	if(TEST){
-	  class.num <- 5
+	  class.num <- 3
 	}
 	for(i in 1:class.num){
 		## current GO class execution time
@@ -280,6 +280,11 @@ caret.modeling.fs.cor.based <- function(net.dir=net.dir, net.file=net.file, ann.
 		timing.h <- round(timing/(3600),4);
 		cat("***GO CLASS ", curr.class.name, paste0("(",i,")"), " ELAPSED TIME: ", timing, "sec", 
 		paste0("(",timing.m, " minutes ** ", timing.h, " hours)"), "\n");
+		print(mean(unlist(AUROC)) == roc.fold.av)
+		class_names_list[[counter_index]] <- curr.class.name
+		auroc_scores_list[[counter_index]] <- mean(unlist(AUROC))
+		auprc_scores_list[[counter_index]] <- mean(unlist(AUPRC))
+		times_list[[counter_index]] <- fold.end.model["elapsed"]
 	}
 	## store AUROC results average and per class (NOTE: per class are in turn averaged by k-fold)
 	AUC.av <- mean(AUC.class);
@@ -295,11 +300,16 @@ caret.modeling.fs.cor.based <- function(net.dir=net.dir, net.file=net.file, ann.
 		save(S, file=paste0(scores.dir, "Scores.", out.name, method, ".", nfeature, ".feature.", algorithm, ".", kk, "fcv.rda"), compress=TRUE);
 		save(AUC.flat, PRC.flat, file=paste0(perf.dir, "PerfMeas.", out.name, method, ".", nfeature, ".feature.", algorithm, ".", kk, "fcv.rda"), compress=TRUE);
 	}else if(ncol(W)!=nfeature){
-		save(S, file=paste0(scores.dir, "Scores.", out.name, method, ".", nfeaturePCA, ".PCAfeature.", algorithm, ".", kk, "fcv.rda"), compress=TRUE);
-		save(AUC.flat, PRC.flat, file=paste0(perf.dir, "PerfMeas.", out.name, method, ".", nfeaturePCA, ".PCAfeature.", algorithm, ".", kk, "fcv.rda"), 
+	  print("done")
+	  file_name <- paste0(scores.dir, "Scores.", out.name,  ".PCA.", nfeaturePCA, ".PCAfeature.", algorithm, ".", kk, "fcv.rda")
+		print(typeof(file_name))
+	  save(S, file=file_name, compress=TRUE);
+		print("done2")
+		save(AUC.flat, PRC.flat, file=paste0(perf.dir, "PerfMeas.", out.name, ".PCA.", nfeaturePCA, ".PCAfeature.", algorithm, ".", kk, "fcv.rda"), 
 			compress=TRUE);
+    print("done3")
 	}else{
-		save(S, file=paste0(scores.dir, "Scores.", out.name, out.name, algorithm, ".", kk, "fcv.rda"), compress=TRUE);
+		save(S, file=paste0(scores.dir, "Scores.", out.name, algorithm, ".", kk, "fcv.rda"), compress=TRUE);
 		save(AUC.flat, PRC.flat, file=paste0(perf.dir, "PerfMeas.", out.name, algorithm, ".", kk, "fcv.rda"), compress=TRUE);
 	}
 	csv_result <- data.frame(class_names = class_names_list, auroc = auroc_scores_list, auprc = auprc_scores_list, times = times_list)

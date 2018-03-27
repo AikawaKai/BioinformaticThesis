@@ -29,7 +29,7 @@ type <- args[3]
 ann.dir <- data.fs.path
 ann.file <- getAnnotationFileName(curr_onto)
 curr_csv_name <- paste0(type, "_", curr_onto, "_", algorithm, ".csv")
-curr_csv_name <- paste0(path, curr_csv_name)
+curr_csv_name <- paste0(path, "csv/", curr_csv_name)
 
 if(type=="FS"){
   net.dir <- data.fs.path
