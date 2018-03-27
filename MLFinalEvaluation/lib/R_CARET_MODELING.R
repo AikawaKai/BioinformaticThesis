@@ -80,6 +80,9 @@ caret.modeling.fs.cor.based <- function(net.dir=net.dir, net.file=net.file, ann.
 	## load P2P STRING interaction network 
 	net.path <- paste0(net.dir, net.file, ".rda");
 	W <- get(load(net.path));
+	if(is.list(W)){
+	  W <- W$x
+	}
 	cat("INTERACTION NETWORK LOADED", "\n");
 
 	## load annotation matrix  
