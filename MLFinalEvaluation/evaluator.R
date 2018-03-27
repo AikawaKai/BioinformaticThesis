@@ -35,6 +35,7 @@ if(type=="FS"){
   net.file <- "pca"
   nfeature <- 15
   cfs <- FALSE
+  nfeaturePCA <- seq(1,15,1)
 }else{
   stop("WRONG INPUT \nIf Feature Selection is needed type: FS \nIf pca is needed type: PCA")
 }
@@ -43,7 +44,7 @@ if(type=="FS"){
 caret.modeling.fs.cor.based(net.dir=net.dir, net.file=net.file, ann.dir=ann.dir, 
                             ann.file=ann.file, PreProc=TRUE, n=9, norm=TRUE, kk=10, 
                             seed=23, sparsify=FALSE, confidence=NULL, singleton=NULL, 
-                            cfs=cfs, nfeature=nfeature, nfeaturePCA=seq(1,15,1), 
+                            cfs=cfs, nfeature=nfeature, nfeaturePCA=nfeaturePCA, 
                             method="pearson", algorithm=algorithm, 
                             defGrid=data.frame(size=5), cutoff=0.5, 
                             summaryFunction=AUPRCSummary, metric="AUC", 
