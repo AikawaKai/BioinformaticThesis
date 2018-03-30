@@ -5,9 +5,9 @@ TEST <- TRUE
 
 
 if(SERVER){
-  path <- "/home/modore/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFinalEvaluation/"
+  path <- "/home/modore/Tesi-Bioinformatica/BioinformaticThesis/MLFinalEvaluation/"
   data.fs.path <- "/data/GO_EXP/6239_CAEEL/"
-  data.pca.path <- "/home/modore/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFinalEvaluation/data/"
+  data.pca.path <- "/home/modore/Tesi-Bioinformatica/BioinformaticThesis/MLFinalEvaluation/data/"
   scores.dir <- paste0(path,"scores/")
   perf.dir <- paste0(path, "perf/")
 }else{
