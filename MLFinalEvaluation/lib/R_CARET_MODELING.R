@@ -280,16 +280,14 @@ caret.modeling.fs.cor.based <- function(net.dir=net.dir, net.file=net.file, ann.
 		timing.h <- round(timing/(3600),4);
 		cat("***GO CLASS ", curr.class.name, paste0("(",i,")"), " ELAPSED TIME: ", timing, "sec", 
 		paste0("(",timing.m, " minutes ** ", timing.h, " hours)"), "\n");
-		print(mean(unlist(AUROC)) == roc.fold.av)
+		print(mean(unlist(AUROC)))
+		print(roc.fold.av)
+		counter_index = counter_index + 1
 		class_names_list[counter_index] <- curr.class.name
 		auroc_scores_list[counter_index] <- mean(unlist(AUROC))
 		auprc_scores_list[counter_index] <- mean(unlist(AUPRC))
-		times_list[counter_index] <- fold.end.model["elapsed"]
+		times_list[counter_index] <- stop.go["elapsed"]
 	}
-	print(class_names_list)
-	print(auroc_scores_list)
-	print(auprc_scores_list)
-	print(times_list)
 	## store AUROC results average and per class (NOTE: per class are in turn averaged by k-fold)
 	AUC.av <- mean(AUC.class);
 	AUC.flat <- list(average=AUC.av, per.class=AUC.class);
@@ -304,22 +302,17 @@ caret.modeling.fs.cor.based <- function(net.dir=net.dir, net.file=net.file, ann.
 		save(S, file=paste0(scores.dir, "Scores.", out.name, method, ".", nfeature, ".feature.", algorithm, ".", kk, "fcv.rda"), compress=TRUE);
 		save(AUC.flat, PRC.flat, file=paste0(perf.dir, "PerfMeas.", out.name, method, ".", nfeature, ".feature.", algorithm, ".", kk, "fcv.rda"), compress=TRUE);
 	}else if(ncol(W)!=nfeature){
-	  print("done")
-	  file_name <- paste0(scores.dir, "Scores.", out.name,  ".PCA.", nfeaturePCA, ".PCAfeature.", algorithm, ".", kk, "fcv.rda")
-		file_name <- "puzzone.rda"
+	  file_name <- paste0(scores.dir, "Scores.", out.name,  "PCA.", nfeature, ".", algorithm, ".", kk, "fcv.rda")
 	  save(S, file=file_name, compress=TRUE);
-		print("done2")
-	  file_name2 <- "puzzone2.rda"
+	  file_name2 <- paste0(perf.dir, "PerfMeas.", out.name, "PCA.", nfeature, ".", algorithm, ".", kk, "fcv.rda")
 		save(AUC.flat, PRC.flat, file=file_name2, 
 			compress=TRUE);
-    print("done3")
 	}else{
 		save(S, file=paste0(scores.dir, "Scores.", out.name, algorithm, ".", kk, "fcv.rda"), compress=TRUE);
 		save(AUC.flat, PRC.flat, file=paste0(perf.dir, "PerfMeas.", out.name, algorithm, ".", kk, "fcv.rda"), compress=TRUE);
 	}
 	csv_result <- data.frame(class_names = unlist(class_names_list), auroc = unlist(auroc_scores_list), auprc = unlist(auprc_scores_list), times = unlist(times_list))
-	print(csv_result)
-	write.csv(x = csv_result, file=csv_name, row.names = FALSE, col.names = TRUE, sep = ",")
+	write.csv(x = csv_result, file=csv_name, row.names = FALSE)
 }
 
 ## Function to select the top ranked features by a correlation method 
