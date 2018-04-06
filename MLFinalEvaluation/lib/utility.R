@@ -18,7 +18,7 @@ getCurrentAlgoGrid <- function(algo, nfeature){
     return(data.frame(nrounds = 15 , lambda = 1, alpha = 0, eta = 0.3))
   }
   if(algo == "rf"){
-    return(data.frame(mtry = sqrt(nfeature)))
+    return(data.frame(mtry = trunc(sqrt(nfeature))))
   }
   if(algo == "C5.0"){
     return(data.frame(trials = 1, model = "tree" , winnow =FALSE ))
