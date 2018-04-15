@@ -18,7 +18,7 @@ getCurrentAlgoGrid <- function(algo, nfeature){
     return(data.frame(nrounds = 15 , lambda = 1, alpha = 0, eta = 0.3))
   }
   if(algo == "rf"){
-    return(data.frame(mtry = trunc(sqrt(nfeature))))
+    return(data.frame(mtry = sqrt(nfeature)))
   }
   if(algo == "C5.0"){
     return(data.frame(trials = 1, model = "tree" , winnow =FALSE ))
@@ -42,7 +42,7 @@ getCurrentAlgoGrid <- function(algo, nfeature){
     return(data.frame(mtry=trunc(sqrt(nfeature)), splitrule="gini", min.node.size=1))
   }
   if(algo == "kknn"){
-    return(data.frame(kmax=19, distance=2, kernel="optimal"))
+    return(data.frame(kmax=7, distance=2, kernel="optimal"))
   }
   if(algo == "naive_bayes"){
     return(data.frame(laplace=0, usekernel=FALSE, adjust=1))

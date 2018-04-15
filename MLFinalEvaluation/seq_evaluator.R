@@ -1,12 +1,12 @@
 library(caret);	
 library(HEMDAG);
-SERVER <- TRUE
-TEST <- FALSE
+SERVER <- FALSE
+TEST <- TRUE
 
 
 if(SERVER){
   path <- "/home/modore/Tesi-Bioinformatica/BioinformaticThesis/MLFinalEvaluation/"
-  data.fs.path <- "/home/notaro/GO_EXP/6239_CAEEL/DATA/"
+  data.fs.path <- "/data/GO_EXP/6239_CAEEL/"
   data.pca.path <- "/home/modore/Tesi-Bioinformatica/BioinformaticThesis/MLFinalEvaluation/data/"
   scores.dir <- paste0(path,"scores/")
   perf.dir <- paste0(path, "perf/")
