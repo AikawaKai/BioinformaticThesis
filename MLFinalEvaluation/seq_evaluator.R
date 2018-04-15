@@ -4,19 +4,32 @@ SERVER <- TRUE
 TEST <- FALSE
 ESTIMATE <- TRUE
 
+algorithms <- list("lda", "C5.0", "mlp")
+ontos <- list("BP", "MF", "CC")
+type <- "FS"
+
+if(ESTIMATE){
+  scores_path <- "scores_estimate/"
+  perf_path <-"perf_estimate/"
+  csv_path <- "csv_estimate/"
+}else{
+  scores_path <- "scores/"
+  perf_path <-"perf/"
+  csv_path <- "csv/"
+}
 
 if(SERVER){
   path <- "/home/modore/Tesi-Bioinformatica/BioinformaticThesis/MLFinalEvaluation/"
   data.fs.path <- "/home/notaro/GO_EXP/6239_CAEEL/DATA/"
   data.pca.path <- "/home/modore/Tesi-Bioinformatica/BioinformaticThesis/MLFinalEvaluation/data/"
-  scores.dir <- paste0(path,"scores/")
-  perf.dir <- paste0(path, "perf/")
+  scores.dir <- paste0(path, scores_path)
+  perf.dir <- paste0(path, perf_path)
 }else{
   path <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFinalEvaluation/"
   data.fs.path <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/6239_CAEEL/"
   data.pca.path <- "/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFinalEvaluation/data/"
-  scores.dir <- paste0(path,"scores/")
-  perf.dir <- paste0(path, "perf/")
+  scores.dir <- paste0(path, scores_path)
+  perf.dir <- paste0(path, perf_path)
 }
 
 source(paste0(path,"/lib/R_CARET_MODELING.R"))
@@ -26,15 +39,13 @@ source(paste0(path, "/lib/utility.R"))
 # algorithm <- args[1]
 # curr_onto <- args[2]
 # type <- args[3]
-algorithms <- list("lda", "C5.0", "mlp")
-ontos <- list("BP", "MF", "CC")
-type <- "FS"
+
 for(algorithm in algorithms){
   for(curr_onto in ontos){
     ann.dir <- data.fs.path
     ann.file <- getAnnotationFileName(curr_onto)
     curr_csv_name <- paste0(type, "_", curr_onto, "_", algorithm, ".csv")
-    curr_csv_name <- paste0(path, "csv/", curr_csv_name)
+    curr_csv_name <- paste0(path, csv_path, curr_csv_name)
     
     if(type=="FS"){
       net.dir <- data.fs.path
