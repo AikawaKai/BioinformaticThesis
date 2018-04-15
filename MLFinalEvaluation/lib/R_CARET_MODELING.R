@@ -78,7 +78,8 @@ caret.modeling.fs.cor.based <- function(net.dir=net.dir, net.file=net.file, ann.
                                         cfs=TRUE, nfeature=100, nfeaturePCA=seq(1,15,1), method="pearson", 
                                         algorithm="mlp", defGrid=data.frame(size=5), cutoff=0.5, 
                                         summaryFunction=AUPRCSummary, metric="AUC", pkg="precrec", 
-                                        scores.dir=scores.dir, perf.dir=perf.dir, csv_name=csv_name, TEST = TRUE){
+                                        scores.dir=scores.dir, perf.dir=perf.dir, csv_name=csv_name, TEST = TRUE,
+                                        estimate = FALSE){
 	
 	## load P2P STRING interaction network 
 	net.path <- paste0(net.dir, net.file, ".rda");
@@ -112,6 +113,11 @@ caret.modeling.fs.cor.based <- function(net.dir=net.dir, net.file=net.file, ann.
 	
 	## shrink number of GO terms. We consider only those GO terms having more than n annotations (n included)
 	if(PreProc){ann <- ann[,colSums(ann)>n];}
+	if(estimate){
+	  set.seed(1)
+	  ann_sample <- sample(colnames(ann), 10)
+	  ann <- ann[,ann_sample]
+	}
 
 	## let's start modeling
 	class.num <- ncol(ann);

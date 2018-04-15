@@ -1,12 +1,13 @@
 library(caret);	
 library(HEMDAG);
-SERVER <- FALSE
-TEST <- TRUE
+SERVER <- TRUE
+TEST <- FALSE
+ESTIMATE <- TRUE
 
 
 if(SERVER){
   path <- "/home/modore/Tesi-Bioinformatica/BioinformaticThesis/MLFinalEvaluation/"
-  data.fs.path <- "/data/GO_EXP/6239_CAEEL/"
+  data.fs.path <- "/home/notaro/GO_EXP/6239_CAEEL/DATA/"
   data.pca.path <- "/home/modore/Tesi-Bioinformatica/BioinformaticThesis/MLFinalEvaluation/data/"
   scores.dir <- paste0(path,"scores/")
   perf.dir <- paste0(path, "perf/")
@@ -57,4 +58,4 @@ caret.modeling.fs.cor.based(net.dir=net.dir, net.file=net.file, ann.dir=ann.dir,
                             defGrid=defGrid, cutoff=0.5, 
                             summaryFunction=AUPRCSummary, metric="AUC", 
                             pkg="precrec", scores.dir=scores.dir, perf.dir=perf.dir,
-                            csv_name=curr_csv_name, TEST=TEST)
+                            csv_name=curr_csv_name, TEST=TEST, estimate=ESTIMATE)

@@ -2,6 +2,7 @@ library(caret);
 library(HEMDAG);
 SERVER <- TRUE
 TEST <- FALSE
+ESTIMATE <- FALSE
 
 
 if(SERVER){
@@ -57,4 +58,4 @@ caret.modeling.fs.cor.based(net.dir=net.dir, net.file=net.file, ann.dir=ann.dir,
                             defGrid=defGrid, cutoff=0.5, 
                             summaryFunction=AUPRCSummary, metric="AUC", 
                             pkg="precrec", scores.dir=scores.dir, perf.dir=perf.dir,
-                            csv_name=curr_csv_name, TEST=TEST)
+                            csv_name=curr_csv_name, TEST=TEST, estimate=ESTIMATE)
