@@ -5,6 +5,6 @@ for(onto in ontos){
   curr_onto = paste0(part1, onto, part2)
   print(curr_onto)
   load(curr_onto)
-  ann <- ann[,colSums(ann)>9]
+  ann <- ann[,colSums(ann)>5]
   print(ncol(ann))
 }

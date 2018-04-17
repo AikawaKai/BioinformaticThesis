@@ -2,6 +2,8 @@ import sys, os, csv
 import pandas as pd
 from numpy import mean, std
 
+dict_num_ann = {"BP":1335, "MF":186, "CC":221}
+
 def parseCsvName(filename):
     parsed = filename.split(".csv")[0].split("_")
     if len(parsed) == 4:
@@ -25,9 +27,10 @@ def getRowsFromDataFrame(curr_dataframe, filename):
         aurocs+=[list_row[1]]
         auprcs+=[list_row[2]]
         times+=[list_row[3]]
-    aggregate_row = [onto, algo, type_, round(mean(aurocs), 4), round(std(aurocs), 4),
+    aggregate_row = [algo, onto, type_, round(mean(aurocs), 4), round(std(aurocs), 4),
                      round(mean(auprcs), 4), round(std(auprcs), 4), round(mean(times)/3600, 4),
-                     round(std(times)/3600, 4), round(sum(times)/3600, 4)]
+                     round(std(times)/3600, 4), round(sum(times)/3600, 4),
+                     round((mean(times)/3600)*dict_num_ann[onto], 4)]
     return new_rows, aggregate_row
 
 def loadDataFromCsv(path):
@@ -57,7 +60,8 @@ if __name__ == '__main__':
         writer.writerows(tot_rows)
     with open("resultsAggregate.csv", "w") as f_w:
         writer = csv.writer(f_w, delimiter=",")
-        header = ["ontology", "algorithm", "selection_type", "auroc", "±std_auroc",
-                  "auprc", "±std_auprc", "mean_time_hours", "±std_time_hours", "tot_time_hours"]
+        header = ["algorithm", "ontology", "selection_type", "auroc", "±std_auroc",
+                  "auprc", "±std_auprc", "mean_time_hours", "±std_time_hours",
+                  "sum_time_hours", "total_time_hours"]
         tot_rows = [header]+aggregate_rows_pca
         writer.writerows(tot_rows)
