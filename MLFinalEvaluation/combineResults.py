@@ -2,7 +2,8 @@ import sys, os, csv
 import pandas as pd
 from numpy import mean, std
 
-dict_num_ann = {"BP":1335, "MF":186, "CC":221}
+dict_num_ann = {"BP": 1335, "MF": 186, "CC": 221}
+
 
 def parseCsvName(filename):
     parsed = filename.split(".csv")[0].split("_")
@@ -12,21 +13,28 @@ def parseCsvName(filename):
         return [type_, onto, algo]
     return parsed
 
-def getRowsFromDataFrame(curr_dataframe, filename):
+
+def getRowsFromDataFrame(curr_dataframe, filename, path):
+    if "5cv" in path:
+        start = 5
+        shift = 6
+    else:
+        start = 10
+        shift = 11
     type_, onto, algo = parseCsvName(filename)
     num_rows, num_col = curr_dataframe.shape
-    indexes = [i for i in range(10, num_rows, 11)]
-    curr_dataframe = curr_dataframe.iloc[indexes,:]
+    indexes = [i for i in range(start, num_rows, shift)]
+    curr_dataframe = curr_dataframe.iloc[indexes, :]
     new_rows = []
     aurocs = []
     auprcs = []
     times = []
     for row_index, row in curr_dataframe.iterrows():
         list_row = list(row)
-        new_rows.append([onto, list_row[0], algo, type_] +[round(val,4) for val in list_row[1:]])
-        aurocs+=[list_row[1]]
-        auprcs+=[list_row[2]]
-        times+=[list_row[3]]
+        new_rows.append([onto, list_row[0], algo, type_] +[round(val, 4) for val in list_row[1:]])
+        aurocs += [list_row[1]]
+        auprcs += [list_row[2]]
+        times += [list_row[3]]
     aggregate_row = [algo, onto, type_, round(mean(aurocs), 4), round(std(aurocs), 4),
                      round(mean(auprcs), 4), round(std(auprcs), 4), round(mean(times)/3600, 4),
                      round(std(times)/3600, 4), round(sum(times)/3600, 4),
@@ -40,10 +48,11 @@ def loadDataFromCsv(path):
     new_aggregate_rows = []
     for filename, file_ in csv_files:
         curr_dataframe = pd.read_csv(file_)
-        rows, aggregate_row = getRowsFromDataFrame(curr_dataframe, filename)
+        rows, aggregate_row = getRowsFromDataFrame(curr_dataframe, filename, path)
         new_rows+=rows
         new_aggregate_rows.append(aggregate_row)
     return new_rows, new_aggregate_rows
+
 
 if __name__ == '__main__':
     csv_path = sys.argv[1]
@@ -52,7 +61,7 @@ if __name__ == '__main__':
     rows_pca, aggregate_rows_pca = loadDataFromCsv(PCA_path)
     rows_fs, aggregate_rows_fs = loadDataFromCsv(FS_path)
     rows_pca+=rows_fs
-    aggregate_rows_pca+=aggregate_rows_fs
+    aggregate_rows_pca += aggregate_rows_fs
     with open("results.csv", "w") as f_w:
         writer = csv.writer(f_w, delimiter=",")
         header = ["ontology", "class", "algorithm", "selection_type", "auroc", "auprc", "time_sec"]
