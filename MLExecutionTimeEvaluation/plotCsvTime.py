@@ -9,7 +9,7 @@ colors = ["red", "blue", "green", "yellow", "xkcd:sky blue", "brown", "pink", "g
           "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey",
           "grey"]
 
-algos = ["svmLinear", "svmRadial", "LogitBoost", "C5.0", "mlp", "xgbLinear", "AdaBoost_M1", "knn", "glmnet", "rf"]
+algos = ["svmLinear", "LogitBoost", "C5.0", "mlp", "xgbLinear", "AdaBoost_M1", "knn", "glmnet"]
 classes = ["BP", "CC", "MF"]
 
 def plotBoxPlot(class_, files):
@@ -33,9 +33,10 @@ def plotBoxPlot(class_, files):
         print("mean: ", mean_val)
         print("std: ", std_val)
         times_[key]+=[max_val, min_val, mean_val, std_val]
-    names = [key for key, values in times_.items()]
+    list_key_value = sorted(times_.items(), key=lambda x:x[0].lower())
+    names = [key for key, values in list_key_value]
     print(names)
-    box_plot_values = [val[0]/3600 for key, val in times_.items()]
+    box_plot_values = [val[0]/3600 for key, val in list_key_value]
     print(box_plot_values)
     '''
     if len(box_plot_values)<15:
@@ -48,7 +49,7 @@ def plotBoxPlot(class_, files):
     with open("./{}times_.csv".format(class_), "w") as f_:
         wr = csv.writer(f_, delimiter= ",")
         wr.writerow(first_row)
-        for key, value in times_.items():
+        for key, value in list_key_value:
             wr.writerow([key, round(value[1]/3600,2), round(value[2]/3600, 2),
                          round(value[3]/3600, 2), round(value[4]/3600, 2)])
 
@@ -81,7 +82,7 @@ def splitCsvInClasses(csv_list, path):
     return all_csv_times
 
 if __name__ == '__main__':
-    path = "./Time_results/"
+    path = sys.argv[1]
     csv_ = os.listdir(path)
     all_csv_times = splitCsvInClasses(csv_, path)
 
