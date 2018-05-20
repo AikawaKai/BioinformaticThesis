@@ -1,0 +1,312 @@
+ [1] "GO:0005261" "GO:0008237" "GO:0016818" "GO:0060089" "GO:0004857"
+ [6] "GO:0046872" "GO:0097159" "GO:0019887" "GO:0017048" "GO:0001664"
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  886.015 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  632.963 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  635.626 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  646.94 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  681.978 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  697.764 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  603.533 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  615.689 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  702.139 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  762.896 
+GO class  1 ( GO:0005261 ) **** DONE ELAPSED TIME:  6865.571 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  401.047 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  443.184 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  273.773 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  343.866 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  259.617 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  339.887 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  277.202 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  331.046 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  338.462 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  391.398 
+GO class  2 ( GO:0008237 ) **** DONE ELAPSED TIME:  3399.551 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  1099.453 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  821.873 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  1318.863 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  1136.899 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  987.479 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  965.586 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  745.276 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  763.555 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  879.776 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  1118.363 
+GO class  3 ( GO:0016818 ) **** DONE ELAPSED TIME:  9837.147 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  989.854 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  991.813 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  1099.834 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  957.209 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  1042.697 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  923.378 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  1071.601 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  1195.306 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  1002.28 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  1012.626 
+GO class  4 ( GO:0060089 ) **** DONE ELAPSED TIME:  10286.63 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  405.988 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  85.667 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  305.575 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  327.975 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  496.803 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  311.939 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  306.663 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  311.528 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  311.843 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  355.637 
+GO class  5 ( GO:0004857 ) **** DONE ELAPSED TIME:  3219.643 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  388.844 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  294.869 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  394.844 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  339.701 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  352.743 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  373.092 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  392.064 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  412.018 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  385.845 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  338.843 
+GO class  6 ( GO:0046872 ) **** DONE ELAPSED TIME:  3672.888 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  3065.988 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  3242.144 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  2248.6 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  1952.085 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  2482.148 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  3437.908 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  2892.269 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  2650.605 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  2992.464 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  2650.852 
+GO class  7 ( GO:0097159 ) **** DONE ELAPSED TIME:  27615.09 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  312.513 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  465.493 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  442.473 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  442.595 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  414.989 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  439.427 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  452.821 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  454.833 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  442.313 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  386.039 
+GO class  8 ( GO:0019887 ) **** DONE ELAPSED TIME:  4253.537 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  441.821 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  239.114 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  373.763 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  198.088 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  222.635 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  370.032 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  236.65 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  295.196 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  260.476 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  226.134 
+GO class  9 ( GO:0017048 ) **** DONE ELAPSED TIME:  2863.934 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  273.243 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  267.045 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  375.922 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  271.181 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  224.971 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  275.042 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  273.646 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  299.68 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  298.35 
+MODEL:  gaussprPoly START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  256.732 
+GO class  10 ( GO:0001664 ) **** DONE ELAPSED TIME:  2815.836 

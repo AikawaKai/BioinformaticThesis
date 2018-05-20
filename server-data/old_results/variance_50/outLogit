@@ -1,0 +1,312 @@
+ [1] "GO:0005261" "GO:0008237" "GO:0016818" "GO:0060089" "GO:0004857"
+ [6] "GO:0046872" "GO:0097159" "GO:0019887" "GO:0017048" "GO:0001664"
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  2.526 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  1.928 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  1.174 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  1.471 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  1.46 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  1.49 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  1.476 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  1.131 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  1.111 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  1.114 
+GO class  1 ( GO:0005261 ) **** DONE ELAPSED TIME:  14.925 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  1.008 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  0.992 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  1.023 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  0.996 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  0.839 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  0.836 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  0.858 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  0.832 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  0.837 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  0.828 
+GO class  2 ( GO:0008237 ) **** DONE ELAPSED TIME:  9.146 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  0.832 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  0.804 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  0.841 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  0.826 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  0.836 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  0.844 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  0.812 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  0.856 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  0.852 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  0.809 
+GO class  3 ( GO:0016818 ) **** DONE ELAPSED TIME:  8.338 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  0.79 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  0.832 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  0.834 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  0.913 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  0.807 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  1.206 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  1.447 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  1.49 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  1.487 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  1.435 
+GO class  4 ( GO:0060089 ) **** DONE ELAPSED TIME:  11.269 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  1.079 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  0.804 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  0.857 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  0.936 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  0.942 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  1.394 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  0.975 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  0.878 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  0.851 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  0.817 
+GO class  5 ( GO:0004857 ) **** DONE ELAPSED TIME:  9.571 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  0.852 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  0.923 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  1 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  0.803 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  0.856 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  0.805 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  0.991 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  1.303 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  0.929 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  0.873 
+GO class  6 ( GO:0046872 ) **** DONE ELAPSED TIME:  9.362 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  0.857 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  0.866 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  1.318 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  0.885 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  1.212 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  1.054 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  1.274 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  1.466 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  0.991 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  1.205 
+GO class  7 ( GO:0097159 ) **** DONE ELAPSED TIME:  11.157 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  1.016 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  1.346 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  1.054 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  1.346 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  1.452 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  1.444 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  1.52 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  1.416 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  1.169 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  1.095 
+GO class  8 ( GO:0019887 ) **** DONE ELAPSED TIME:  12.898 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  1.028 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  1.543 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  1.427 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  1.211 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  1.355 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  1.436 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  1.451 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  1.237 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  1.159 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  0.86 
+GO class  9 ( GO:0017048 ) **** DONE ELAPSED TIME:  12.734 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  1.317 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  1.506 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  1.525 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  1.379 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  1.495 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  1.374 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  1.471 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  1.445 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  1.452 
+MODEL:  LogitBoost START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  1.372 
+GO class  10 ( GO:0001664 ) **** DONE ELAPSED TIME:  14.366 

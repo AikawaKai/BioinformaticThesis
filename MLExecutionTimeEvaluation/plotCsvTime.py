@@ -56,15 +56,15 @@ def plotBoxPlot(class_, files):
 def saveBoxPlot(class_name, list_data, list_names):
     fig = plt.figure(1, figsize=(20, 8))
     print(list_names)
-    plt.xlabel("Algorithms", fontsize=15)
-    plt.ylabel("Time", fontsize=15)
+    plt.xlabel("ALGORITMI", fontsize=18)
+    plt.ylabel("TIME", fontsize=18)
     boxes = plt.boxplot(list_data, patch_artist=True)
     i=0
     for box in boxes["boxes"]:
         box.set_facecolor(colors[i])
         i+=1
     plt.xticks([i for i in range(1, len(list_names)+1)], list_names)
-    plt.tick_params(labelsize=13)
+    plt.tick_params(axis="both", labelsize=17)
     # Save the figure
     fig.savefig('{}_box_plot_times.png'.format(class_name), bbox_inches='tight')
     fig.clf()

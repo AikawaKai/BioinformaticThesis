@@ -1,0 +1,312 @@
+ [1] "GO:0005261" "GO:0008237" "GO:0016818" "GO:0060089" "GO:0004857"
+ [6] "GO:0046872" "GO:0097159" "GO:0019887" "GO:0017048" "GO:0001664"
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.002696836 -0.002604557AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  3.915 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.002883549 -0.002783835AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  2.879 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.003185063 -0.003079939AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  2.135 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.003126656 -0.003020377AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  2.103 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.00236788 -0.002287751AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  2.188 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.00278899 -0.002695093AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  2.141 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.002498165 -0.002412506AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  2.114 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.002811776 -0.002710878AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  2.127 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.001950613 -0.001885642AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  2.128 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.003495543 -0.003380799AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  2.25 
+GO class  1 ( GO:0005261 ) **** DONE ELAPSED TIME:  24.011 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.001328125 -0.001299509AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  1.933 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.001301147 -0.00127314AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  2.025 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.001945888 -0.001903239AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  1.971 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.001282995 -0.001255119AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  2.034 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.001800584 -0.001762331AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  2.023 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.001219542 -0.00119341AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  2.055 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.001369764 -0.001340305AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  2.016 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.001443283 -0.001411638AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  1.982 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.001287192 -0.001258974AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  2.002 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.00148274 -0.001451149AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  2.075 
+GO class  2 ( GO:0008237 ) **** DONE ELAPSED TIME:  20.19 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  2.658 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  2.464 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  2.503 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  2.878 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  2.499 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  2.481 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  2.578 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  2.794 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  2.882 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  2.619 
+GO class  3 ( GO:0016818 ) **** DONE ELAPSED TIME:  26.381 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  2.381 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  2.671 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  3.526 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  2.798 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  2.382 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  2.374 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  2.479 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  3.177 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  2.256 
+MODEL:  svmRadial START 
+maximum number of iterations reached 3.422694e-05 -3.41244e-05AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  3.221 
+GO class  4 ( GO:0060089 ) **** DONE ELAPSED TIME:  27.296 
+MODEL:  svmRadial START 
+maximum number of iterations reached 3.791711e-05 -3.783383e-05AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  2.301 
+MODEL:  svmRadial START 
+maximum number of iterations reached 5.403796e-05 -5.389307e-05AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  2.142 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  3.054 
+MODEL:  svmRadial START 
+maximum number of iterations reached 8.548002e-05 -8.514614e-05AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  2.023 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0002254732 -0.0002232548AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  2.674 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0003941092 -0.0003888473AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  2.216 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0001749537 -0.0001737051AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  2.19 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0001642823 -0.0001631443AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  2.773 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0002336697 -0.0002314063AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  2.502 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0001027582 -0.0001022555AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  2.458 
+GO class  5 ( GO:0004857 ) **** DONE ELAPSED TIME:  24.374 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0006794635 -0.0006679912AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  3.115 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0002810084 -0.000278229AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  2.828 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0008363747 -0.0008208125AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  3.317 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0005726054 -0.0005641621AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  2.559 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0004149611 -0.000409261AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  3.493 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0004811861 -0.0004741219AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  2.695 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0004037445 -0.0003986175AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  2.714 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0007216054 -0.0007082928AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  2.688 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0003423366 -0.0003382893AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  3.044 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0007776135 -0.0007637461AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  2.111 
+GO class  6 ( GO:0046872 ) **** DONE ELAPSED TIME:  28.589 
+MODEL:  svmRadial START 
+maximum number of iterations reached 2.794106e-05 -2.788037e-05AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  4.724 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  5.877 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  5.947 
+MODEL:  svmRadial START 
+maximum number of iterations reached 4.292332e-05 -4.279009e-05AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  6.425 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  7.541 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.000178101 -0.0001775422AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  6.466 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0003515171 -0.0003440878AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  7.833 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  6.097 
+MODEL:  svmRadial START 
+maximum number of iterations reached 1.740595e-05 -1.736812e-05AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  6.324 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0003474565 -0.0003431348AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  6.253 
+GO class  7 ( GO:0097159 ) **** DONE ELAPSED TIME:  63.514 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  2.728 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  3.061 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  2.093 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  2.408 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0002354774 -0.0002330868AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  2.919 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  2.555 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  2.738 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  2.793 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.002202253 -0.002086307AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  2.178 
+MODEL:  svmRadial START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  1.883 
+GO class  8 ( GO:0019887 ) **** DONE ELAPSED TIME:  25.398 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0001850473 -0.0001836468AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  2.015 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0003459883 -0.0003417023AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  1.996 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0001218868 -0.0001212225AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  2.012 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0005108334 -0.0005036169AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  2.03 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0005479601 -0.0005398765AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  1.974 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0001210918 -0.000120365AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  2.013 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0002075723 -0.0002058419AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  2.011 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.000528383 -0.0005204943AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  2.98 
+MODEL:  svmRadial START 
+maximum number of iterations reached 7.293776e-05 -7.271842e-05AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  3.006 
+MODEL:  svmRadial START 
+maximum number of iterations reached 8.933242e-05 -8.900648e-05AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  3.079 
+GO class  9 ( GO:0017048 ) **** DONE ELAPSED TIME:  23.142 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.002246451 -0.002194479AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  2.79 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0003529097 -0.0003493255AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  2.783 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.001367976 -0.001337485AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  2.266 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0004488758 -0.0004437103AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  1.798 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0003210032 -0.0003183036AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  1.832 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.001392123 -0.001361633AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  1.796 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0002183491 -0.0002165613AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  1.8 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0004053098 -0.0004012195AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  1.865 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0005758725 -0.0005685039AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  1.839 
+MODEL:  svmRadial START 
+maximum number of iterations reached 0.0008898118 -0.000878153AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  1.774 
+GO class  10 ( GO:0001664 ) **** DONE ELAPSED TIME:  20.576 

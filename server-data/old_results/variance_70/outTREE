@@ -1,0 +1,312 @@
+ [1] "GO:0005261" "GO:0008237" "GO:0016818" "GO:0060089" "GO:0004857"
+ [6] "GO:0046872" "GO:0097159" "GO:0019887" "GO:0017048" "GO:0001664"
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  25.519 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  24.733 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  24.857 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  25.023 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  25.956 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  24.991 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  25.756 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  27.323 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  22.421 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  15.317 
+GO class  1 ( GO:0005261 ) **** DONE ELAPSED TIME:  241.937 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  13.976 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  12.218 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  13.695 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  13.122 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  13.219 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  14.677 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  13.652 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  13.747 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  12.687 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  12.172 
+GO class  2 ( GO:0008237 ) **** DONE ELAPSED TIME:  133.238 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  39.399 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  40.097 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  38.722 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  37.137 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  38.996 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  39.576 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  39.807 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  57.54 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  54.763 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  62.561 
+GO class  3 ( GO:0016818 ) **** DONE ELAPSED TIME:  448.625 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  24.054 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  29.904 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  28.938 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  30.122 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  29.224 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  36.186 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  35.044 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  38.35 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  35.039 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  34.157 
+GO class  4 ( GO:0060089 ) **** DONE ELAPSED TIME:  321.06 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  21.076 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  18.034 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  19.269 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  16.133 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  17.243 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  17.851 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  21.319 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  21.482 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  22.822 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  20.835 
+GO class  5 ( GO:0004857 ) **** DONE ELAPSED TIME:  196.102 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  17.618 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  25.444 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  25.063 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  30.479 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  28.396 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  17.048 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  20.206 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  18.65 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  21.009 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  17.849 
+GO class  6 ( GO:0046872 ) **** DONE ELAPSED TIME:  221.789 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  40.958 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  50.974 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  48.45 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  51.918 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  101.475 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  98.509 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  104.638 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  99.27 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  94.582 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  94.083 
+GO class  7 ( GO:0097159 ) **** DONE ELAPSED TIME:  784.885 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  35.584 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  35.457 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  34.72 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  31.782 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  33.663 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  33.793 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  36.137 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  34.829 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  34.298 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  31.584 
+GO class  8 ( GO:0019887 ) **** DONE ELAPSED TIME:  341.919 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  31.946 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  31.449 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  31.205 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  31.739 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  29.983 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  33.857 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  32.278 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  32.976 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  30.388 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  26.519 
+GO class  9 ( GO:0017048 ) **** DONE ELAPSED TIME:  312.429 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  27.499 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  22.281 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  24.672 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  28.383 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  27.492 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  29.091 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  27.192 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  27.399 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  29.992 
+MODEL:  treebag START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  25.062 
+GO class  10 ( GO:0001664 ) **** DONE ELAPSED TIME:  269.143 

@@ -1,0 +1,30 @@
+nohup: ignoring input
+During startup - Warning messages:
+1: Setting LC_TIME failed, using "C" 
+2: Setting LC_MONETARY failed, using "C" 
+3: Setting LC_PAPER failed, using "C" 
+4: Setting LC_MEASUREMENT failed, using "C" 
+Loading required package: lattice
+Loading required package: ggplot2
+Loading required package: methods
+HEMDAG: Hierarchical Ensemble Methods for DAG-structured taxonomies
+Please cite HEMDAG if you use it: see citation('HEMDAG') for details
+
+During startup - Warning messages:
+1: Setting LC_TIME failed, using "C" 
+2: Setting LC_MONETARY failed, using "C" 
+3: Setting LC_PAPER failed, using "C" 
+4: Setting LC_MEASUREMENT failed, using "C" 
+Warning messages:
+1: In normalizePath(dirname(file)) :
+  path[1]="/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection": No such file or directory
+2: In normalizePath(file, winslash = "/") :
+  path[1]="/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/fastIter.cpp": No such file or directory
+Loading required package: randomGLM
+Loading required package: MASS
+Loading required package: foreach
+Loading required package: doParallel
+Loading required package: iterators
+Loading required package: parallel
+Error in matrix(0, maxLevel, nFeatures) : non-numeric matrix extent
+Calls: caret.training ... <Anonymous> -> .countsInInteractionMatrix -> matrix

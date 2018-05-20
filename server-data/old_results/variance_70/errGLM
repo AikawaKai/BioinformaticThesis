@@ -1,0 +1,31 @@
+nohup: ignoring input
+During startup - Warning messages:
+1: Setting LC_TIME failed, using "C" 
+2: Setting LC_MONETARY failed, using "C" 
+3: Setting LC_PAPER failed, using "C" 
+4: Setting LC_MEASUREMENT failed, using "C" 
+Loading required package: lattice
+Loading required package: ggplot2
+Loading required package: methods
+HEMDAG: Hierarchical Ensemble Methods for DAG-structured taxonomies
+Please cite HEMDAG if you use it: see citation('HEMDAG') for details
+
+During startup - Warning messages:
+1: Setting LC_TIME failed, using "C" 
+2: Setting LC_MONETARY failed, using "C" 
+3: Setting LC_PAPER failed, using "C" 
+4: Setting LC_MEASUREMENT failed, using "C" 
+Warning messages:
+1: In normalizePath(dirname(file)) :
+  path[1]="/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection": No such file or directory
+2: In normalizePath(file, winslash = "/") :
+  path[1]="/home/kai/Documents/Unimi/Tesi-Bioinformatica/BioinformaticThesis/MLFeatureSelection/fastIter.cpp": No such file or directory
+Warning messages:
+1: from glmnet Fortran code (error code -99); Convergence for 99th lambda value not reached after maxit=100000 iterations; solutions for larger lambdas returned 
+2: from glmnet Fortran code (error code -84); Convergence for 84th lambda value not reached after maxit=100000 iterations; solutions for larger lambdas returned 
+3: from glmnet Fortran code (error code -86); Convergence for 86th lambda value not reached after maxit=100000 iterations; solutions for larger lambdas returned 
+4: from glmnet Fortran code (error code -82); Convergence for 82th lambda value not reached after maxit=100000 iterations; solutions for larger lambdas returned 
+5: from glmnet Fortran code (error code -82); Convergence for 82th lambda value not reached after maxit=100000 iterations; solutions for larger lambdas returned 
+6: from glmnet Fortran code (error code -98); Convergence for 98th lambda value not reached after maxit=100000 iterations; solutions for larger lambdas returned 
+7: from glmnet Fortran code (error code -88); Convergence for 88th lambda value not reached after maxit=100000 iterations; solutions for larger lambdas returned 
+8: from glmnet Fortran code (error code -84); Convergence for 84th lambda value not reached after maxit=100000 iterations; solutions for larger lambdas returned 

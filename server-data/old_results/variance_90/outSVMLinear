@@ -1,0 +1,312 @@
+ [1] "GO:0005261" "GO:0008237" "GO:0016818" "GO:0060089" "GO:0004857"
+ [6] "GO:0046872" "GO:0097159" "GO:0019887" "GO:0017048" "GO:0001664"
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  26.845 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  28.669 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  26.019 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  21.682 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  22.964 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  23.028 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  25.019 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  25.74 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  27.626 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  29.836 
+GO class  1 ( GO:0005261 ) **** DONE ELAPSED TIME:  257.475 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  25.207 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  27.09 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  26.534 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  25.862 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  23.908 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  24.993 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  25.931 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  26.421 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  25.133 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  26.812 
+GO class  2 ( GO:0008237 ) **** DONE ELAPSED TIME:  258.016 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  42.492 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  44.078 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  42.08 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  45.578 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  41.58 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  35.882 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  43.392 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  41.581 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  42.682 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  43.308 
+GO class  3 ( GO:0016818 ) **** DONE ELAPSED TIME:  422.686 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  49.112 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  51.479 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  53.361 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  58.893 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  53.696 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  49.076 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  54.613 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  52.176 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  50.412 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  36.004 
+GO class  4 ( GO:0060089 ) **** DONE ELAPSED TIME:  508.864 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  28.868 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  29.432 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  27.739 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  40.598 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  34.077 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  34.032 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  31.981 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  40.699 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  30.084 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  26.522 
+GO class  5 ( GO:0004857 ) **** DONE ELAPSED TIME:  324.07 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  30.82 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  31.377 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  28.456 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  29.334 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  30.603 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  29.536 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  30.246 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  29.898 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  29.022 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  35.711 
+GO class  6 ( GO:0046872 ) **** DONE ELAPSED TIME:  305.042 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  151.713 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  161.756 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  170.558 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  159.649 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  158.605 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  161.672 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  159.674 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  154.832 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  158.393 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  167.286 
+GO class  7 ( GO:0097159 ) **** DONE ELAPSED TIME:  1604.176 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  61.095 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  56.812 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  59.934 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  56.441 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  79.77 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  61.438 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  51.737 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  53.064 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  54.079 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  50.151 
+GO class  8 ( GO:0019887 ) **** DONE ELAPSED TIME:  584.578 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  98.623 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  71.881 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  53.132 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  53.378 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  51.374 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  209.955 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  57.565 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  54.034 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  51.076 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  50.929 
+GO class  9 ( GO:0017048 ) **** DONE ELAPSED TIME:  752.084 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  1 DONE **** ELAPSED TIME:  52.919 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  2 DONE **** ELAPSED TIME:  43.88 
+MODEL:  svmLinear START 
+maximum number of iterations reached 0.0003301677 -0.0003229945AUPRC and AUROC measures DONE 
+FOLD:  3 DONE **** ELAPSED TIME:  51.427 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  4 DONE **** ELAPSED TIME:  45.3 
+MODEL:  svmLinear START 
+maximum number of iterations reached 6.376738e-05 -6.355145e-05AUPRC and AUROC measures DONE 
+FOLD:  5 DONE **** ELAPSED TIME:  42.04 
+MODEL:  svmLinear START 
+maximum number of iterations reached 1.952156e-05 -1.95224e-05AUPRC and AUROC measures DONE 
+FOLD:  6 DONE **** ELAPSED TIME:  65.879 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  7 DONE **** ELAPSED TIME:  39.745 
+MODEL:  svmLinear START 
+maximum number of iterations reached 8.578816e-05 -8.531443e-05AUPRC and AUROC measures DONE 
+FOLD:  8 DONE **** ELAPSED TIME:  67.635 
+MODEL:  svmLinear START 
+AUPRC and AUROC measures DONE 
+FOLD:  9 DONE **** ELAPSED TIME:  44.106 
+MODEL:  svmLinear START 
+maximum number of iterations reached 0.0001154413 -0.0001147033AUPRC and AUROC measures DONE 
+FOLD:  10 DONE **** ELAPSED TIME:  45.986 
+GO class  10 ( GO:0001664 ) **** DONE ELAPSED TIME:  499.053 
