@@ -4,6 +4,7 @@ getInfoFromName<-function(name){
 
 getPerfFlat<-function(path_file, path_, files, onto, type_){
   res <- list(12)
+  res1 <- list(12)
   i <- 0
   algo_names <- list(12)
   if(type_ == "PCA"){
@@ -21,16 +22,18 @@ getPerfFlat<-function(path_file, path_, files, onto, type_){
     prc_scores <- PRC.flat[[2]]
     i <- i + 1
     res[i] <- list(auc_scores)
+    res1[i] <- list(prc_scores)
     split_ <- unlist(strsplit(file, "[.]"))
     algo_names[i] <- split_[[index]]
-    
-    
   }
   names(res) <- algo_names
+  names(res1) <- algo_names
   # print(names_)
   #res["classes"] <- names_
-  write.table(res, file=paste0(path_file,"/", onto, "_", type_, ".csv"), 
+  write.table(res, file=paste0(path_file,"/AUROC_", onto, "_", type_, ".csv"), 
             sep="\t", dec=".", row.names = FALSE)
+  write.table(res1, file=paste0(path_file,"/AUPRC_", onto, "_", type_, ".csv"), 
+              sep="\t", dec=".", row.names = FALSE)
   #print(names_)
 }
 
