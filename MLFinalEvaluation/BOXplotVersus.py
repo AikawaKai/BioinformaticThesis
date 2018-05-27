@@ -77,11 +77,11 @@ def versusBoxPlot(vals_FS, vals_PCA, onto):
         values_couple_auroc.append(vals_FS[algo]["AUROC"])
         values_couple_auroc.append(vals_PCA[algo]["AUROC"])
         print(ks_2samp(vals_FS[algo]["AUROC"], vals_PCA[algo]["AUROC"]))
-        p_value_auroc.append(round(ks_2samp(vals_FS[algo]["AUROC"], vals_PCA[algo]["AUROC"])[1], 10))
+        p_value_auroc.append(round(ks_2samp(vals_FS[algo]["AUROC"], vals_PCA[algo]["AUROC"])[1], 5))
 
         values_couple_auprc.append(vals_FS[algo]["AUPRC"])
         values_couple_auprc.append(vals_PCA[algo]["AUPRC"])
-        p_value_auprc.append(round(ks_2samp(vals_FS[algo]["AUPRC"], vals_PCA[algo]["AUPRC"])[1], 10))
+        p_value_auprc.append(round(ks_2samp(vals_FS[algo]["AUPRC"], vals_PCA[algo]["AUPRC"])[1], 5))
     print(values_couple_auroc)
 
 
