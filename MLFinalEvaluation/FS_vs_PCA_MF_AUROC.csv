@@ -1,0 +1,2 @@
+adaboost	C5.0	glmnet	kknn	lda	LogitBoost	mlp	naive_bayes	ranger	svmLinear2	treebag	xgbLinear
+0.0	1.2e-09	0.6511762162	7.33351e-05	0.0033713707	1e-10	0.0	0.0	0.0263164265	0.0	4.53524e-05	3.21e-08

@@ -4,6 +4,7 @@ import os
 import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 from scipy.stats import ks_2samp
+from mpl_toolkits.axes_grid.anchored_artists import AnchoredText
 
 # set di colori (si possono modificare a piacimento. Devono essere esattamente 12)
 from scipy.linalg import hadamard
@@ -15,6 +16,17 @@ colors = ['red', 'blue', 'green', 'yellow', 'grey',
 dict_algo = {"adaboost" : "ada", "C5.0" : "C5", "svmLinear2" : "svmL", "lda": "lda", "ranger": "ran", "mlp": "mlp",
              "glmnet" : "glm", "xgbLinear" : "xgb", "kknn": "knn", "LogitBoost": "LB", "naive_bayes": "nb",
              "treebag": "tree"}
+
+
+def textonly(ax, fontsize, string_to_write):
+    chartBox = ax.get_position()
+    ax.set_position([chartBox.x0, chartBox.y0, chartBox.width, chartBox.height])
+    at = AnchoredText(string_to_write,
+                      prop=dict(size=fontsize),
+                      bbox_to_anchor=(chartBox.x0+1440, chartBox.y0+250), loc="center left")
+    at.patch.set_boxstyle("round,pad=0.,rounding_size=0.2")
+    ax.add_artist(at)
+    return at
 
 # controlla se la stringa è castabile float
 def cast_float(val):
@@ -47,13 +59,14 @@ def split_file_name(name):
 
 def versusBoxPlot(vals_FS, vals_PCA, onto):
     names_1 = sorted(vals_FS.keys(), key=lambda x : x.lower())
+    string_to_write = "\n".join([str(i)+" "+names_1[i] for i in  range(len(names_1))])
     print(names_1)
     names_ = [dict_algo[name] for name in names_1]
     names_couple = []
     p_value_name = []
     for i in range(len(names_)):
-        names_couple.append(names_[i]+"_FS")
-        names_couple.append(names_[i]+"_PCA")
+        names_couple.append(str(i)+"_FS")
+        names_couple.append(str(i)+"_PCA")
         p_value_name.append(names_1[i])
 
     values_couple_auroc = []
@@ -72,8 +85,8 @@ def versusBoxPlot(vals_FS, vals_PCA, onto):
     print(values_couple_auroc)
 
 
-    title_ = "FS_vs_PCA_"+onto+"_"+"AUROC"
 
+    title_ = "FS_vs_PCA_"+onto+"_"+"AUROC"
     with open(title_+".csv", "w") as csv_to_write:
         writer = csv.writer(csv_to_write, delimiter="\t")
         writer.writerow(p_value_name)
@@ -81,7 +94,7 @@ def versusBoxPlot(vals_FS, vals_PCA, onto):
     fig = plt.figure(figsize=(16, 5))
     ax = fig.add_subplot(111)
     bp = ax.boxplot(values_couple_auroc, patch_artist=True)
-    colors_ = ["lightgreen", "lightblue"]
+    colors_ = ["coral", "lightblue"]
     i = 0
     for box in bp['boxes']:
         if i % 2 == 0:
@@ -89,18 +102,22 @@ def versusBoxPlot(vals_FS, vals_PCA, onto):
         else:
             box.set(facecolor=colors_[1])
         i += 1
+    for median in bp['medians']:
+        median.set(color='black')
     ax.set_title(title_)
     ax.set_ylabel("AUROC")
     ax.set_xlabel('ALGORITMI')
-    legend_elements = [Patch(facecolor='lightgreen', edgecolor='black',
+    legend_elements = [Patch(facecolor='coral', edgecolor='black',
                              label='Feature Selection'),
                        Patch(facecolor='lightblue', edgecolor='black',
                              label='PCA')]
     ax.legend(handles=legend_elements , loc='lower left')
     ax.set_xticklabels(names_couple)
-    changeFontSize(ax, 12, 8, 14)
-
+    changeFontSize(ax, 14, 10, 16)
+    textonly(ax, 10, string_to_write)
     plt.savefig(title_ + ".png")
+
+
 
     title_ = "FS_vs_PCA_" + onto + "_" + "AUPRC"
     with open(title_+".csv", "w") as csv_to_write:
@@ -110,7 +127,7 @@ def versusBoxPlot(vals_FS, vals_PCA, onto):
     fig = plt.figure(figsize=(16, 5))
     ax = fig.add_subplot(111)
     bp = ax.boxplot(values_couple_auprc, patch_artist=True)
-    colors_ = ["lightgreen", "lightblue"]
+    colors_ = ["coral", "lightblue"]
     i = 0
     for box in bp['boxes']:
         if i % 2 == 0:
@@ -118,17 +135,19 @@ def versusBoxPlot(vals_FS, vals_PCA, onto):
         else:
             box.set(facecolor=colors_[1])
         i += 1
+    for median in bp['medians']:
+        median.set(color='black')
     ax.set_title(title_)
     ax.set_ylabel("AUPRC")
     ax.set_xlabel('ALGORITMI')
-    legend_elements = [Patch(facecolor='lightgreen', edgecolor='black',
+    legend_elements = [Patch(facecolor='coral', edgecolor='black',
                              label='Feature Selection'),
                        Patch(facecolor='lightblue', edgecolor='black',
                              label='PCA')]
     ax.legend(handles=legend_elements, loc='upper left')
     ax.set_xticklabels(names_couple)
-    changeFontSize(ax, 12, 8, 14)
-
+    changeFontSize(ax, 14, 10, 16)
+    textonly(ax, 10, string_to_write)
     plt.savefig(title_ + ".png")
 
 
