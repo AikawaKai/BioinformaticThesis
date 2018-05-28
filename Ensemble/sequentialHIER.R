@@ -1,16 +1,19 @@
-executeGPAV <- function(path_scores, file_, path_dag, dag.file, path_ann, ann.file, rec.levels,
-                        hierPerfPath, hierScoresPath, algo){
-  algo(flat.dir = path_scores, flat.file = file_,  dag.dir = path_dag, dag.file = dag.file, 
-       ann.dir = path_ann, hierScore.dir = hierScoresPath, ann.file = ann.file,  perf.dir = hierPerfPath, 
-       rec.levels = rec.levels, parallel = TRUE,  norm.type = "MaxNorm", n.round = 3, W = NULL, 
-       f.criterion = "F", ncores = 5, norm = FALSE, folds = NULL)
-}
-
-selectFunct <- function(hierAlgo){
+executeALGO <- function(path_scores, file_, path_dag, dag.file, path_ann, ann.file, rec.levels,
+                        hierPerfPath, hierScoresPath, hierAlgo){
+  
   if(hierAlgo=="GPAV"){
-    algo <- Do.GPAV
+    Do.GPAV(flat.dir = path_scores, flat.file = file_,  dag.dir = path_dag, dag.file = dag.file, 
+            ann.dir = path_ann, hierScore.dir = hierScoresPath, ann.file = ann.file,  
+            perf.dir = hierPerfPath, rec.levels = rec.levels, parallel = TRUE,  norm.type = "MaxNorm", 
+            n.round = 3, W = NULL, f.criterion = "F", ncores = 5, norm = FALSE, folds = NULL)
   }
-  return(algo)
+  if(hierAlgo=="HTD"){
+    Do.HTD(flat.dir = path_scores, flat.file = file_,  dag.dir = path_dag, dag.file = dag.file, 
+           ann.dir = path_ann, hierScore.dir = hierScoresPath, ann.file = ann.file,  
+           perf.dir = hierPerfPath, rec.levels = rec.levels, norm.type = "MaxNorm", n.round = 3,
+           f.criterion = "F", norm = FALSE, folds = NULL)
+  }
+  
 }
 
 calculateHIER <- function(files, dag, path_, path_scores, path_dag, path_ann, hierAlgo){
@@ -18,13 +21,12 @@ calculateHIER <- function(files, dag, path_, path_scores, path_dag, path_ann, hi
   dag.file = paste0("/6239_CAEEL_GO_", dag, "_DAG_STRING_v10.5_20DEC17")
   ann.file =  paste0("/6239_CAEEL_GO_", dag, "_ANN_STRING_v10.5_20DEC17")
   rec.levels <- seq(from=0.1, to=1, by=0.1);
-  algo <- selectFunct(hierAlgo)
   for(file_ in files){
     file_ <- substring(file_, 1, nchar(file_)-4)
     hierScoresPath <- paste0(path_, "/hierScores/", hierAlgo, "/")
     hierPerfPath <- paste0(path_, "/hierPerf/", hierAlgo, "/")
-    executeGPAV(path_scores, file_, path_dag, dag.file, path_ann, ann.file, rec.levels, hierPerfPath,
-                hierScoresPath, algo)
+    executeALGO(path_scores, file_, path_dag, dag.file, path_ann, ann.file, rec.levels, hierPerfPath,
+                hierScoresPath, hierAlgo)
   }
   
 }
@@ -32,12 +34,12 @@ calculateHIER <- function(files, dag, path_, path_scores, path_dag, path_ann, hi
 library(HEMDAG)
 
 SERVER <- FALSE
-hierAlgo <- "GPAV"
+hierAlgo <- "HTD"
 dag <- "CC"
 fs <- "PCA/" 
 
 if(SERVER){
-  path_ <- ""
+  path_ <- "/home/modore/Tesi-Bioinformatica/BioinformaticThesis/Ensemble/"
 }else{
   path_ <- "/home/kai/Documenti/UNIMI/BioinformaticThesis/Ensemble/"
 }
