@@ -34,9 +34,8 @@ calculateHIER <- function(files, dag, path_, path_scores, path_dag, path_ann, hi
 library(HEMDAG)
 
 SERVER <- FALSE
-hierAlgo <- "HTD"
-dag <- "CC"
-fs <- "PCA/" 
+args <- commandArgs(trailingOnly = TRUE)
+hierAlgo <- args[1]
 
 if(SERVER){
   path_ <- "/home/modore/Tesi-Bioinformatica/BioinformaticThesis/Ensemble/"
@@ -48,12 +47,16 @@ if(SERVER){
 path_dag <- paste0(path_, "DAG/")
 path_ann <- paste0(path_, "ANN/")
 
+dags <- c("BP", "MF", "CC")
+feat_select <- c("PCA", "FS")
+for(dag in dags){
+  for(fs in feat_select){
+    path_scores <- paste0(path_, "scores/", fs, "/")
+    files <- list.files(path = path_scores, recursive = TRUE)
+    calculateHIER(files, dag, path_, path_scores, path_dag, path_ann, hierAlgo)
+  }
+}
 
-path_scores <- paste0(path_, "scores/", fs)
-files <- list.files(path = path_scores, recursive = TRUE)
-
-
-calculateHIER(files, dag, path_, path_scores, path_dag, path_ann, hierAlgo)
 
 
 
