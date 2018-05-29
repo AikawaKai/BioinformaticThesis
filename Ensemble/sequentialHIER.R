@@ -16,18 +16,30 @@ executeALGO <- function(path_scores, file_, path_dag, dag.file, path_ann, ann.fi
   
 }
 
-calculateHIER <- function(files, path_, path_scores, path_dag, path_ann, hierAlgo){
+getFS <- function(file_name){
+  if(grepl(pattern = ".PCA.", file_name)){
+    return("PCA")
+  }else{
+    return("FS")
+  }
+}
+
+calculateHIER <- function(files, path_, path_dag, path_ann, hierAlgo){
   rec.levels <- seq(from=0.1, to=1, by=0.1);
   for(file_ in files){
     file_ <- substring(file_, 1, nchar(file_)-4)
     split_ <- unlist(strsplit(file_, "[.]"))
     dag <- split_[5]
+    fs <- getFS(file_)
+    path_scores <- paste0(path_, "scores/", fs, "/")
     dag.file = paste0("/6239_CAEEL_GO_", dag, "_DAG_STRING_v10.5_20DEC17")
     ann.file =  paste0("/6239_CAEEL_GO_", dag, "_ANN_STRING_v10.5_20DEC17")
     print("[INFO] Current File")
     print(file_)
     print("[INFO] Current Extracted DAG")
     print(dag)
+    print("[INFO] Current Extracted FS")
+    print(fs)
     hierScoresPath <- paste0(path_, "/hierScores/", hierAlgo, "/")
     hierPerfPath <- paste0(path_, "/hierPerf/", hierAlgo, "/")
     executeALGO(path_scores, file_, path_dag, dag.file, path_ann, ann.file, rec.levels, hierPerfPath,
@@ -74,5 +86,5 @@ for(dag in dags){
   basic_list <- c(basic_list, files)
     }
 }
-basic_list <- basic_list[21:length(basic_list)]
-calculateHIER(basic_list, path_, path_scores, path_dag, path_ann, hierAlgo)
+basic_list <- basic_list[25:length(basic_list)]
+calculateHIER(basic_list, path_, path_dag, path_ann, hierAlgo)
