@@ -86,5 +86,5 @@ for(dag in dags){
   basic_list <- c(basic_list, files)
     }
 }
-basic_list <- basic_list[33:length(basic_list)]
+basic_list <- basic_list[45:length(basic_list)]
 calculateHIER(basic_list, path_, path_dag, path_ann, hierAlgo)
