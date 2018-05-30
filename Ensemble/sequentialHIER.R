@@ -1,5 +1,5 @@
 executeALGO <- function(path_scores, file_, path_dag, dag.file, path_ann, ann.file, rec.levels,
-                        hierPerfPath, hierScoresPath, hierAlgo){
+                        hierPerfPath, hierScoresPath, hierAlgo, bottomup = NULL){
   
   if(hierAlgo=="GPAV"){
     Do.GPAV(flat.dir = path_scores, flat.file = file_,  dag.dir = path_dag, dag.file = dag.file, 
@@ -13,6 +13,13 @@ executeALGO <- function(path_scores, file_, path_dag, dag.file, path_ann, ann.fi
            perf.dir = hierPerfPath, rec.levels = rec.levels, norm.type = "MaxNorm", n.round = 3,
            f.criterion = "F", norm = FALSE, folds = NULL)
   }
+  if(hierAlgo=="TPR-DAG"){
+    Do.TPR.DAG(flat.dir = path_scores, flat.file = file_,  dag.dir = path_dag, dag.file = dag.file, 
+               ann.dir = path_ann, hierScore.dir = hierScoresPath, ann.file = ann.file,  
+               perf.dir = hierPerfPath, rec.levels = rec.levels, norm.type = "MaxNorm", n.round = 3,
+               f.criterion = "F", norm = FALSE, folds = NULL, seed = 1, bottomup = bottomup,
+               topdown = "HTD")
+  }
   
 }
 
@@ -24,7 +31,7 @@ getFS <- function(file_name){
   }
 }
 
-calculateHIER <- function(files, path_, path_dag, path_ann, hierAlgo){
+calculateHIER <- function(files, path_, path_dag, path_ann, hierAlgo, bottomup){
   rec.levels <- seq(from=0.1, to=1, by=0.1);
   for(file_ in files){
     file_ <- substring(file_, 1, nchar(file_)-4)
@@ -40,10 +47,10 @@ calculateHIER <- function(files, path_, path_dag, path_ann, hierAlgo){
     print(dag)
     print("[INFO] Current Extracted FS")
     print(fs)
-    hierScoresPath <- paste0(path_, "/hierScores/", hierAlgo, "/")
-    hierPerfPath <- paste0(path_, "/hierPerf/", hierAlgo, "/")
+    hierScoresPath <- paste0(path_, "/hierScores/", hierAlgo, bottomup, "/")
+    hierPerfPath <- paste0(path_, "/hierPerf/", hierAlgo, bottomup, "/")
     executeALGO(path_scores, file_, path_dag, dag.file, path_ann, ann.file, rec.levels, hierPerfPath,
-                hierScoresPath, hierAlgo)
+                hierScoresPath, hierAlgo, bottomup = bottomup)
   }
   
 }
@@ -52,7 +59,13 @@ library(HEMDAG)
 
 SERVER <- FALSE
 args <- commandArgs(trailingOnly = TRUE)
-hierAlgo <- args[1]
+if(length(args)==1){
+  hierAlgo <- args[1]
+  bottomup <- NULL
+}else{
+  hierAlgo <- args[1]
+  bottomup <- args[2]
+}
 
 if(SERVER){
   path_ <- "/home/modore/Tesi-Bioinformatica/BioinformaticThesis/Ensemble/"
@@ -86,5 +99,5 @@ for(dag in dags){
   basic_list <- c(basic_list, files)
     }
 }
-basic_list <- basic_list[45:length(basic_list)]
-calculateHIER(basic_list, path_, path_dag, path_ann, hierAlgo)
+basic_list <- basic_list[0:length(basic_list)]
+calculateHIER(basic_list, path_, path_dag, path_ann, hierAlgo, bottomup)
