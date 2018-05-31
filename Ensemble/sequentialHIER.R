@@ -25,7 +25,7 @@ executeALGO <- function(path_scores, file_, path_dag, dag.file, path_ann, ann.fi
                ann.dir = path_ann, hierScore.dir = hierScoresPath, ann.file = ann.file,  
                perf.dir = hierPerfPath, rec.levels = rec.levels, norm.type = "MaxNorm", n.round = 3,
                f.criterion = "F", norm = FALSE, folds = NULL, seed = 1, bottomup = bottomup,
-               topdown = "GPAV")
+               topdown = "GPAV", parallel = TRUE, ncores = 5)
   }
   
 }
