@@ -31,6 +31,12 @@ executeALGO <- function(path_scores, file_, path_dag, dag.file, path_ann, ann.fi
                f.criterion = "F", norm = FALSE, folds = NULL, seed = 1, bottomup = bottomup,
                topdown = "GPAV", parallel = TRUE, ncores = 5, metric = metric)
   }
+  if(hierAlgo=="TPR-W"){
+    Do.TPR.DAG(flat.dir = path_scores, flat.file = file_,  dag.dir = path_dag, dag.file = dag.file, 
+               ann.dir = path_ann, hierScore.dir = hierScoresPath, ann.file = ann.file,  
+               perf.dir = hierPerfPath, rec.levels = rec.levels, norm.type = "MaxNorm", n.round = 3,
+               f.criterion = "F", norm = FALSE, folds = NULL, seed = 1, bottomup = "weighted.threshold.free"
+               topdown = "HTD", metric = metric, positive = "children")
   
 }
 
