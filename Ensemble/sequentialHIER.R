@@ -1,12 +1,15 @@
 executeALGO <- function(path_scores, file_, path_dag, dag.file, path_ann, ann.file, rec.levels,
                         hierPerfPath, hierScoresPath, hierAlgo, bottomup = NULL){
-  if(bottomup == "threshold"){
-    metric ="FMAX"
-  }else if(bottomup == "weighted.threshold.free"){
+  if(hierAlgo == "TPR-W"){
     metric ="FMAX"
   }else{
-    metric = NULL
+    if(bottomup == "threshold"){
+      metric ="FMAX"
+    }else{
+      metric = NULL
+    }
   }
+  
   
   if(hierAlgo=="GPAV"){
     Do.GPAV(flat.dir = path_scores, flat.file = file_,  dag.dir = path_dag, dag.file = dag.file, 
