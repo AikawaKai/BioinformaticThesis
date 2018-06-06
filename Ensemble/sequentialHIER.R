@@ -1,6 +1,6 @@
 executeALGO <- function(path_scores, file_, path_dag, dag.file, path_ann, ann.file, rec.levels,
                         hierPerfPath, hierScoresPath, hierAlgo, bottomup = NULL){
-  if(bottomup == "threshold"){
+  if(bottomup == "threshold" || bottomup == "weighted.threshold.free"){
     metric ="FMAX"
   }else{
     metric = NULL
