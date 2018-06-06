@@ -3,8 +3,11 @@ executeALGO <- function(path_scores, file_, path_dag, dag.file, path_ann, ann.fi
   if(bottomup == "threshold"){
     metric ="FMAX"
   }else if(bottomup == "weighted.threshold.free"){
+    metric ="FMAX"
+  }else{
     metric = NULL
   }
+  
   if(hierAlgo=="GPAV"){
     Do.GPAV(flat.dir = path_scores, flat.file = file_,  dag.dir = path_dag, dag.file = dag.file, 
             ann.dir = path_ann, hierScore.dir = hierScoresPath, ann.file = ann.file,  
