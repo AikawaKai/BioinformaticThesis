@@ -43,6 +43,8 @@ def write_box_plot(key, list_dicts):
         box.set(facecolor=colors[i])
         i += 1
     ax.set_title(title_)
+    if key == "times":
+        key = "tempo"
     ax.set_ylabel(key.upper())
     ax.set_xlabel('ALGORITMI')
     ax.set_xticklabels(names)

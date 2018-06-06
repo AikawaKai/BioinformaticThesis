@@ -57,7 +57,7 @@ def saveBoxPlot(class_name, list_data, list_names):
     fig = plt.figure(1, figsize=(20, 8))
     print(list_names)
     plt.xlabel("ALGORITMI", fontsize=18)
-    plt.ylabel("TIME", fontsize=18)
+    plt.ylabel("TEMPO", fontsize=18)
     boxes = plt.boxplot(list_data, patch_artist=True)
     i=0
     for box in boxes["boxes"]:
