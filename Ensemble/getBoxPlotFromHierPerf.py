@@ -12,6 +12,7 @@ blues = [(30, 144, 255), (0, 191, 255), (135, 206, 250), (173, 216, 230), (240, 
 blues = [[val/255 for val in tupl] for tupl in blues]
 print(blues)
 
+
 def changeFontSize(ax, label_font, tick_font, title_font):
     ax.title.set_fontsize(title_font)
     ax.xaxis.label.set_fontsize(label_font)
