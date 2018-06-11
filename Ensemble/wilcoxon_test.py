@@ -92,11 +92,17 @@ def wilcoxon_test_by_metric(algo_dict, dict_metrics, onto, key):
                     names_1.append(name)
             metric_values = [algo_vals_dict[metric] for metric in names_1]
             names_1 = [normalize_name(n) for n in names_1]
+            curr_df = pd.DataFrame(columns=names_1, index=names_1)
             zip_metric_names = zip(metric_values, names_1)
             metric_values_by_comb = combinations(zip_metric_names, 2)
             for comb in metric_values_by_comb:
                 print(algo, onto, key, fs, "Comparison between: ", comb[0][1],"," , comb[1][1])
-                print("p_value", wilcoxon(comb[0][0], comb[1][0]))
+                curr_wilcoxon = wilcoxon(comb[0][0], comb[1][0])
+                print("p_value", curr_wilcoxon[1])
+                curr_df.loc[comb[0][1], comb[1][1]] = curr_wilcoxon[1]
+                print(curr_df.loc[comb[0][1], comb[1][1]])
+                curr_df.loc[comb[1][1], comb[0][1]] = curr_wilcoxon[1]
+            print(curr_df)
 
 
 def wilcoxon_test(algo_dict, dict_metrics, onto):
