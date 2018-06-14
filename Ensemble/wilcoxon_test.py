@@ -2,13 +2,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 from scipy.stats import wilcoxon
-from itertools import combinations
+from itertools import combinations, product
 import csv
+from numpy import mean
 
 
-algo_done = ["TPR-DAGthreshold.free", "ISO-TPRthreshold.free", "GPAV", "HTD"]
+algo_done = ["GPAV", "HTD", "TPR-DAGthreshold.free", "ISO-TPRthreshold.free", "TPR-DAGthreshold"]
 dict_translate_hier_method = {"TPR-DAGthreshold.free": "TPR-TF", "ISO-TPRthreshold.free": "ISO-TPR-TF",
-                              "GPAV": "GPAV", "HTD": "HTD", "flat": "flat"}
+                              "TPR-DAGthreshold": "TPR-T", "GPAV": "GPAV", "HTD": "HTD", "flat": "flat"}
 
 dict_metric = {"AUC": "AUROC", "PRC": "AUPRC", "FMM": "FMM"}
 blues = [(30, 144, 255), (0, 191, 255), (135, 206, 250), (173, 216, 230), (240, 248, 255)]
@@ -125,8 +126,8 @@ def fill_dataframe(tot_df, curr_wilcoxon, comb):
     hierch1 = comb[0][1]
     hierch2 = comb[1][1]
     p_value = curr_wilcoxon[1]
-    if p_value < 0.01:
-        hier_score = sum([comb[0][0][i] - comb[1][0][i] for i in range(len(comb[0][0]))]) / len(comb[0][0])
+    if p_value < 0.05/12:
+        hier_score = mean(comb[0][0]) - mean(comb[1][0])
         if hier_score > 0:
             tot_df.loc[hierch1, hierch2][0] += 1
             tot_df.loc[hierch1, hierch2][1] += 1
@@ -149,9 +150,10 @@ def wilcoxon_test_by_metric(algo_dict, dict_metrics, onto, key):
     i = 0
     algo_dict_list = [algo for algo in algo_dict["FS"]]
     names = get_hierchical_method_names_from_dict(dict_metrics, key)
-    print(names)
+    # print(names)
     names_1 = [normalize_name(n) for n in names]
     for fs in ["FS", "PCA"]:
+        print("Current config: ", onto, key, fs)
         tot_df = pd.DataFrame(columns=names_1, index=names_1)
         for nam1 in names_1:
             for nam2 in names_1:
@@ -160,21 +162,21 @@ def wilcoxon_test_by_metric(algo_dict, dict_metrics, onto, key):
             i += 1
             algo_vals_dict = algo_dict[fs][algo]
             metric_values = [algo_vals_dict[metric] for metric in names]
-
             curr_df = pd.DataFrame(columns=names_1, index=names_1)
             zip_metric_names = zip(metric_values, names_1)
             metric_values_by_comb = combinations(zip_metric_names, 2)
             for comb in metric_values_by_comb:
-                print(algo, onto, key, fs, "Comparison between: ", comb[0][1],"," , comb[1][1])
+                #print("Comparison between: ", comb[0][1], ",", comb[1][1])
                 curr_wilcoxon = wilcoxon(comb[0][0], comb[1][0])
-                print("p_value", curr_wilcoxon[1])
+                #print("p_value", curr_wilcoxon[1])
                 curr_df.loc[comb[0][1], comb[1][1]] = curr_wilcoxon[1]
-                print(curr_df.loc[comb[0][1], comb[1][1]])
+                #print(curr_df.loc[comb[0][1], comb[1][1]])
                 curr_df.loc[comb[1][1], comb[0][1]] = curr_wilcoxon[1]
                 fill_dataframe(tot_df, curr_wilcoxon, comb)
-            curr_df.to_csv(path_or_buf="./csv/"+key+"/"+onto+"/"+algo+"_"+fs+".csv")
+            curr_df.to_csv(path_or_buf="./csv/"+key+"/"+onto+"/"+"x_algo/"+algo+"_"+fs+".csv")
         tot_df.to_csv(path_or_buf="./csv/" + key + "/" + onto + "/" + fs + ".csv", sep="\t")
-    print(tot_df)
+        print(tot_df)
+    #print(tot_df)
 
 
 def get_wilcoxon_test_from_dict_data(algo_dict, dict_metrics):

@@ -3,12 +3,12 @@ import matplotlib.pyplot as plt
 import os
 
 
-algo_done = ["TPR-DAGthreshold.free", "ISO-TPRthreshold.free", "GPAV", "HTD"]
+algo_done = ["HTD", "GPAV", "TPR-DAGthreshold.free", "ISO-TPRthreshold.free", "TPR-DAGthreshold"]
 dict_translate_hier_method = {"TPR-DAGthreshold.free": "TPR-TF", "ISO-TPRthreshold.free": "ISO-TPR-TF",
-                              "GPAV": "GPAV", "HTD": "HTD", "flat": "flat"}
+                              "GPAV": "GPAV", "HTD": "HTD", "flat": "flat", "TPR-DAGthreshold": "TPR-T"}
 
 dict_metric = {"AUC": "AUROC", "PRC": "AUPRC", "FMM": "FMM"}
-blues = [(30, 144, 255), (0, 191, 255), (135, 206, 250), (173, 216, 230), (240, 248, 255)]
+blues = [(0,0,139), (70, 130, 180), (30, 144, 255), (0, 191, 255), (135, 206, 250), (173, 216, 230), (240, 248, 255)]
 blues = [[val/255 for val in tupl] for tupl in blues]
 print(blues)
 
@@ -95,7 +95,7 @@ def box_plot_by_key_split(algo_dict, fig, num_row, key, onto, appendix, start, e
             ax.set_xticklabels(names_1)
             ax.set_ylabel(dict_metric[key])
             ax.set_title(algo+"_"+fs)
-            changeFontSize(ax, 14, 15, 19)
+            changeFontSize(ax, 14, 14, 19)
             j = 0
             for box in bp["boxes"]:
                 if j == 0:

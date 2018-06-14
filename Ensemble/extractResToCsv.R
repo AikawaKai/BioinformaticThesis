@@ -36,7 +36,7 @@ updateList1 <- function(list1, algo, fs, onto, FMM.flat, FMM.hier){
 }
 
 
-methods <- c("TPR-DAGthreshold.free", "ISO-TPRthreshold.free", "HTD", "GPAV")
+methods <- c("TPR-DAGthreshold.free", "ISO-TPRthreshold.free", "HTD", "GPAV", "TPR-DAGthreshold")
 for(curr_method in methods){
   path <- "/home/kai/Documenti/UNIMI/BioinformaticThesis/Ensemble/hierPerf/"
   path <- paste0(path, curr_method, "/")
