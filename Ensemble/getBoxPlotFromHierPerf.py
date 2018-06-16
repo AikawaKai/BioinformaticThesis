@@ -3,12 +3,14 @@ import matplotlib.pyplot as plt
 import os
 
 
-algo_done = ["HTD", "GPAV", "TPR-DAGthreshold.free", "ISO-TPRthreshold.free", "TPR-DAGthreshold"]
+algo_done = ["HTD", "GPAV", "TPR-DAGthreshold.free", "ISO-TPRthreshold.free", "TPR-DAGthreshold", "ISO-TPRthreshold",
+             "TPR-W"]
 dict_translate_hier_method = {"TPR-DAGthreshold.free": "TPR-TF", "ISO-TPRthreshold.free": "ISO-TPR-TF",
-                              "GPAV": "GPAV", "HTD": "HTD", "flat": "flat", "TPR-DAGthreshold": "TPR-T"}
+                              "GPAV": "GPAV", "HTD": "HTD", "flat": "flat", "TPR-DAGthreshold": "TPR-AT",
+                              "ISO-TPRthreshold": "ISO-TPR-AT", "TPR-W": "TPR-W"}
 
 dict_metric = {"AUC": "AUROC", "PRC": "AUPRC", "FMM": "FMM"}
-blues = [(0,0,139), (70, 130, 180), (30, 144, 255), (0, 191, 255), (135, 206, 250), (173, 216, 230), (240, 248, 255)]
+blues = [(0, 0, 139), (70, 130, 180), (30, 144, 255), (0, 191, 255), (135, 206, 250), (173, 216, 230), (240, 248, 255)]
 blues = [[val/255 for val in tupl] for tupl in blues]
 print(blues)
 
@@ -101,7 +103,7 @@ def box_plot_by_key_split(algo_dict, fig, num_row, key, onto, appendix, start, e
                 if j == 0:
                     box.set(facecolor="coral")
                 else:
-                    box.set(facecolor=blues[j])
+                    box.set(facecolor=blues[j-1])
                 j+=1
             for median in bp['medians']:
                 median.set(color='black')
@@ -109,7 +111,7 @@ def box_plot_by_key_split(algo_dict, fig, num_row, key, onto, appendix, start, e
 
 
 def box_plot_by_key(algo_dict, dict_metrics, onto, key):
-    fig = plt.figure(figsize=(16, 23))
+    fig = plt.figure(figsize=(23, 23))
     num_row = len(algo_dict["FS"].keys())*2
     box_plot_by_key_split(algo_dict, fig, num_row, key, onto, "1", 0, 6)
     fig.clear()

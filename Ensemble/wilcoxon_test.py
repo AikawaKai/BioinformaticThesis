@@ -9,7 +9,7 @@ from numpy import mean
 
 algo_done = ["GPAV", "HTD", "TPR-DAGthreshold.free", "ISO-TPRthreshold.free", "TPR-DAGthreshold"]
 dict_translate_hier_method = {"TPR-DAGthreshold.free": "TPR-TF", "ISO-TPRthreshold.free": "ISO-TPR-TF",
-                              "TPR-DAGthreshold": "TPR-T", "GPAV": "GPAV", "HTD": "HTD", "flat": "flat"}
+                              "TPR-DAGthreshold": "TPR-AT", "GPAV": "GPAV", "HTD": "HTD", "flat": "flat"}
 
 dict_metric = {"AUC": "AUROC", "PRC": "AUPRC", "FMM": "FMM"}
 blues = [(30, 144, 255), (0, 191, 255), (135, 206, 250), (173, 216, 230), (240, 248, 255)]
