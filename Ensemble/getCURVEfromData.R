@@ -2,13 +2,14 @@ library(PerfMeas)
 path <- "/home/kai/Documenti/UNIMI/BioinformaticThesis/Ensemble/hierPerf/"
 path2 <- "/home/kai/Documenti/UNIMI/BioinformaticThesis/Ensemble/"
 ontos <- c("BP", "MF", "CC")
-methods <- c("flat", "HTD", "GPAV", "TPR-DAGthreshold.free", "ISO-TPRthreshold.free", "TPR-DAGthreshold")
+methods <- c("flat", "HTD", "GPAV", "TPR-DAGthreshold.free", "ISO-TPRthreshold.free", 
+             "TPR-DAGthreshold", "ISO-TPRthreshold", "TPR-W")
 algorithms <- c("adaboost", "C5.0", "glmnet", "kknn", "lda", "LogitBoost", "mlp", 
                 "naive_bayes", "ranger", "svmLinear2", "treebag", "xgbLinear")
 fs_ <- c("feature", "PCA")
 
 plotData <- function(onto, fs, algo, files, path){
-  m <- matrix(nrow = 6, ncol = 10)
+  m <- matrix(nrow = 8, ncol = 10)
   i <- 1
   for(file in files){
     i = i + 1

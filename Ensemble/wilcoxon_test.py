@@ -7,9 +7,17 @@ import csv
 from numpy import mean
 
 
-algo_done = ["GPAV", "HTD", "TPR-DAGthreshold.free", "ISO-TPRthreshold.free", "TPR-DAGthreshold"]
-dict_translate_hier_method = {"TPR-DAGthreshold.free": "TPR-TF", "ISO-TPRthreshold.free": "ISO-TPR-TF",
-                              "TPR-DAGthreshold": "TPR-AT", "GPAV": "GPAV", "HTD": "HTD", "flat": "flat"}
+algo_done = ["GPAV", "HTD", "TPR-DAGthreshold.free", "ISO-TPRthreshold.free", "TPR-DAGthreshold", "ISO-TPRthreshold",
+             "TPR-W"]
+methods_ordered = ["GPAV", "HTD", "TPR-TF", "ISO-TPR-TF", "TPR-AT",  "ISO-TPR-AT", "TPR-W"]
+dict_translate_hier_method = {"TPR-DAGthreshold.free": "TPR-TF",
+                              "ISO-TPRthreshold.free": "ISO-TPR-TF",
+                              "TPR-DAGthreshold": "TPR-AT",
+                              "GPAV": "GPAV",
+                              "HTD": "HTD",
+                              "flat": "flat",
+                              "TPR-W": "TPR-W",
+                              "ISO-TPRthreshold": "ISO-TPR-AT"}
 
 dict_metric = {"AUC": "AUROC", "PRC": "AUPRC", "FMM": "FMM"}
 blues = [(30, 144, 255), (0, 191, 255), (135, 206, 250), (173, 216, 230), (240, 248, 255)]
@@ -122,30 +130,52 @@ def get_hierchical_method_names_from_dict(dict_metric, key):
     return names_1
 
 
-def fill_dataframe(tot_df, curr_wilcoxon, comb):
+def fill_dataframe2(tot_df, algo_df, curr_wilcoxon, comb, algo, onto, fs):
+    hierch1 = comb[0][1]
+    hierch2 = comb[1][1]
+    p_value = curr_wilcoxon[1]
+    if p_value < 0.05 / 12:
+        hier_score = mean(comb[0][0]) - mean(comb[1][0])
+        if hierch1 == 'flat':
+            if hier_score < 0:
+                tot_df.loc[algo, hierch2] += 1
+        else:
+            if hier_score > 0:
+                tot_df.loc[algo, hierch1] += 1
+
+
+def fill_dataframe(tot_df, algo_df, curr_wilcoxon, comb, algo, onto, fs):
     hierch1 = comb[0][1]
     hierch2 = comb[1][1]
     p_value = curr_wilcoxon[1]
     if p_value < 0.05/12:
         hier_score = mean(comb[0][0]) - mean(comb[1][0])
         if hier_score > 0:
+            if(hierch1 == "flat"):
+                algo_df.loc[algo, fs+"_"+onto] += 1
             tot_df.loc[hierch1, hierch2][0] += 1
             tot_df.loc[hierch1, hierch2][1] += 1
             tot_df.loc[hierch2, hierch1][1] += 1
         elif hier_score < 0:
+            if (hierch2 == "flat"):
+                algo_df.loc[algo, fs+"_"+onto] += 1
             tot_df.loc[hierch2, hierch1][0] += 1
             tot_df.loc[hierch2, hierch1][1] += 1
             tot_df.loc[hierch1, hierch2][1] += 1
         else:
+            if(hierch2 == "flat" or hierch1 == "flat"):
+                algo_df.loc[algo, fs + "_" + onto] += 1
             tot_df.loc[hierch1, hierch2][1] += 1
             tot_df.loc[hierch2, hierch1][1] += 1
     else:
+        if (hierch2 == "flat" or hierch1 == "flat"):
+            algo_df.loc[algo, fs + "_" + onto] += 1
         tot_df.loc[hierch1, hierch2][1] += 1
         tot_df.loc[hierch2, hierch1][1] += 1
 
 
 
-def wilcoxon_test_by_metric(algo_dict, dict_metrics, onto, key):
+def wilcoxon_test_by_metric(algo_dict, dict_metrics, onto, key, algo_df, tot_df_fs, tot_df_pca):
     num_row = len(algo_dict["FS"].keys())*2
     i = 0
     algo_dict_list = [algo for algo in algo_dict["FS"]]
@@ -172,7 +202,12 @@ def wilcoxon_test_by_metric(algo_dict, dict_metrics, onto, key):
                 curr_df.loc[comb[0][1], comb[1][1]] = curr_wilcoxon[1]
                 #print(curr_df.loc[comb[0][1], comb[1][1]])
                 curr_df.loc[comb[1][1], comb[0][1]] = curr_wilcoxon[1]
-                fill_dataframe(tot_df, curr_wilcoxon, comb)
+                if comb[0][1] == 'flat' or comb[1][1] == 'flat':
+                    if fs == "FS":
+                        fill_dataframe2(tot_df_fs, algo_df, curr_wilcoxon, comb, algo, onto, fs)
+                    else:
+                        fill_dataframe2(tot_df_pca, algo_df, curr_wilcoxon, comb, algo, onto, fs)
+                fill_dataframe(tot_df, algo_df, curr_wilcoxon, comb, algo, onto, fs)
             curr_df.to_csv(path_or_buf="./csv/"+key+"/"+onto+"/"+"x_algo/"+algo+"_"+fs+".csv")
         tot_df.to_csv(path_or_buf="./csv/" + key + "/" + onto + "/" + fs + ".csv", sep="\t")
         print(tot_df)
@@ -180,12 +215,36 @@ def wilcoxon_test_by_metric(algo_dict, dict_metrics, onto, key):
 
 
 def get_wilcoxon_test_from_dict_data(algo_dict, dict_metrics):
-    for onto in ["BP", "MF", "CC"]:
-        wilcoxon_test_by_metric(algo_dict[onto], dict_metrics, onto, "AUC")
-        wilcoxon_test_by_metric(algo_dict[onto], dict_metrics, onto, "PRC")
-    # wilcoxon_test_by_metric_no_sparse(dict_onto, dict_metrics, "AUC")
-    # wilcoxon_test_by_metric_no_sparse(dict_onto, dict_metrics, "PRC")
+    comb = product(["FS", "PCA"], ["BP", "MF", "CC"])
+    names = [c[0]+"_"+c[1] for c in comb]
+    algo_dict_list = [algo for algo in algo_dict["BP"]["FS"]]
 
+    for met in ["AUC", "PRC"]:
+        algo_df = getalgo_df(algo_dict_list, names)
+        tot_df_fs = getTot_Df_new(algo_dict_list)
+        tot_df_pca = getTot_Df_new(algo_dict_list)
+        for onto in ["BP", "MF", "CC"]:
+            wilcoxon_test_by_metric(algo_dict[onto], dict_metrics, onto, met, algo_df, tot_df_fs, tot_df_pca)
+        algo_df.to_csv(path_or_buf="./csv/" + met + "_.csv", sep="\t")
+        tot_df_fs.to_csv(path_or_buf="./csv/FS_" + met + "_1.csv", sep="\t")
+        tot_df_pca.to_csv(path_or_buf="./csv/PCA_" + met + "_1.csv", sep="\t")
+
+
+def getalgo_df(algo_dict_list, names):
+    algo_df = pd.DataFrame(columns=names, index=algo_dict_list)
+    for nam1 in names:
+        for al in algo_dict_list:
+            algo_df.loc[al, nam1] = 0
+    return algo_df
+
+
+def getTot_Df_new(algo_dict_list):
+    names1 = methods_ordered
+    tot_df = pd.DataFrame(index=algo_dict_list, columns=names1)
+    for algo in algo_dict_list:
+        for nam1 in names1:
+            tot_df.loc[algo, nam1] = 0
+    return tot_df
 
 if __name__ == '__main__':
     path_ = "/home/kai/Documenti/UNIMI/BioinformaticThesis/Ensemble/hierPerf"
